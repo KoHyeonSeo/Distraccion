@@ -44,13 +44,13 @@ public class AutoRotation : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            isOnce = true;
-            isRotate = true;
-            CameraControl.Instance.OnShakeCamera(1, 0.3f);
-            StartCoroutine("ButtonDown");
-        }
+        //if(Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    isOnce = true;
+        //    isRotate = true;
+        //    CameraControl.Instance.OnShakeCamera(1, 0.3f);
+        //    StartCoroutine("ButtonDown");
+        //}
     }
     IEnumerator ButtonDown()
     {
