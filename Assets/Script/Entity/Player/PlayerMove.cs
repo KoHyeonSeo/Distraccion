@@ -32,6 +32,7 @@ public class PlayerMove : MonoBehaviour
         // 사용자 노드 클릭시(Fire2) 초기화
         if (playerInput.MoveKey)
         {
+            // 노드인 PointBlock을 단 한번만 체크
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
                 isCheck = true;
@@ -61,7 +62,6 @@ public class PlayerMove : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, 1, layer))
                 {
                     startNode = hit.transform.GetComponent<Node>();
-                    print("Find Start!");
                     //startNode.walkAble = true;
                 }
                 // Raycast로 사용자가 가고자하는 타겟노드 찾기
@@ -70,7 +70,6 @@ public class PlayerMove : MonoBehaviour
 
                     targetNode = playerInput.PointBlock.GetComponent<Node>();
                     openNode.Add(startNode);
-                    print("Find Target!");
                 }
 
                 #region Regarcy
@@ -156,7 +155,7 @@ public class PlayerMove : MonoBehaviour
             FindPath();
         }
         // targetNode를 찾았다면 path 만들기
-        else if(openNode.Count > 0)
+        else if (openNode.Count > 0)
         {
             findPath.Clear();
             Node Node = targetNode;
@@ -228,13 +227,13 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
-    //public LayerMask nodeMask;
+   
     // 해당 방향 근접노드 찾기
     void AddNearOpen(Vector3 dir)
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 200, false);
+        //Debug.DrawRay(currNode.transform.position, dir, Color.blue, 200, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
 
         if (Physics.Raycast(ray, out hit, 1, layer))
