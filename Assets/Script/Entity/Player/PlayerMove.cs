@@ -89,7 +89,7 @@ public class PlayerMove : MonoBehaviour
                 // 움직이는 블록 위 Player Hierarchy 위치 이동
                 OnMovingBlock();
                 // TrickBlock에 있을 때 위치 이동 
-                OnTrickBlock();
+                //OnTrickBlock();
 
                 // 길찾기
                 FindPath();
