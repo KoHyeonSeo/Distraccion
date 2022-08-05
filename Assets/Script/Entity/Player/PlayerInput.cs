@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     public const string YMouseName = "Mouse Y";
     public const string CancelName = "Cancel";
     public const string ExplainName = "Explain";
-    public const string MoveName = "Fire2";
+    public const string MoveName = "Move";
     public const string InteractName = "Fire1";
     public const string UseItemName = "UseItem";
 
