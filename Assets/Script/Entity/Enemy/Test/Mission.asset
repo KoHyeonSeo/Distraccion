@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9b0e648adbdad14a9ec1b4ac2e19a97, type: 3}
-  m_Name: New Mission
+  m_Name: Mission
   m_EditorClassIdentifier: 
   missionItem: {fileID: 2567718759196709203, guid: 4b2e22661de82884699fa993fda1665e, type: 3}
   MissionStart: 0
