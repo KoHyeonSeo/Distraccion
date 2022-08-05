@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour
             {
                 missionComplete.Enemy = gameObject;
                 missionComplete.Player = player;
+                missionComplete.Item = ColliderObject;
                 missionComplete.MissionCompleteSetting();
             }
             //혹시 Enemy의 크기가 달라진 상태로 왔다면, 원상복구 시켜줌
