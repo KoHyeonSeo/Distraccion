@@ -8,10 +8,12 @@ public class PlayerMove : MonoBehaviour
     public Node startNode;
     public Node currNode;  // openNode에 포함된 노드 중  fCost가 가장 작은 노드
     public Node targetNode;
-    public Transform currentNode; 
+    public Transform currentNode;
+    public Transform trick1;
+    public Transform trick2;
 
-    public List<Node> openNode = new List<Node>();
-    public List<Node> closeNode = new List<Node>();
+    public List<Node> openNode = new List<Node>();  // 값을 정하기 전의 노드 리스트
+    public List<Node> closeNode = new List<Node>();  // 값이 정해진 노드 리스트
     public List<Node> findPath = new List<Node>();
     public List<Vector3> findPathPos = new List<Vector3>();
 
@@ -22,7 +24,6 @@ public class PlayerMove : MonoBehaviour
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
-        player = GameObject.Find("Player");
     }
 
     void Update()
@@ -56,11 +57,11 @@ public class PlayerMove : MonoBehaviour
                 // Raycast로 사용자 출발노드 찾기
                 Ray ray = new Ray(transform.position, -transform.up);
                 LayerMask layer = 1 << LayerMask.NameToLayer("Node");
-
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 1, layer))
                 {
                     startNode = hit.transform.GetComponent<Node>();
+                    print("Find Start!");
                     //startNode.walkAble = true;
                 }
                 // Raycast로 사용자가 가고자하는 타겟노드 찾기
@@ -69,7 +70,7 @@ public class PlayerMove : MonoBehaviour
 
                     targetNode = playerInput.PointBlock.GetComponent<Node>();
                     openNode.Add(startNode);
-
+                    print("Find Target!");
                 }
 
                 #region Regarcy
@@ -85,16 +86,10 @@ public class PlayerMove : MonoBehaviour
                 //}
                 #endregion
 
-                // 현재 밟고 있는 노드가 움직이는 경우
-                if (currentNode.tag == "move")
-                {
-                    // 플레이어를 그 자식으로 넣는다.
-                    transform.parent = currentNode.parent;
-                }
-                else
-                {
-                    transform.parent = null;
-                }
+                // 움직이는 블록 위 Player Hierarchy 위치 이동
+                OnMovingBlock();
+                // TrickBlock에 있을 때 위치 이동 
+                OnTrickBlock();
 
                 // 길찾기
                 FindPath();
@@ -156,7 +151,7 @@ public class PlayerMove : MonoBehaviour
             FindPath();
         }
         // targetNode를 찾았다면 path 만들기
-        else
+        else if(openNode.Count > 0 && )
         {
             findPath.Clear();
             Node Node = targetNode;
@@ -269,6 +264,26 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
+
+    void OnMovingBlock()
+    {
+        // 현재 밟고 있는 노드가 움직이는 경우
+        if (currentNode.tag == "move")
+        {
+            // 플레이어를 그 자식으로 넣는다.
+            transform.parent = currentNode.parent;
+        }
+        else
+        {
+            transform.parent = null;
+        }
+    }
+
+    void OnTrickBlock(Vector3 trick1, Vector3 trick2)
+    {
+
+    }
+
 
     int SortByfCost(Node c1, Node c2)
     {
