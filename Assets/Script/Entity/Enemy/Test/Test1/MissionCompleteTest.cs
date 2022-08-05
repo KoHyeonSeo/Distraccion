@@ -11,7 +11,7 @@ public class MissionCompleteTest : MissionComplete
     private bool IsNotPut;
     public override void MissionCompleteSetting()
     {
-        if (!isOnce)
+        if (!Start)
         {
             Enemy.GetComponent<Enemy>().StartCoroutine(Move());
             IsNotPut = false;
@@ -34,7 +34,7 @@ public class MissionCompleteTest : MissionComplete
     }
     public IEnumerator Move()
     {
-        isOnce = true;
+        Start = true;
         //Debug.Log("°¡³Ä");
         Vector3 targetPos = Player.transform.position + Player.transform.forward * goDistance;
         while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)

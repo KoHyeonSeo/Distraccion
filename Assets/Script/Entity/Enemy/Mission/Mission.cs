@@ -22,7 +22,7 @@ public class Mission : ScriptableObject
                     //Debug.Log("4. 아이템 일치");
                     Enemy.GetComponent<Enemy>().IsCheckingItem = true;
                     Enemy.GetComponent<Enemy>().ColliderObject = chooseItem;
-                    Enemy.GetComponent<Enemy>().MissionSuccess();
+                    Enemy.GetComponent<Enemy>().IsStartComplete = true;
                 }
                 else
                 {
@@ -43,7 +43,7 @@ public class Mission : ScriptableObject
                         if (Enemy.GetComponent<EnemyDetection>().Target.CompareTag("Player"))
                         {
                             Enemy.GetComponent<Enemy>().ColliderObject = Enemy.GetComponent<EnemyDetection>().Target;
-                            Enemy.GetComponent<Enemy>().MissionFail();
+                            Enemy.GetComponent<Enemy>().IsStartFail = true;
                         }
                     }
                 }

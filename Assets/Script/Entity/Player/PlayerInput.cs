@@ -76,7 +76,8 @@ public class PlayerInput : MonoBehaviour
         MoveKey = Input.GetButtonDown(MoveName);
         InteractKey = Input.GetButton(InteractName);
         UseItemButton = Input.GetButtonDown(UseItemName);
-
+        if(UseItemButton)
+            Debug.Log("UseItemButton true");
 
         Vector3 mousepos = MousePosition;
         mousepos.z = mouseMaxDistance;

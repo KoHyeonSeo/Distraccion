@@ -26,11 +26,14 @@ public class Enemy : MonoBehaviour
         mission.Enemy = gameObject;
         material = GetComponent<MeshRenderer>().material;
         mission.MissionStart = false;
-        missionComplete.isOnce = false;
+        missionComplete.Start = false;
     }
     private void Update()
     {
+        //mission 안에서 지속적으로 Detection한다.
+        //Update역할
         mission.MissionSetting();
+        //Enemy Dead
         if (IsDead && !isEnd)
         {
            StartCoroutine(Dead());
@@ -38,24 +41,30 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            //Player가 missionZone에 닿았을 경우
             if (missionTriggerZone.MissionStart)
             {
                 mission.MissionStart = true;
                 mission.chooseItem = missionTriggerZone.ChooseItem;
                 missionTriggerZone.MissionStart = false;
             }
+            //Player가 Enemy의 Detection에 걸렸다면 missionFail 계속 실행
+            //MissionFailSetting -> Update
             if (IsStartFail)
             {
                 missionFail.Enemy = gameObject;
                 missionFail.Player = ColliderObject;
                 missionFail.MissionFailSetting();
             }
+            //Player가 미션을 성공했다면 missionComplete 계속 실행
+            //MissionCompleteSetting -> Update 역할
             else if (IsStartComplete)
             {
                 missionComplete.Enemy = gameObject;
                 missionComplete.Player = player;
                 missionComplete.MissionCompleteSetting();
             }
+            //혹시 Enemy의 크기가 달라진 상태로 왔다면, 원상복구 시켜줌
             else
             {
                 if (transform.localScale != new Vector3(1, 1, 1))
@@ -65,27 +74,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    public void MissionFail()
-    {
-        if (!IsStartFail)
-        {
-            IsStartFail = true;
-            missionFail.Enemy = gameObject;
-            missionFail.Player = ColliderObject;
-            missionFail.MissionFailSetting();
-        }
-    }
-    public void MissionSuccess()
-    {
-        if (!IsStartComplete)
-        {
-            IsStartComplete = true;
-            missionComplete.Enemy = gameObject;
-            missionComplete.Item = ColliderObject;
-            missionComplete.Player = player;
-            missionComplete.MissionCompleteSetting();
-        }
-    }
+
     IEnumerator Dead()
     {
         float alpha = material.color.a;
@@ -97,4 +86,29 @@ public class Enemy : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    #region Regarcy
+    //public void MissionFail()
+    //{
+    //    if (!IsStartFail)
+    //    {
+    //        IsStartFail = true;
+    //        missionFail.Enemy = gameObject;
+    //        missionFail.Player = ColliderObject;
+    //        missionFail.MissionFailSetting();
+    //    }
+    //}
+    //public void MissionSuccess()
+    //{
+    //    if (!IsStartComplete)
+    //    {
+    //        IsStartComplete = true;
+    //        missionComplete.Enemy = gameObject;
+    //        missionComplete.Item = ColliderObject;
+    //        missionComplete.Player = player;
+    //        missionComplete.MissionCompleteSetting();
+    //    }
+    //}
+    #endregion
+
 }
