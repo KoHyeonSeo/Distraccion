@@ -29,8 +29,8 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         RayCastDown();
-        // 사용자 노드 클릭시 초기화
-        if (Input.GetMouseButtonDown(0))
+        // 사용자 노드 클릭시(Fire2) 초기화
+        if (playerInput.MoveKey)
         {
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
@@ -96,6 +96,11 @@ public class PlayerMove : MonoBehaviour
                 isCheck = false;
             }
 
+        }
+        // 플레이어가 노드가 아닌 다른 곳을 선택할 경우(예외처리)
+        else
+        {
+            return;
         }
         // 플레이어 이동
         SimpleMove();
