@@ -151,7 +151,7 @@ public class PlayerMove : MonoBehaviour
             FindPath();
         }
         // targetNode를 찾았다면 path 만들기
-        else if(openNode.Count > 0 && )
+        else if(openNode.Count > 0)
         {
             findPath.Clear();
             Node Node = targetNode;
