@@ -9,6 +9,7 @@ TagManager:
   - Block
   - Item
   - move
+  - Trick
   layers:
   - Default
   - TransparentFX
