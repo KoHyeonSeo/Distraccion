@@ -44,6 +44,7 @@ public class RotationBlock : MonoBehaviour
     private AudioSource audioSource;
     private bool audioOnce = false;
     private int clipIndex = 0;
+    private bool useAudio = false;
     private void Start()
     {
         handleAxis.block = gameObject;
@@ -53,30 +54,36 @@ public class RotationBlock : MonoBehaviour
         {
             axis.Add(0);
         }
-        soundCreate = 360 / clips.Count;
-        audioSource = GetComponent<AudioSource>();
+        if (clips.Count > 0)
+        {
+            useAudio = true;
+            soundCreate = 360 / clips.Count;
+            audioSource = GetComponent<AudioSource>();
+        }
     }
     private void Update()
     {
-        Vector3 eulerAnglesHandle = transform.eulerAngles;
-        float curRotationHandle = eulerAnglesHandle.x * Convert.ToInt32(handleAxis.X) +
-                eulerAnglesHandle.y * Convert.ToInt32(handleAxis.Y) +
-                eulerAnglesHandle.z * Convert.ToInt32(handleAxis.Z);
-        for (int j = 360; j >= 0; j -= soundCreate)
+        if (useAudio)
         {
-            if (Mathf.Abs(curRotationHandle - j) < 0.1f && !audioOnce)
+            Vector3 eulerAnglesHandle = transform.eulerAngles;
+            float curRotationHandle = eulerAnglesHandle.x * Convert.ToInt32(handleAxis.X) +
+                    eulerAnglesHandle.y * Convert.ToInt32(handleAxis.Y) +
+                    eulerAnglesHandle.z * Convert.ToInt32(handleAxis.Z);
+            for (int j = 360; j >= 0; j -= 61)
             {
-                audioSource.PlayOneShot(clips[clipIndex]);
-                clipIndex = clipIndex + 1 >= clips.Count ? 0 : clipIndex + 1;
-                audioOnce = true;
-                break;
-            }
-            else if(Mathf.Abs(curRotationHandle - j) > 0.1f)
-            {
-                audioOnce = false;
+                if (Mathf.Abs(curRotationHandle - j) < 0.1f && !audioOnce)
+                {
+                    audioSource.PlayOneShot(clips[clipIndex]);
+                    clipIndex = clipIndex + 1 >= clips.Count ? 0 : clipIndex + 1;
+                    audioOnce = true;
+                    break;
+                }
+                else if (Mathf.Abs(curRotationHandle - j) > 0.1f)
+                {
+                    audioOnce = false;
+                }
             }
         }
-
         if (!canNotRotate)
         {
             if (playerInput.PointBlock == gameObject)
