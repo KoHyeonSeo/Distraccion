@@ -9,8 +9,8 @@ public class PlayerMove : MonoBehaviour
     public Node currNode;  // openNode에 포함된 노드 중  fCost가 가장 작은 노드
     public Node targetNode;
     public Transform currentNode;
-    public Transform trick1;
-    public Transform trick2;
+    public Node trick1;
+    public Node trick2;
 
     public List<Node> openNode = new List<Node>();  // 값을 정하기 전의 노드 리스트
     public List<Node> closeNode = new List<Node>();  // 값이 정해진 노드 리스트
@@ -65,20 +65,12 @@ public class PlayerMove : MonoBehaviour
                     startNode = hit.transform.GetComponent<Node>();
                     //startNode.walkAble = true;
                 }
-                else
-                {
-                    print("startNode not found");
-                }
                 // Raycast로 사용자가 가고자하는 타겟노드 찾기
                 if (playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
                 {
 
                     targetNode = playerInput.PointBlock.GetComponent<Node>();
                     openNode.Add(startNode);
-                }
-                else
-                {
-                    print("targetNode not found");
                 }
 
                 #region Regarcy
@@ -154,19 +146,23 @@ public class PlayerMove : MonoBehaviour
     {
         // 중심노드 & 근접노드 찾기
         FindNear();
-
+        print($"Before : {openNode.Count}, {openNode[0]}");
         // 중심Node => ClosedList
         openNode.Remove(currNode);
         closeNode.Add(currNode);
-
+        print($"After : {openNode.Count}, {openNode[0]}");
         // 길찾기 Loop ( 갈 수 있는 길이 있고 targetNode를 찾을 때까지)
-        // openNode.Count < 0 , openNode[0] != targetNode일 때 else로???
         if (openNode.Count > 0 && openNode[0] != targetNode)
         {
             FindPath();
         }
+        // 길이 없는 경우
+        else if (openNode.Count == 1)
+        {
+            print("No Way");
+        }
         // targetNode를 찾았다면 path 만들기
-        if (openNode[0] == targetNode)
+        else if (openNode[0] == targetNode)
         {
             findPath.Clear();
             Node Node = targetNode;
@@ -228,6 +224,8 @@ public class PlayerMove : MonoBehaviour
             AddNearOpen(Vector3.down - transform.right);
             // 아래우
             AddNearOpen(Vector3.down + transform.forward);
+            
+            
 
             // openNode 정렬 by fCost
             openNode.Sort(SortByfCost);
@@ -245,7 +243,6 @@ public class PlayerMove : MonoBehaviour
     // 해당 방향 근접노드 찾기
     void AddNearOpen(Vector3 dir)
     {
-        print(dir);
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
         Debug.DrawRay(currNode.transform.position, dir, Color.blue, 200, false);
@@ -263,10 +260,11 @@ public class PlayerMove : MonoBehaviour
                 openNode.Add(Node);
             }
         }
-        // 만약 이웃노드
+        // 만약 이웃노드가 trick2라면
+
     }
 
-    //현재 플레이어가 밟고 있는 노드 찾는 함수
+    // 현재 플레이어가 밟고 있는 노드 찾는 함수
     void RayCastDown()
     {
         // 레이 생성, 방향은 아래
@@ -280,6 +278,11 @@ public class PlayerMove : MonoBehaviour
             if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node"))
             {
                 currentNode = playerHit.transform;
+                // 밟고 있는 노드가 trick1일 경우
+                //if (currentNode.gameObject.name == "trick1")
+                //{
+                //    trick1 = currentNode.GetComponent<Node>();
+                //}
             }
         }
     }
@@ -292,7 +295,6 @@ public class PlayerMove : MonoBehaviour
 
             // 플레이어를 그 자식으로 넣는다.
             transform.parent = currentNode.parent;
-            print("Move");
         }
         else
         {
