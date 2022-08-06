@@ -165,9 +165,8 @@ public class PlayerMove : MonoBehaviour
         {
             FindPath();
         }
-        //else if (openNode.Count)
         // targetNode를 찾았다면 path 만들기
-        else if (openNode.Count > 0)
+        if (openNode[0] == targetNode)
         {
             findPath.Clear();
             Node Node = targetNode;
@@ -198,11 +197,6 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void OnTrickBlock(Vector3 trick1, Vector3 trick2)
-    {
-        //if currNode
-        return;
-    }
 
     void FindNear()
     {
@@ -237,6 +231,8 @@ public class PlayerMove : MonoBehaviour
 
             // openNode 정렬 by fCost
             openNode.Sort(SortByfCost);
+
+            
         //}
         //catch
         //{
@@ -267,6 +263,7 @@ public class PlayerMove : MonoBehaviour
                 openNode.Add(Node);
             }
         }
+        // 만약 이웃노드
     }
 
     //현재 플레이어가 밟고 있는 노드 찾는 함수
@@ -283,12 +280,6 @@ public class PlayerMove : MonoBehaviour
             if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node"))
             {
                 currentNode = playerHit.transform;
-            }
-            // trick 부분에 닿았을때
-            if (currentNode == trick1)
-            {
-                // trick2 위치로 player 이동
-                transform.forward = trick2.position + Vector3.up;
             }
         }
     }
