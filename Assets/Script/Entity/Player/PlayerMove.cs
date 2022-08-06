@@ -156,7 +156,6 @@ public class PlayerMove : MonoBehaviour
         {
             FindPath();
         }
-        
         // targetNode를 찾았다면 path 만들기
         else if (openNode[0] == targetNode)
         {
@@ -268,6 +267,7 @@ public class PlayerMove : MonoBehaviour
                 openNode.Add(Node);
             }
         }
+        // 만약 이웃노드
     }
 
     //현재 플레이어가 밟고 있는 노드 찾는 함수
