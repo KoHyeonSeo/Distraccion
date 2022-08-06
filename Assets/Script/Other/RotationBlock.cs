@@ -13,6 +13,10 @@ public class RotationBlock : MonoBehaviour
         public bool Y;
         public bool Z;
     }
+    [Header("핸들 돌아가는 소리 설정")]
+    [SerializeField] private List<AudioClip> clips = new List<AudioClip>();
+
+    [Space]
     [Header("핸들 중심축 설정")]
     [SerializeField] private ChooseAxis handleAxis;
 
@@ -36,6 +40,10 @@ public class RotationBlock : MonoBehaviour
     private bool isOnce = false;
     private bool afterRotate = false;
     private bool canNotRotate = false;
+    private int soundCreate;
+    private AudioSource audioSource;
+    private bool audioOnce = false;
+    private int clipIndex = 0;
     private void Start()
     {
         handleAxis.block = gameObject;
@@ -45,9 +53,30 @@ public class RotationBlock : MonoBehaviour
         {
             axis.Add(0);
         }
+        soundCreate = 360 / clips.Count;
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
+        Vector3 eulerAnglesHandle = transform.eulerAngles;
+        float curRotationHandle = eulerAnglesHandle.x * Convert.ToInt32(handleAxis.X) +
+                eulerAnglesHandle.y * Convert.ToInt32(handleAxis.Y) +
+                eulerAnglesHandle.z * Convert.ToInt32(handleAxis.Z);
+        for (int j = 360; j >= 0; j -= soundCreate)
+        {
+            if (Mathf.Abs(curRotationHandle - j) < 0.1f && !audioOnce)
+            {
+                audioSource.PlayOneShot(clips[clipIndex]);
+                clipIndex = clipIndex + 1 >= clips.Count ? 0 : clipIndex + 1;
+                audioOnce = true;
+                break;
+            }
+            else if(Mathf.Abs(curRotationHandle - j) > 0.1f)
+            {
+                audioOnce = false;
+            }
+        }
+
         if (!canNotRotate)
         {
             if (playerInput.PointBlock == gameObject)
