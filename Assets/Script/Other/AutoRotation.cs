@@ -69,6 +69,8 @@ public class AutoRotation : MonoBehaviour
             isOnce = true;
             isRotate = true;
             CameraControl.Instance.OnShakeCamera(1, 0.3f);
+            // 착시효과 부분 위해 player layer 변경
+            collision.collider.gameObject.layer = LayerMask.NameToLayer("Top");
             StartCoroutine("ButtonDown");
         }    
     }
