@@ -20,19 +20,19 @@ public class CameraControl : MonoBehaviour
 
     void Update()
     {
-        Zoom();
+        //Zoom();
     }
 
-    private void Zoom()
-    {
-        scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll != 0)
-        {
-            zoom -= scroll * zoomSpeed;
-            zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
-            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, zoom, Time.deltaTime * zoomLerpSpeed);
-        }
-    }
+    //private void Zoom()
+    //{
+    //    scroll = Input.GetAxis("Mouse ScrollWheel");
+    //    if (scroll != 0)
+    //    {
+    //        zoom -= scroll * zoomSpeed;
+    //        zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
+    //        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, zoom, Time.deltaTime * zoomLerpSpeed);
+    //    }
+    //}
 
     float shakeTime;
     float shakeIntensity;
