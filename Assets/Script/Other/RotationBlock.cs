@@ -40,7 +40,6 @@ public class RotationBlock : MonoBehaviour
     private bool isOnce = false;
     private bool afterRotate = false;
     private bool canNotRotate = false;
-    private int soundCreate;
     private AudioSource audioSource;
     private bool audioOnce = false;
     private int clipIndex = 0;
@@ -57,7 +56,6 @@ public class RotationBlock : MonoBehaviour
         if (clips.Count > 0)
         {
             useAudio = true;
-            soundCreate = 360 / clips.Count;
             audioSource = GetComponent<AudioSource>();
         }
     }
