@@ -283,7 +283,12 @@ public class PlayerMove : MonoBehaviour
             if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node"))
             {
                 currentNode = playerHit.transform;
-                print($"{currentNode}, {currentNode.tag}");
+            }
+            // trick 부분에 닿았을때
+            if (currentNode == trick1)
+            {
+                // trick2 위치로 player 이동
+                transform.forward = trick2.position + Vector3.up;
             }
         }
     }
