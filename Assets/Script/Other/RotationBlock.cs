@@ -15,7 +15,7 @@ public class RotationBlock : MonoBehaviour
     }
     [Header("핸들 돌아가는 소리 설정")]
     [SerializeField] private List<AudioClip> clips = new List<AudioClip>();
-    [SerializeField] private int angle = 61f;
+    [SerializeField] private int angle = 61;
 
     [Space]
     [Header("핸들 중심축 설정")]
