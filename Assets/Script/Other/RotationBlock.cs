@@ -15,6 +15,7 @@ public class RotationBlock : MonoBehaviour
     }
     [Header("핸들 돌아가는 소리 설정")]
     [SerializeField] private List<AudioClip> clips = new List<AudioClip>();
+    [SerializeField] private int angle = 61f;
 
     [Space]
     [Header("핸들 중심축 설정")]
@@ -67,7 +68,7 @@ public class RotationBlock : MonoBehaviour
             float curRotationHandle = eulerAnglesHandle.x * Convert.ToInt32(handleAxis.X) +
                     eulerAnglesHandle.y * Convert.ToInt32(handleAxis.Y) +
                     eulerAnglesHandle.z * Convert.ToInt32(handleAxis.Z);
-            for (int j = 360; j >= 0; j -= 61)
+            for (int j = 360; j >= 0; j -= angle)
             {
                 if (Mathf.Abs(curRotationHandle - j) < 0.1f && !audioOnce)
                 {
@@ -250,7 +251,7 @@ public class RotationBlock : MonoBehaviour
             {
                 chooseAxis[i].block.transform.RotateAround(chooseAxis[i].block.transform.GetChild(0).position, new Vector3(blockMove * Convert.ToInt32(chooseAxis[i].X),
                     blockMove * Convert.ToInt32(chooseAxis[i].Y),
-                    blockMove * Convert.ToInt32(chooseAxis[i].Z)), Time.deltaTime * 1000);
+                    blockMove * Convert.ToInt32(chooseAxis[i].Z)), Time.deltaTime * 100);
             }
             //하나의 오브젝트인 회전블록 회전
             else
