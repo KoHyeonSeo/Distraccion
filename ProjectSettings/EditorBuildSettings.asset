@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Kang_Test.unity
+    path: Assets/Scenes/Stage2.unity
     guid: e8232b98985aac644a04483cca1eba50
   m_configObjects: {}
