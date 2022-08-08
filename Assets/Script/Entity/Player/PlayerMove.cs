@@ -18,7 +18,6 @@ public class PlayerMove : MonoBehaviour
     public List<Vector3> findPathPos = new List<Vector3>();
 
     private PlayerInput playerInput;
-    GameObject player;
     private bool isCheck = false;
 
     private void Start()
@@ -86,7 +85,7 @@ public class PlayerMove : MonoBehaviour
                 //}
                 #endregion
 
-                
+
                 // TrickBlock에 있을 때 위치 이동 
                 //OnTrickBlock();
 
@@ -99,7 +98,7 @@ public class PlayerMove : MonoBehaviour
         // 플레이어가 노드가 아닌 다른 곳을 선택할 경우(예외처리)
         //else
         //{
-           
+
         //}
         // 플레이어 이동
         SimpleMove();
@@ -111,6 +110,7 @@ public class PlayerMove : MonoBehaviour
     int idx = 0;
     float ratio = 0;
     public Material mat;
+    public Material mat_button;
     void SimpleMove()
     {
         if (findPath.Count - 1 > idx)
@@ -136,7 +136,14 @@ public class PlayerMove : MonoBehaviour
         // 이동한 노드 색 초기화
         for (int i = 0; i < findPath.Count; i++)
         {
-            findPath[idx].GetComponent<MeshRenderer>().material = mat;
+            if (findPath[idx].name.Contains("Button"))
+            {
+                findPath[idx].GetComponent<MeshRenderer>().material = mat_button;
+            }
+            else
+            {
+                findPath[idx].GetComponent<MeshRenderer>().material = mat;
+            }
         }
 
     }
@@ -144,17 +151,23 @@ public class PlayerMove : MonoBehaviour
     // 길찾기
     void FindPath()
     {
+        //print($"Before1: {openNode.Count}, {openNode[0]}");  // 출발노드
         // 중심노드 & 근접노드 찾기
         FindNear();
-
+        //print($"Before2 : {openNode.Count}, {openNode[0]},{openNode[1]}");  // 출발노드 + 이웃노드
         // 중심Node => ClosedList
         openNode.Remove(currNode);
         closeNode.Add(currNode);
-
+        //print($"After : {openNode.Count}, {openNode[0]}");  // 이웃노드 중 fCost가 가장 작은 노드 (출발노드 => close)
         // 길찾기 Loop ( 갈 수 있는 길이 있고 targetNode를 찾을 때까지)
         if (openNode.Count > 0 && openNode[0] != targetNode)
         {
             FindPath();
+        }
+        // 길이 없는 경우
+        else if (openNode == null)
+        {
+            print("No Way");
         }
         // targetNode를 찾았다면 path 만들기
         else if (openNode[0] == targetNode)
@@ -174,6 +187,10 @@ public class PlayerMove : MonoBehaviour
                 {
                     findPathPos.Insert(0, Node.transform.position + new Vector3(0.2f, 0.7f, 0));
                 }
+                else if (Node.gameObject.name.Contains("Button"))
+                {
+                    findPathPos.Insert(0, Node.transform.position + new Vector3(0, 0.4f, 0));
+                }
                 else
                 {
                     findPathPos.Insert(0, Node.transform.position + Vector3.up);
@@ -181,7 +198,7 @@ public class PlayerMove : MonoBehaviour
                 // 부모 노드 거슬러 올라가기
                 Node = Node.parent;
             }
-            findPath.Insert(0, startNode); 
+            findPath.Insert(0, startNode);
             findPathPos.Insert(0, transform.position);
 
             print("Path Completed!");
@@ -199,44 +216,47 @@ public class PlayerMove : MonoBehaviour
     {
         //try
         //{
-            currNode = openNode[0];  // 비용이 가장 작은 노드
-            
-            // 앞
-            AddNearOpen(transform.forward);
-            // 뒤
-            AddNearOpen(-transform.forward);
-            // 오른쪽
-            AddNearOpen(transform.right);
-            // 왼쪽
-            AddNearOpen(-transform.right);
-            // 위앞 
-            AddNearOpen(Vector3.up + transform.forward);
-            // 위뒤
-            AddNearOpen(Vector3.up - transform.forward);
-            // 위좌
-            AddNearOpen(Vector3.up - transform.right);
-            // 위우
-            AddNearOpen(Vector3.up + transform.right);
-            // 아래앞
-            AddNearOpen(Vector3.down + transform.forward);
-            // 아래뒤
-            AddNearOpen(Vector3.down - transform.forward);
-            // 아래좌
-            AddNearOpen(Vector3.down - transform.right);
-            // 아래우
-            AddNearOpen(Vector3.down + transform.forward);
+        currNode = openNode[0];  // 비용이 가장 작은 노드
 
-            // openNode 정렬 by fCost
-            openNode.Sort(SortByfCost);
+        // 앞
+        AddNearOpen(transform.forward);
+        // 뒤
+        AddNearOpen(-transform.forward);
+        // 오른쪽
+        AddNearOpen(transform.right);
+        // 왼쪽
+        AddNearOpen(-transform.right);
+        // 위앞 
+        AddNearOpen(Vector3.up + transform.forward);
+        // 위뒤
+        AddNearOpen(Vector3.up - transform.forward);
+        // 위좌
+        AddNearOpen(Vector3.up - transform.right);
+        // 위우
+        AddNearOpen(Vector3.up + transform.right);
+        // 아래앞
+        AddNearOpen(Vector3.down + transform.forward);
+        // 아래뒤
+        AddNearOpen(Vector3.down - transform.forward);
+        // 아래좌
+        AddNearOpen(Vector3.down - transform.right);
+        // 아래우
+        AddNearOpen(Vector3.down + transform.forward);
 
-        // 갈 수 있는 길이 없고 trick Node인 경우
-        if (openNode == null && currNode == null && trick1 != null)
+        // 만약 trick1 노드가 이웃노드를 찾는 중이라면 trick2를 openNode에 넣어주기
+        if (currNode.gameObject.name == "trick1")
         {
-            // trick2의 부모를 trick1으로 설정한뒤 trick2에서 다시 findpath
-            trick2.parent = trick1;
+            trick2.parent = currNode;
             openNode.Add(trick2);
-            FindPath();
         }
+        // 만약 trick2 노드가 이웃노드를 찾는 중이라면 trick1를 openNode에 넣어주기
+        if (currNode.gameObject.name == "trick2")
+        {
+            trick1.parent = currNode;
+            openNode.Add(trick1);
+        }
+        // openNode 정렬 by fCost
+        openNode.Sort(SortByfCost);
         //}
         //catch
         //{
@@ -245,11 +265,10 @@ public class PlayerMove : MonoBehaviour
         //}
 
     }
-   
+
     // 해당 방향 근접노드 찾기
     void AddNearOpen(Vector3 dir)
     {
-        print(dir);
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
         Debug.DrawRay(currNode.transform.position, dir, Color.blue, 200, false);
@@ -262,15 +281,13 @@ public class PlayerMove : MonoBehaviour
             Node.SetCost(startNode.transform.position, targetNode.transform.position);
             if (!openNode.Contains(Node) && !closeNode.Contains(Node)) //&& Node.walkAble)
             {
-
                 Node.parent = currNode;
                 openNode.Add(Node);
             }
         }
-        // 만약 이웃노드
     }
 
-    //현재 플레이어가 밟고 있는 노드 찾는 함수
+    // 현재 플레이어가 밟고 있는 노드 찾는 함수
     void RayCastDown()
     {
         // 레이 생성, 방향은 아래
@@ -284,11 +301,11 @@ public class PlayerMove : MonoBehaviour
             if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node"))
             {
                 currentNode = playerHit.transform;
-                // 만약 그 노드 이름이 trick1이라면
-                if (playerHit.collider.gameObject.name == "trick1")
-                {
-                    trick1 = playerHit.transform.GetComponent<Node>();
-                }
+                // 밟고 있는 노드가 trick1일 경우
+                //if (currentNode.gameObject.name == "trick1")
+                //{
+                //    trick1 = currentNode.GetComponent<Node>();
+                //}
             }
         }
     }
@@ -298,10 +315,8 @@ public class PlayerMove : MonoBehaviour
         // 현재 밟고 있는 노드가 움직이는 경우
         if (currentNode.tag == "move")
         {
-
             // 플레이어를 그 자식으로 넣는다.
             transform.parent = currentNode.parent;
-            print("Move");
         }
         else
         {
@@ -314,5 +329,21 @@ public class PlayerMove : MonoBehaviour
         if (c1.fCost < c2.fCost) return -1;
         if (c1.fCost > c2.fCost) return 1;
         return 0;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Item")
+        {
+            for (int i=0; i < GameManager.Instance.ItemProp.Count; i++)
+            {
+                if (GameManager.Instance.ItemProp[i].Item == other.gameObject)
+                {
+                    //GameManager.Instance.ItemProp[i].isHaveItem = true;
+                    return;
+                }
+            }
+            Destroy(other.gameObject);
+        }
     }
 }
