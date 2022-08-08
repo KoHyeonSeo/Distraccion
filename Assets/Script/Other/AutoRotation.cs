@@ -66,6 +66,7 @@ public class AutoRotation : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player")&&!isOnce)
         {
+            print("Button Clicked~!!");
             isOnce = true;
             isRotate = true;
             CameraControl.Instance.OnShakeCamera(1, 0.3f);

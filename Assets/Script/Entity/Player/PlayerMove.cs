@@ -19,6 +19,7 @@ public class PlayerMove : MonoBehaviour
 
     private PlayerInput playerInput;
     private bool isCheck = false;
+    
 
     private void Start()
     {
@@ -92,8 +93,8 @@ public class PlayerMove : MonoBehaviour
                 // 길찾기
                 FindPath();
                 isCheck = false;
+                isVisited = false;
             }
-
         }
         // 플레이어가 노드가 아닌 다른 곳을 선택할 경우(예외처리)
         //else
@@ -102,7 +103,6 @@ public class PlayerMove : MonoBehaviour
         //}
         // 플레이어 이동
         SimpleMove();
-
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
     }
@@ -189,7 +189,7 @@ public class PlayerMove : MonoBehaviour
                 }
                 else if (Node.gameObject.name.Contains("Button"))
                 {
-                    findPathPos.Insert(0, Node.transform.position + new Vector3(0, 0.4f, 0));
+                    findPathPos.Insert(0, Node.transform.position + new Vector3(0, 0.3f, 0));
                 }
                 else
                 {
@@ -211,7 +211,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-
+    bool isVisited = false;
     void FindNear()
     {
         //try
@@ -244,16 +244,18 @@ public class PlayerMove : MonoBehaviour
         AddNearOpen(Vector3.down + transform.forward);
 
         // 만약 trick1 노드가 이웃노드를 찾는 중이라면 trick2를 openNode에 넣어주기
-        if (currNode.gameObject.name == "trick1")
+        if (isVisited == false && currNode.gameObject.name == "trick1")
         {
             trick2.parent = currNode;
             openNode.Add(trick2);
+            isVisited = true;
         }
         // 만약 trick2 노드가 이웃노드를 찾는 중이라면 trick1를 openNode에 넣어주기
-        if (currNode.gameObject.name == "trick2")
+        if (isVisited == false && currNode.gameObject.name == "trick2")
         {
             trick1.parent = currNode;
             openNode.Add(trick1);
+            isVisited = true;
         }
         // openNode 정렬 by fCost
         openNode.Sort(SortByfCost);
