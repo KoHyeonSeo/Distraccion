@@ -90,8 +90,8 @@ public class PlayerInput : MonoBehaviour
         Vector3 dir = v - screen;
         //Debug.Log($"MouseDir = {MouseDir}");
         Debug.DrawRay(screen, dir.normalized * mouseMaxDistance, Color.red);
-
-        if(Physics.Raycast(screen, dir.normalized* mouseMaxDistance, out hit, mouseMaxDistance))
+        LayerMask layer = 1 << LayerMask.NameToLayer("Top");
+        if (Physics.Raycast(screen, dir.normalized * mouseMaxDistance, out hit, mouseMaxDistance, ~layer))
         {
             //Debug.Log($"hit = {hit.collider.gameObject}");
             PointBlock = hit.collider.gameObject;
