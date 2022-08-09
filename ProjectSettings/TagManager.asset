@@ -10,6 +10,7 @@ TagManager:
   - Item
   - move
   - Trick
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Button
   - Player
   - Item
-  - 
+  - Enemy
   - 
   - 
   - 

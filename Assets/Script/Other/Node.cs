@@ -15,6 +15,7 @@ public class Node : MonoBehaviour
     // 부모 노드
     public Node parent;
 
+    private Enemy enemy;
     void Start()
     {
 
@@ -22,7 +23,13 @@ public class Node : MonoBehaviour
 
     void Update()
     {
-
+        if (enemy)
+        {
+            if (enemy.IsDead)
+            {
+                gameObject.layer = LayerMask.NameToLayer("Node");
+            }
+        }
     }
 
     // 비용 계산
@@ -45,4 +52,13 @@ public class Node : MonoBehaviour
     //    Gizmos.color = Color.red;
     //    Gizmos.DrawSphere(transform.position, 0.4f);
     //}
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            gameObject.layer = 0;
+            enemy = collision.collider.GetComponent<Enemy>();
+        }
+    }
 }
