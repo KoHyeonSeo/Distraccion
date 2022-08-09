@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 
 public class DragBlock : MonoBehaviour
 {
-    [Header("¿òÁ÷ÀÓ Á¦ÇÑ ºí·Ï")]
+    [Header("ì›€ì§ì„ ì œí•œ ë¸”ë¡")]]
     public Transform from;
     public Transform to;
     
-    [Header("¿òÁ÷ÀÏ ¹æÇâ Ãà ¼±ÅÃ")]
+    [Header("ì›€ì§ì¼ ë°©í–¥ ì¶• ì„ íƒ")]
     public bool moveX = false;
     public bool moveY = false;
     public bool moveZ = false;
@@ -17,9 +17,9 @@ public class DragBlock : MonoBehaviour
     private void OnMouseDrag()
     {
         float distanceToScreen = Camera.main.WorldToScreenPoint(transform.position).z;
-        // ¸¶¿ì½º ÁÂÇ¥ ¹Ş¾Æ¿À±â
+        // ë§ˆìš°ìŠ¤ ì¢Œí‘œ ë°›ì•„ì˜¤ê¸°
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen);
-        // ¸¶¿ì½º ÁÂÇ¥¸¦ ½ºÅ©¸° Åõ ¿ùµå·Î ¹Ù²Ù°í ÀÌ °´Ã¼ÀÇ À§Ä¡·Î ¼³Á¤ÇØ ÁØ´Ù.
+        // ë§ˆìš°ìŠ¤ ì¢Œí‘œë¥¼ ìŠ¤í¬ë¦° íˆ¬ ì›”ë“œë¡œ ë°”ê¾¸ê³  ì´ ê°ì²´ì˜ ìœ„ì¹˜ë¡œ ì„¤ì •í•´ ì¤€ë‹¤.
         if (moveX == true)
         {
             float distance = Mathf.Abs(from.position.x - to.position.x) - from.localScale.x - to.localScale.x;
