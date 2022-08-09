@@ -70,14 +70,14 @@ public class RotationBlock : MonoBehaviour
                     eulerAnglesHandle.z * Convert.ToInt32(handleAxis.Z);
             for (int j = 360; j >= 0; j -= angle)
             {
-                if (Mathf.Abs(curRotationHandle - j) < 0.1f && !audioOnce)
+                if (Mathf.Abs(curRotationHandle - j) < 0.2f && !audioOnce)
                 {
                     audioSource.PlayOneShot(clips[clipIndex]);
                     clipIndex = clipIndex + 1 >= clips.Count ? 0 : clipIndex + 1;
                     audioOnce = true;
                     break;
                 }
-                else if (Mathf.Abs(curRotationHandle - j) > 0.1f)
+                else if (Mathf.Abs(curRotationHandle - j) > 0.2f)
                 {
                     audioOnce = false;
                 }
