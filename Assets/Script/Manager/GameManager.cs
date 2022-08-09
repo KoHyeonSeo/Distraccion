@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         }
         playerGameobject = GameObject.Find("Player");
     }
+    private float curScene;
 
     #region 아이템관련
     [Serializable]
@@ -28,8 +30,8 @@ public class GameManager : MonoBehaviour
         public GameObject Item;
         public bool isHaveItem;
     }
-
     [SerializeField] private List<ItemBox> itemBoxes;
+
     /// <summary>
     /// 아이템 리스트 프로퍼티
     /// </summary>
@@ -73,5 +75,21 @@ public class GameManager : MonoBehaviour
     public int CurItemIndex { get; set; }
     #endregion
 
+    #region 플레이어관련
     public GameObject playerGameobject { get; private set; }
+    private void Start()
+    {
+
+        curScene = SceneManager.GetActiveScene().buildIndex;
+    }
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().buildIndex != curScene)
+        {
+            playerGameobject = GameObject.Find("Player");
+            curScene = SceneManager.GetActiveScene().buildIndex;
+        }
+    }
+
+    #endregion
 }
