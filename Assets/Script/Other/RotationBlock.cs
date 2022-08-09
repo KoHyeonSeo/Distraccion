@@ -260,7 +260,6 @@ public class RotationBlock : MonoBehaviour
                     blockMove * Convert.ToInt32(chooseAxis[i].Y),
                     blockMove * Convert.ToInt32(chooseAxis[i].Z));
             }
-            Transform b = chooseAxis[i].block.transform;
         }
     }
     public IEnumerator HandleShortSetting()
