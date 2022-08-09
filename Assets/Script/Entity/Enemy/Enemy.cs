@@ -13,10 +13,10 @@ public class Enemy : MonoBehaviour
     private Material material;
     private bool isEnd = false;
     private GameObject player;
+    public bool IsDead;
 
     public bool IsStartFail { get; set; }
     public bool IsStartComplete { get; set; }
-    public bool IsDead { get; set; }
     public bool IsCheckingItem { get; set; }
     public GameObject ColliderObject { get; set; }
     Vector3 startScale;
