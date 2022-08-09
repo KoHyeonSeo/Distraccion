@@ -11,21 +11,28 @@ public class DragBlock : MonoBehaviour
     public GameObject to;
     bool fromCollision = false;
     bool toCollision = false;
+    public bool moveX = false;
+    public bool moveY = false;
 
     private void OnMouseDrag()
     {
-        //while (fromCollision == true | toCollision == true)
-        //{
+        while (fromCollision == true | toCollision == true)
+        {
             float distanceToScreen = Camera.main.WorldToScreenPoint(transform.position).z;
-            //// 범위 제한
-            //float mx = Mathf.Clamp(Input.mousePosition.x, xMin, xMax);
-            //float my = Mathf.Clamp(Input.mousePosition.y, yMin, yMax);
             // 마우스 좌표 받아오기
             Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen);
             // 마우스 좌표를 스크린 투 월드로 바꾸고 이 객체의 위치로 설정해 준다.
-            transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
-        //}
+            if (moveX == true)
+            {
+                transform.position = new Vector3(Camera.main.ScreenToWorldPoint(mousePosition).x, transform.position.y, transform.position.z);
+            }
+            if (moveY == true)
+            {
+                transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(mousePosition).y, transform.position.z);
+            }
+        }
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
