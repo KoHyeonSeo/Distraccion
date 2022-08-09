@@ -48,6 +48,7 @@ public class TestMissionComplete2 : MissionComplete
         curTime = 0;
         item = Instantiate(Item);
         item.transform.position = Player.transform.GetChild(0).transform.position;
+        item.gameObject.layer = 0;
         item.GetComponent<Rigidbody>().AddForce(dir * throwSpeed);
         isThrow = true;
         yield return null;
