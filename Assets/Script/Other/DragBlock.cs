@@ -5,44 +5,38 @@ using UnityEngine.EventSystems;
 
 public class DragBlock : MonoBehaviour
 {
-    //[Header("¹Ú½º ¿òÁ÷ÀÓ Á¦ÇÑ")]
-    //public float xMin, xMax, yMin, yMax;
-    public GameObject from;
-    public GameObject to;
-    bool fromCollision = false;
-    bool toCollision = false;
+    [Header("ì›€ì§ì„ ì œí•œ ë¸”ë¡")]]
+    public Transform from;
+    public Transform to;
+    
+    [Header("ì›€ì§ì¼ ë°©í–¥ ì¶• ì„ íƒ")]
     public bool moveX = false;
     public bool moveY = false;
+    public bool moveZ = false;
 
     private void OnMouseDrag()
     {
-        while (fromCollision == true | toCollision == true)
+        float distanceToScreen = Camera.main.WorldToScreenPoint(transform.position).z;
+        // ë§ˆìš°ìŠ¤ ì¢Œí‘œ ë°›ì•„ì˜¤ê¸°
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen);
+        // ë§ˆìš°ìŠ¤ ì¢Œí‘œë¥¼ ìŠ¤í¬ë¦° íˆ¬ ì›”ë“œë¡œ ë°”ê¾¸ê³  ì´ ê°ì²´ì˜ ìœ„ì¹˜ë¡œ ì„¤ì •í•´ ì¤€ë‹¤.
+        if (moveX == true)
         {
-            float distanceToScreen = Camera.main.WorldToScreenPoint(transform.position).z;
-            // ¸¶¿ì½º ÁÂÇ¥ ¹Ş¾Æ¿À±â
-            Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen);
-            // ¸¶¿ì½º ÁÂÇ¥¸¦ ½ºÅ©¸° Åõ ¿ùµå·Î ¹Ù²Ù°í ÀÌ °´Ã¼ÀÇ À§Ä¡·Î ¼³Á¤ÇØ ÁØ´Ù.
-            if (moveX == true)
-            {
-                transform.position = new Vector3(Camera.main.ScreenToWorldPoint(mousePosition).x, transform.position.y, transform.position.z);
-            }
-            if (moveY == true)
-            {
-                transform.position = new Vector3(transform.position.x, Camera.main.ScreenToWorldPoint(mousePosition).y, transform.position.z);
-            }
+            float distance = Mathf.Abs(from.position.x - to.position.x) - from.localScale.x - to.localScale.x;
+            float mx = Mathf.Clamp(Camera.main.ScreenToWorldPoint(mousePosition).x, -(distance / 2), (distance / 2));
+            transform.position = new Vector3(mx, transform.position.y, transform.position.z);
         }
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == from)
+        else if (moveY == true)
         {
-            fromCollision = true;
+            float distance = Mathf.Abs(from.position.y - to.position.y) - from.localScale.y - to.localScale.y;
+            float my = Mathf.Clamp(Camera.main.ScreenToWorldPoint(mousePosition).y, -(distance / 2), (distance / 2));
+            transform.position = new Vector3(transform.position.x, my, transform.position.z);
         }
-        if (collision.gameObject == to)
+        else if (moveZ == true)
         {
-            toCollision = true;
+            float distance = Mathf.Abs(from.position.z - to.position.z) - from.localScale.z - to.localScale.z;
+            float mz = Mathf.Clamp(Camera.main.ScreenToWorldPoint(mousePosition).z, -(distance / 2), (distance / 2));
+            transform.position = new Vector3(transform.position.x, transform.position.y, mz);
         }
     }
 }
