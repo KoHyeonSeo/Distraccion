@@ -11,6 +11,7 @@ public class TestMissionComplete2 : MissionComplete
     [SerializeField] private float walkSpeed = 5;
     [SerializeField] private float walkingTime = 2;
     [SerializeField] private float EnemywalkingTime = 3;
+    [SerializeField] private float backDistance = 3f;
     private GameObject item;
     Vector3 dir;
     private float curTime = 0;
@@ -29,7 +30,7 @@ public class TestMissionComplete2 : MissionComplete
             curTime += Time.deltaTime;
             if (curTime < EnemywalkingTime)
             {
-                Enemy.transform.position += dir * walkSpeed * Time.deltaTime;
+                Enemy.transform.position += -dir * walkSpeed * Time.deltaTime;
             }
         }
     }
@@ -38,19 +39,23 @@ public class TestMissionComplete2 : MissionComplete
     {
         dir = targetPosition.transform.position - Player.transform.position;
         dir.Normalize();
-        Player.transform.LookAt(new Vector3(targetPosition.transform.position.x, Player.transform.position.y, targetPosition.transform.position.z));
-        while (curTime < walkingTime)
+        Vector3 targetPos = Player.transform.position - (Enemy.transform.position - Player.transform.position).normalized * backDistance;
+        //Player.transform.LookAt(new Vector3(targetPos.x, Player.transform.position.y, targetPos.z));
+        while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
         {
-            curTime += Time.deltaTime;
-            Player.transform.position += dir * walkSpeed * Time.deltaTime;
+            Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.01f);
             yield return null;
         }
+
+        Player.transform.LookAt(new Vector3(targetPosition.transform.position.x, Player.transform.position.y, targetPosition.transform.position.z));
         curTime = 0;
         item = Instantiate(Item);
         item.transform.position = Player.transform.GetChild(0).transform.position;
         item.gameObject.layer = 0;
-        item.GetComponent<Rigidbody>().AddForce(dir * throwSpeed);
+        item.GetComponent<Rigidbody>().AddForce(-dir * throwSpeed);
+        yield return new WaitForSeconds(1f);
+        Enemy.transform.LookAt(new Vector3(targetPosition.transform.position.x, Player.transform.position.y, targetPosition.transform.position.z));
+        yield return new WaitForSeconds(1.5f);
         isThrow = true;
-        yield return null;
     }
 }
