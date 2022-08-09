@@ -23,9 +23,10 @@ public class MissionCompleteTest : MissionComplete
                 Vector3 dir = item.transform.position - Enemy.transform.position;
                 dir.Normalize();
                 Enemy.transform.position += dir * 3 * Time.deltaTime;
-                if (Vector3.Distance(item.transform.position, Enemy.transform.position) < 1f)
+                if (Vector3.Distance(item.transform.position, Enemy.transform.position) < 0.5f)
                 {
                     Debug.Log("À¸¾Ç");
+                    Destroy(item);
                     Enemy.GetComponent<Enemy>().IsDead = true;
                     Enemy.GetComponent<Enemy>().IsStartComplete = false;
                 }
@@ -45,6 +46,7 @@ public class MissionCompleteTest : MissionComplete
         }
         item = Instantiate(Item);
         item.transform.position = Player.transform.GetChild(0).position;
+        item.layer = 0;
         targetPos = Player.transform.position - dir * backDistance;
         while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
         {

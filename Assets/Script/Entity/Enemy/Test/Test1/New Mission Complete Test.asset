@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69e2aa5bc79dce42baeda83fc3bc799, type: 3}
   m_Name: New Mission Complete Test
   m_EditorClassIdentifier: 
-  goDistance: 1.5
-  backDistance: 1.5
+  goDistance: 1
+  backDistance: 1
