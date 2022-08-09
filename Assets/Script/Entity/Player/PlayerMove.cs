@@ -326,7 +326,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Item")
+        if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
             for (int i=0; i < GameManager.Instance.ItemProp.Count; i++)
             {
