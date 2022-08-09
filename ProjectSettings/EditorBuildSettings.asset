@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Ko_Test.unity
-    guid: 6db53f66bf23aac489c0ba9c9a11d0f3
+    path: Assets/Scenes/Stage1.unity
+    guid: 830bf64e44e8cd443aa076a7b9ceb3f4
+  - enabled: 1
+    path: Assets/Scenes/Stage2.unity
+    guid: e8232b98985aac644a04483cca1eba50
   m_configObjects: {}

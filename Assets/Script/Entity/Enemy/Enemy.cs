@@ -23,7 +23,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         startScale = transform.localScale;
-        player = GameManager.Instance.playerGameobject;
         mission.Enemy = gameObject;
         material = GetComponent<MeshRenderer>().material;
         mission.MissionStart = false;
@@ -31,47 +30,54 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        //mission 안에서 지속적으로 Detection한다.
-        //Update역할
-        mission.MissionSetting();
-        //Enemy Dead
-        if (IsDead && !isEnd)
+        if (!player)
         {
-           StartCoroutine(Dead());
-            isEnd = true;
+            player = GameManager.Instance.playerGameobject;
         }
         else
         {
-            //Player가 missionZone에 닿았을 경우
-            if (missionTriggerZone.MissionStart)
+            //mission 안에서 지속적으로 Detection한다.
+            //Update역할
+            mission.MissionSetting();
+            //Enemy Dead
+            if (IsDead && !isEnd)
             {
-                mission.MissionStart = true;
-                mission.chooseItem = missionTriggerZone.ChooseItem;
-                missionTriggerZone.MissionStart = false;
+                StartCoroutine(Dead());
+                isEnd = true;
             }
-            //Player가 Enemy의 Detection에 걸렸다면 missionFail 계속 실행
-            //MissionFailSetting -> Update
-            if (IsStartFail)
-            {
-                missionFail.Enemy = gameObject;
-                missionFail.Player = ColliderObject;
-                missionFail.MissionFailSetting();
-            }
-            //Player가 미션을 성공했다면 missionComplete 계속 실행
-            //MissionCompleteSetting -> Update 역할
-            else if (IsStartComplete)
-            {
-                missionComplete.Enemy = gameObject;
-                missionComplete.Player = player;
-                missionComplete.Item = ColliderObject;
-                missionComplete.MissionCompleteSetting();
-            }
-            //혹시 Enemy의 크기가 달라진 상태로 왔다면, 원상복구 시켜줌
             else
             {
-                if (transform.localScale != startScale)
+                //Player가 missionZone에 닿았을 경우
+                if (missionTriggerZone.MissionStart)
                 {
-                    transform.localScale = Vector3.Lerp(transform.localScale, startScale, 0.01f);
+                    mission.MissionStart = true;
+                    mission.chooseItem = missionTriggerZone.ChooseItem;
+                    missionTriggerZone.MissionStart = false;
+                }
+                //Player가 Enemy의 Detection에 걸렸다면 missionFail 계속 실행
+                //MissionFailSetting -> Update
+                if (IsStartFail)
+                {
+                    missionFail.Enemy = gameObject;
+                    missionFail.Player = ColliderObject;
+                    missionFail.MissionFailSetting();
+                }
+                //Player가 미션을 성공했다면 missionComplete 계속 실행
+                //MissionCompleteSetting -> Update 역할
+                else if (IsStartComplete)
+                {
+                    missionComplete.Enemy = gameObject;
+                    missionComplete.Player = player;
+                    missionComplete.Item = ColliderObject;
+                    missionComplete.MissionCompleteSetting();
+                }
+                //혹시 Enemy의 크기가 달라진 상태로 왔다면, 원상복구 시켜줌
+                else
+                {
+                    if (transform.localScale != startScale)
+                    {
+                        transform.localScale = Vector3.Lerp(transform.localScale, startScale, 0.01f);
+                    }
                 }
             }
         }

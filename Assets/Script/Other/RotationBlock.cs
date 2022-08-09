@@ -48,7 +48,6 @@ public class RotationBlock : MonoBehaviour
     private void Start()
     {
         handleAxis.block = gameObject;
-        playerInput = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
         //리스트 각도들 초기화
         for (int i = 0; i < chooseAxis.Count; i++)
         {
@@ -62,90 +61,96 @@ public class RotationBlock : MonoBehaviour
     }
     private void Update()
     {
-        if (useAudio)
+        if (!playerInput)
         {
-            Vector3 eulerAnglesHandle = transform.eulerAngles;
-            float curRotationHandle = eulerAnglesHandle.x * Convert.ToInt32(handleAxis.X) +
-                    eulerAnglesHandle.y * Convert.ToInt32(handleAxis.Y) +
-                    eulerAnglesHandle.z * Convert.ToInt32(handleAxis.Z);
-            for (int j = 360; j >= 0; j -= angle)
+            playerInput = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
+        }
+        {
+            if (useAudio)
             {
-                if (Mathf.Abs(curRotationHandle - j) < 0.2f && !audioOnce)
+                Vector3 eulerAnglesHandle = transform.eulerAngles;
+                float curRotationHandle = eulerAnglesHandle.x * Convert.ToInt32(handleAxis.X) +
+                        eulerAnglesHandle.y * Convert.ToInt32(handleAxis.Y) +
+                        eulerAnglesHandle.z * Convert.ToInt32(handleAxis.Z);
+                for (int j = 360; j >= 0; j -= angle)
                 {
-                    audioSource.PlayOneShot(clips[clipIndex]);
-                    clipIndex = clipIndex + 1 >= clips.Count ? 0 : clipIndex + 1;
-                    audioOnce = true;
-                    break;
-                }
-                else if (Mathf.Abs(curRotationHandle - j) > 0.2f)
-                {
-                    audioOnce = false;
+                    if (Mathf.Abs(curRotationHandle - j) < 0.2f && !audioOnce)
+                    {
+                        audioSource.PlayOneShot(clips[clipIndex]);
+                        clipIndex = clipIndex + 1 >= clips.Count ? 0 : clipIndex + 1;
+                        audioOnce = true;
+                        break;
+                    }
+                    else if (Mathf.Abs(curRotationHandle - j) > 0.2f)
+                    {
+                        audioOnce = false;
+                    }
                 }
             }
-        }
-        if (!canNotRotate)
-        {
-            if (playerInput.PointBlock == gameObject)
+            if (!canNotRotate)
             {
-                if (playerInput.InteractKey)
+                if (playerInput.PointBlock == gameObject)
                 {
-                    RotateBlock();
-                    afterRotate = true;
-                }
-                if (Input.GetMouseButtonUp(0) && afterRotate)
-                {
-                    handleMove = 0;
-                    blockMove = 0;
-                    isOnce = false;
-                    for (int i = 0; i < chooseAxis.Count; i++)
+                    if (playerInput.InteractKey)
                     {
-                        Vector3 eulerAngles = chooseAxis[i].block.transform.eulerAngles;
-                        float curRotation = eulerAngles.x * Convert.ToInt32(chooseAxis[i].X) +
-                                eulerAngles.y * Convert.ToInt32(chooseAxis[i].Y) +
-                                eulerAngles.z * Convert.ToInt32(chooseAxis[i].Z);
-                        float targetAngle;
-                        for (int j = 270; j >= 0; j -= 90)
+                        RotateBlock();
+                        afterRotate = true;
+                    }
+                    if (Input.GetMouseButtonUp(0) && afterRotate)
+                    {
+                        handleMove = 0;
+                        blockMove = 0;
+                        isOnce = false;
+                        for (int i = 0; i < chooseAxis.Count; i++)
                         {
-                            if (curRotation > j)
+                            Vector3 eulerAngles = chooseAxis[i].block.transform.eulerAngles;
+                            float curRotation = eulerAngles.x * Convert.ToInt32(chooseAxis[i].X) +
+                                    eulerAngles.y * Convert.ToInt32(chooseAxis[i].Y) +
+                                    eulerAngles.z * Convert.ToInt32(chooseAxis[i].Z);
+                            float targetAngle;
+                            for (int j = 270; j >= 0; j -= 90)
                             {
-                                if (curRotation > j + 45)
+                                if (curRotation > j)
                                 {
-                                    targetAngle = j + 90;
+                                    if (curRotation > j + 45)
+                                    {
+                                        targetAngle = j + 90;
+                                    }
+                                    else
+                                    {
+                                        targetAngle = j;
+                                    }
+                                    StartCoroutine(AutoRotate(curRotation, targetAngle, i));
+                                    break;
                                 }
-                                else
-                                {
-                                    targetAngle = j;
-                                }
-                                StartCoroutine(AutoRotate(curRotation, targetAngle, i));
-                                break;
                             }
                         }
-                    }
-                    if (isHandleControl)
-                    {
-                        Vector3 eulerAngles = transform.eulerAngles;
-                        float curRotation = eulerAngles.x * Convert.ToInt32(handleAxis.X) +
-                                eulerAngles.y * Convert.ToInt32(handleAxis.Y) +
-                                eulerAngles.z * Convert.ToInt32(handleAxis.Z);
-                        float targetAngle;
-                        for (int j = 270; j >= 0; j -= 90)
+                        if (isHandleControl)
                         {
-                            if (curRotation > j)
+                            Vector3 eulerAngles = transform.eulerAngles;
+                            float curRotation = eulerAngles.x * Convert.ToInt32(handleAxis.X) +
+                                    eulerAngles.y * Convert.ToInt32(handleAxis.Y) +
+                                    eulerAngles.z * Convert.ToInt32(handleAxis.Z);
+                            float targetAngle;
+                            for (int j = 270; j >= 0; j -= 90)
                             {
-                                if (curRotation > j + 45)
+                                if (curRotation > j)
                                 {
-                                    targetAngle = j + 90;
+                                    if (curRotation > j + 45)
+                                    {
+                                        targetAngle = j + 90;
+                                    }
+                                    else
+                                    {
+                                        targetAngle = j;
+                                    }
+                                    StartCoroutine(AutoRotateHandle(curRotation, targetAngle));
+                                    break;
                                 }
-                                else
-                                {
-                                    targetAngle = j;
-                                }
-                                StartCoroutine(AutoRotateHandle(curRotation, targetAngle));
-                                break;
                             }
                         }
+                        afterRotate = false;
                     }
-                    afterRotate = false;
                 }
             }
         }
