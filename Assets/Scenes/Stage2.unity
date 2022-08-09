@@ -7808,7 +7808,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh179094
+  m_Name: pb_Mesh50306
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8741,7 +8741,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh179200
+  m_Name: pb_Mesh50412
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9069,7 +9069,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh179484
+  m_Name: pb_Mesh50694
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21518,8 +21518,16 @@ PrefabInstance:
       value: Stair3
       objectReference: {fileID: 0}
     - target: {fileID: 7104656054177456175, guid: bee049f536558064286155ad3ae191a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104656054177456175, guid: bee049f536558064286155ad3ae191a0, type: 3}
       propertyPath: m_TagString
       value: Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147385798110989829, guid: bee049f536558064286155ad3ae191a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee049f536558064286155ad3ae191a0, type: 3}
@@ -25235,8 +25243,16 @@ PrefabInstance:
       value: Stair2
       objectReference: {fileID: 0}
     - target: {fileID: 7104656054177456175, guid: bee049f536558064286155ad3ae191a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104656054177456175, guid: bee049f536558064286155ad3ae191a0, type: 3}
       propertyPath: m_TagString
       value: Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147385798110989829, guid: bee049f536558064286155ad3ae191a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee049f536558064286155ad3ae191a0, type: 3}
@@ -25869,8 +25885,16 @@ PrefabInstance:
       value: Stair1
       objectReference: {fileID: 0}
     - target: {fileID: 7104656054177456175, guid: bee049f536558064286155ad3ae191a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104656054177456175, guid: bee049f536558064286155ad3ae191a0, type: 3}
       propertyPath: m_TagString
       value: Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147385798110989829, guid: bee049f536558064286155ad3ae191a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee049f536558064286155ad3ae191a0, type: 3}
