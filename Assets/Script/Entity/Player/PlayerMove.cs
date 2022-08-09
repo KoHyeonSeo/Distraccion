@@ -330,9 +330,10 @@ public class PlayerMove : MonoBehaviour
         {
             for (int i=0; i < GameManager.Instance.ItemProp.Count; i++)
             {
-                if (GameManager.Instance.ItemProp[i].Item == other.gameObject)
+                if (GameManager.Instance.ItemProp[i].Item.name.Contains(other.gameObject.name))
                 {
-                    //GameManager.Instance.ItemProp[i].isHaveItem = true;
+                    GameManager.Instance.SetHaveItem = i;
+                    Destroy(other.gameObject);
                     return;
                 }
             }
