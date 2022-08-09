@@ -36,7 +36,8 @@ public class MissionCompleteTest : MissionComplete
     {
         Start = true;
         //Debug.Log("°¡³Ä");
-        Vector3 targetPos = Player.transform.position + Player.transform.forward * goDistance;
+        Vector3 dir = (Enemy.transform.position - Player.transform.position).normalized;
+        Vector3 targetPos = Player.transform.position + dir * goDistance;
         while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
         {
             Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.01f);
@@ -44,7 +45,7 @@ public class MissionCompleteTest : MissionComplete
         }
         item = Instantiate(Item);
         item.transform.position = Player.transform.GetChild(0).position;
-        targetPos = Player.transform.position - Player.transform.forward * backDistance;
+        targetPos = Player.transform.position - dir * backDistance;
         while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
         {
             Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.01f);

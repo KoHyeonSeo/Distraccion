@@ -29,10 +29,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7021609929419652093}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.1612716, y: 1.462639, z: -10.051824}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   mission: {fileID: 11400000, guid: e2f13e4e8086ace4ab52970adf516d34, type: 2}
   missionComplete: {fileID: 11400000, guid: fa4997ab9053a8542ba7158fac208598, type: 2}
   missionFail: {fileID: 11400000, guid: c06a6003a79a16b49b75c6976aa9d72a, type: 2}
+  missionTriggerZone: {fileID: 0}
 --- !u!114 &7021609929419652039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0102b58b7806ea4fbb683e9c41a5b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroRange: 5
+  aggroRange: 1.5
   delayTime: 5
 --- !u!54 &7021609929419652038
 Rigidbody:
