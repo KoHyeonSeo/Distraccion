@@ -19,7 +19,8 @@ public class PlayerMove : MonoBehaviour
 
     private PlayerInput playerInput;
     private bool isCheck = false;
-    
+
+    public Transform checkNode;  // Player Layer 'Top'으로 변경하는 블록
 
     private void Start()
     {
@@ -120,7 +121,7 @@ public class PlayerMove : MonoBehaviour
             transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
             Vector3 playerDir = findPathPos[idx + 1] - findPathPos[idx];
             // 평지인 경우만 회전
-            if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node"))
+            if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
             {
                 playerDir.y = 0;
                 transform.forward = -playerDir;
@@ -200,8 +201,6 @@ public class PlayerMove : MonoBehaviour
             }
             findPath.Insert(0, startNode);
             findPathPos.Insert(0, transform.position);
-
-            print("Path Completed!");
         }
         // 갈 수 있는 길이 없는 경우
         else
@@ -303,11 +302,11 @@ public class PlayerMove : MonoBehaviour
             if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node"))
             {
                 currentNode = playerHit.transform;
-                // 밟고 있는 노드가 trick1일 경우
-                //if (currentNode.gameObject.name == "trick1")
-                //{
-                //    trick1 = currentNode.GetComponent<Node>();
-                //}
+                // 만약 currentNode가 checkNode일 경우 player의 Layer Top으로 변경해주기
+                if (currentNode == checkNode)
+                {
+                    gameObject.layer = LayerMask.NameToLayer("Top");
+                }
             }
         }
     }

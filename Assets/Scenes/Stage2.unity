@@ -1485,7 +1485,7 @@ GameObject:
   - component: {fileID: 320259030}
   - component: {fileID: 320259029}
   m_Layer: 7
-  m_Name: Cube -1_6_3 (1)
+  m_Name: checkNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4253,7 +4253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945282065}
   m_LocalRotation: {x: 5.9062244e-10, y: -0.9914446, z: -7.77586e-11, w: 0.1305289}
-  m_LocalPosition: {x: -1.74, y: 7.48, z: 0.75}
+  m_LocalPosition: {x: -1.95, y: 7.45, z: 0.78}
   m_LocalScale: {x: 0.5048586, y: 0.5048587, z: 0.50485855}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4283,6 +4283,7 @@ MonoBehaviour:
   closeNode: []
   findPath: []
   findPathPos: []
+  checkNode: {fileID: 320259028}
   mat: {fileID: 2100000, guid: 90191cf24fd66574ca5453d02f621769, type: 2}
   mat_button: {fileID: 2100000, guid: 5b75b0f19967d43469b5dd8857fb3f05, type: 2}
 --- !u!114 &945282071
@@ -6108,7 +6109,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27630
+  m_Name: pb_Mesh81196
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9295,7 +9296,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28342
+  m_Name: pb_Mesh60510
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
