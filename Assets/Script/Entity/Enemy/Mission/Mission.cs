@@ -19,6 +19,13 @@ public class Mission : ScriptableObject
                 //Debug.Log("3. 미션 스타트");
                 if (chooseItem.name == missionItem.name)
                 {
+                    for (int i = 0; i < GameManager.Instance.ItemProp.Count; i++)
+                    {
+                        if (GameManager.Instance.ItemProp[i].Item == chooseItem)
+                        {
+                            GameManager.Instance.SetDontHaveItem = i;
+                        }
+                    }
                     //Debug.Log("4. 아이템 일치");
                     Enemy.GetComponent<Enemy>().IsCheckingItem = true;
                     Enemy.GetComponent<Enemy>().ColliderObject = chooseItem;

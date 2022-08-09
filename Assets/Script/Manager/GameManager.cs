@@ -53,6 +53,21 @@ public class GameManager : MonoBehaviour
         }
     }
     /// <summary>
+    /// 인덱스를 넣어 해당 아이템을 소유한 상태로 바꾸는 쓰기 전용 프로퍼티
+    /// </summary>
+    public int SetDontHaveItem
+    {
+        set
+        {
+            ItemBox item = itemBoxes[value];
+            if (item.isHaveItem)
+            {
+                item.isHaveItem = false;
+                itemBoxes[value] = item;
+            }
+        }
+    }
+    /// <summary>
     /// 현재 갖고 있는 아이템을 나타내는 인덱스 프로퍼티
     /// </summary>
     public int CurItemIndex { get; set; }
