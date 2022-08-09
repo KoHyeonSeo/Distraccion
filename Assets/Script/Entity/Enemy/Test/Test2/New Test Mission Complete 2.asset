@@ -16,4 +16,5 @@ MonoBehaviour:
   throwSpeed: 1000
   walkSpeed: 3
   walkingTime: 2
-  EnemywalkingTime: 3
+  EnemywalkingTime: 1.5
+  backDistance: 3

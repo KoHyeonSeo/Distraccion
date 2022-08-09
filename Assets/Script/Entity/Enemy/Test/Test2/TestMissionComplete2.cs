@@ -28,9 +28,11 @@ public class TestMissionComplete2 : MissionComplete
         if(isThrow)
         {
             curTime += Time.deltaTime;
-            if (curTime < EnemywalkingTime)
+            Enemy.transform.position += -dir * walkSpeed * Time.deltaTime;
+            if (curTime > EnemywalkingTime)
             {
-                Enemy.transform.position += -dir * walkSpeed * Time.deltaTime;
+                Enemy.GetComponent<Enemy>().IsDead = true;
+                Enemy.GetComponent<Enemy>().IsStartComplete = false;
             }
         }
     }
