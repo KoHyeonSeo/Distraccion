@@ -19,9 +19,10 @@ public class Enemy : MonoBehaviour
     public bool IsDead { get; set; }
     public bool IsCheckingItem { get; set; }
     public GameObject ColliderObject { get; set; }
-
+    Vector3 startScale;
     private void Start()
     {
+        startScale = transform.localScale;
         player = GameManager.Instance.playerGameobject;
         mission.Enemy = gameObject;
         material = GetComponent<MeshRenderer>().material;
@@ -68,9 +69,9 @@ public class Enemy : MonoBehaviour
             //혹시 Enemy의 크기가 달라진 상태로 왔다면, 원상복구 시켜줌
             else
             {
-                if (transform.localScale != new Vector3(1, 1, 1))
+                if (transform.localScale != startScale)
                 {
-                    transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1, 1, 1), 0.01f);
+                    transform.localScale = Vector3.Lerp(transform.localScale, startScale, 0.01f);
                 }
             }
         }
