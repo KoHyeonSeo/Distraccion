@@ -213,8 +213,6 @@ public class PlayerMove : MonoBehaviour
     bool isVisited = false;
     void FindNear()
     {
-        //try
-        //{
         currNode = openNode[0];  // 비용이 가장 작은 노드
 
         // 앞
@@ -258,12 +256,6 @@ public class PlayerMove : MonoBehaviour
         }
         // openNode 정렬 by fCost
         openNode.Sort(SortByfCost);
-        //}
-        //catch
-        //{
-        //    Debug.Lo
-        //    Debug.Log("선택영역이 노드가 아닙니다.");
-        //}
 
     }
 
