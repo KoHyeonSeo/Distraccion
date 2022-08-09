@@ -18,19 +18,19 @@ public class NodeActive : MonoBehaviour
 
     void Update()
     {
-        // 계단이 해당 z rotation값 내에 있을 때만 계단 태그 노드로!
+        // 계단이 해당 z rotation값 내에 있을 때만 계단 레이어 노드로!
         if (Mathf.Abs(transform.localEulerAngles.z) >= 177 && Mathf.Abs(transform.localEulerAngles.z) <= 181)
         {
             for (int i = 0; i < 3; i++)
             {
-                stairs[i].tag =  "Node";
+                stairs[i].layer = LayerMask.NameToLayer("Node");
             }
         }
         else
         {
             for (int i = 0; i < 3; i++)
             {
-                stairs[i].tag = "Untagged";
+                stairs[i].layer = LayerMask.NameToLayer("Default");
             }
         }
     }
