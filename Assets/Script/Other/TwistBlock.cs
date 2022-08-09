@@ -30,6 +30,12 @@ public class TwistBlock : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            isOnce = true;
+            StartCoroutine(ButtonDown());
+            isRotate = true;
+        }
         if (isRotate)
         {
             for (int i = 0; i < blocksAngle.Count; i++)
@@ -70,7 +76,6 @@ public class TwistBlock : MonoBehaviour
             isRotate = true;
             CameraControl.Instance.OnShakeCamera(1);
             // 착시효과 부분 위해 player layer 변경
-            collision.collider.gameObject.layer = LayerMask.NameToLayer("Top");
             StartCoroutine(ButtonDown());
         }
     }
