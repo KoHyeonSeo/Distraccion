@@ -29,9 +29,9 @@ public class DragBlock : MonoBehaviour
             // 오브젝트 처음 위치
             firstPos = transform.position;
             // from 블럭과의 거리
-            float d1 = Mathf.Abs(transform.position.x - from.transform.position.x) - (from.localScale.x / 2) - (transform.localScale.x / 2);
+            float d1 = Mathf.Abs(transform.position.x - from.transform.position.x) - (from.lossyScale.x / 2) - (transform.lossyScale.x /2);
             // to 블럭과의 거리
-            float d2 = Mathf.Abs(transform.position.x - to.transform.position.x) - (to.localScale.x / 2) - (transform.localScale.x / 2);
+            float d2 = Mathf.Abs(transform.position.x - to.transform.position.x) - (to.lossyScale.x / 2) - (transform.lossyScale.x / 2);
         }
     }
     private void OnMouseDrag()
@@ -44,7 +44,7 @@ public class DragBlock : MonoBehaviour
             print(firstPos.x);
             float worldX = Camera.main.ScreenToWorldPoint(mousePosition).x;
             mx = Mathf.Clamp(worldX , firstPos.x - d1, firstPos.x + d2);
-            transform.position = new Vector3(mx, transform.position.y, transform.position.z);
+            transform.position = new Vector3(mx, transform.position.y, transform.position.z); 
         }
         else if (moveY)
         {
