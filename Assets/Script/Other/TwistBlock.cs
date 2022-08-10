@@ -67,9 +67,9 @@ public class TwistBlock : MonoBehaviour
         }
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.CompareTag("Player") && !isOnce)
+        if (other.CompareTag("Player") && !isOnce)
         {
             //print("Button Clicked~!!");
             isOnce = true;
