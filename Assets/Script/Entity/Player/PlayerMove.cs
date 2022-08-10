@@ -306,7 +306,7 @@ public class PlayerMove : MonoBehaviour
     void OnMovingBlock()
     {
         // 현재 밟고 있는 노드가 움직이는 경우
-        if (currentNode.tag == "move")
+        if (currentNode.tag == "Move")
         {
             // 플레이어를 그 자식으로 넣는다.
             transform.parent = currentNode.parent;

@@ -8,9 +8,9 @@ TagManager:
   - Node
   - Block
   - Item
-  - move
   - Trick
   - Enemy
+  - Move
   layers:
   - Default
   - TransparentFX
