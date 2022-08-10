@@ -301,7 +301,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33150276}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -931,8 +931,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33150276}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.739, y: 0.281, z: -0.097}
-  m_LocalScale: {x: 0.95, y: 0.6105614, z: 0.95}
+  m_LocalPosition: {x: -5.739, y: 0.281, z: -0.237}
+  m_LocalScale: {x: 0.6, y: 0.38561773, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1277307005}
@@ -37075,7 +37075,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh82566
+  m_Name: pb_Mesh44920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
