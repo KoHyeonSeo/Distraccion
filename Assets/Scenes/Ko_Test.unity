@@ -48411,7 +48411,7 @@ GameObject:
   - component: {fileID: 1175196909}
   - component: {fileID: 1175196910}
   - component: {fileID: 1175196911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -32,6 +32,7 @@ public class BugFail : MissionFail
                 Enemy.transform.position = new Vector3(Enemy.transform.position.x, startY, Enemy.transform.position.z);
                 Enemy.GetComponent<Enemy>().IsStartFail = false;
                 Start = false;
+                Enemy.GetComponent<Rigidbody>().useGravity = false;
             }
         }
 

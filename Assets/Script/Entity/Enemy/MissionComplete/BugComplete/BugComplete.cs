@@ -19,6 +19,7 @@ public class BugComplete : MissionComplete
     private Vector3 flyDir;
     private void Init()
     {
+        Enemy.GetComponent<Rigidbody>().useGravity = false;
         Start = true;
         isRunAway = false;
         isOnceCall = false;
