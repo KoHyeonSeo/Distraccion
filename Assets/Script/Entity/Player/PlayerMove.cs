@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,6 +35,12 @@ public class PlayerMove : MonoBehaviour
         // 사용자 노드 클릭시(Fire2) 초기화
         if (playerInput.MoveKey)
         {
+            // 베지어 곡선으로 트위스트 블록 이동
+            if (currentNode.CompareTag("Twist"))
+            {
+                TwistMove();
+            }
+            //  A* 알고리즘으로 노드 
             // 노드인 PointBlock을 단 한번만 체크
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
@@ -88,24 +95,25 @@ public class PlayerMove : MonoBehaviour
                 #endregion
 
 
-                // TrickBlock에 있을 때 위치 이동 
-                //OnTrickBlock();
-
                 // 길찾기
                 FindPath();
                 isCheck = false;
                 isVisited = false;
             }
         }
-        // 플레이어가 노드가 아닌 다른 곳을 선택할 경우(예외처리)
-        //else
-        //{
-
-        //}
-        // 플레이어 이동
-        SimpleMove();
+        
+        // 플레이어 노드 이동
+        else
+        {
+            SimpleMove();
+        }
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
+    }
+
+    private void TwistMove()
+    {
+        throw new NotImplementedException();
     }
 
     int idx = 0;
@@ -146,7 +154,6 @@ public class PlayerMove : MonoBehaviour
                 findPath[idx].GetComponent<MeshRenderer>().material = mat;
             }
         }
-
     }
 
     // 길찾기
