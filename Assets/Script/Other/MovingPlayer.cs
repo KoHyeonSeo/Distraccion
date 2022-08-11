@@ -13,7 +13,7 @@ public class MovingPlayer : MonoBehaviour
     /// v에 정밀한 값을 주는것이 부드러운 이동에 도움이 될것이다.
     /// v에 fixedDeltaTime이나, deltaTime을 곱하는 것을 권장한다.(시간에 따라 이동하고 싶은 경우)
     /// 시간에 따라 이동하지 않고 싶은 경우 정밀한 값을 넣어주는 것을 권장한다.
-    /// </summary>
+    /// </summary>                                      
     /// <param name="v"></param>
     /// <returns></returns>
     public static Vector3 BezierPoint(float v)

@@ -43,6 +43,7 @@ public class TwistBlock : MonoBehaviour
                 StartCoroutine(TwistingBlock(block[i],i));
             }
         }
+
     }
     IEnumerator TwistingBlock(GameObject block,int index)
     {
