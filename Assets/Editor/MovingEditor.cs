@@ -43,6 +43,7 @@ public class MovingEditor : Editor
         for (int i = 0; i < Generator.dataSets.Count - 1; i++)
         {
             Handles.DrawLine(Generator.dataSets[i], Generator.dataSets[i + 1]);
+            Handles.color = Color.magenta;
         }
         int detail = 50;
         for (float i = 0; i < detail; i++)

@@ -327,7 +327,7 @@ public class PlayerMove : MonoBehaviour
     // 아이템 충돌
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
+        if (other.gameObject.tag == "Item")
         {
             for (int i=0; i < GameManager.Instance.ItemProp.Count; i++)
             {
