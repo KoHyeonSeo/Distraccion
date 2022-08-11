@@ -13,5 +13,10 @@ public abstract class MissionFail : ScriptableObject
     /// </summary>
     public GameObject Player { get; set; }
 
+    /// <summary>
+    /// 시작할때, false로 시작
+    /// MonoBehavior의 Start의 역할을 한다.
+    /// </summary>
+    public bool Start { get; set; }
     public abstract void MissionFailSetting();
 }

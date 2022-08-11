@@ -21,11 +21,6 @@ public class EnemyDetection : MonoBehaviour
                     Target = cols[i].gameObject;
                     isChecking = true;
                 }
-                else if (cols[i].CompareTag("Item"))
-                {
-                    Target = cols[i].gameObject;
-                    isChecking = true;
-                }
             }
             if (!isChecking)
             {
