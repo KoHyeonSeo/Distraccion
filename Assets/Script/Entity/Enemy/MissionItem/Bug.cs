@@ -8,13 +8,20 @@ public class Bug : MonoBehaviour
 
     public Transform Target { get; set; }
 
+    private Vector3 dir;
+    private void Start()
+    {
+        dir = (Target.position - transform.position).normalized;
+    }
     private void Update()
     {
-        Vector3 dir = (Target.position - transform.position).normalized;
-        transform.position += dir * speed * Time.deltaTime;
-        if (Vector3.Distance(Target.position, transform.position) < 0.1f)
+        if (Target)
         {
-            Destroy(gameObject, 1.5f);
+            transform.position += dir * speed * Time.deltaTime;
+            if (Vector3.Distance(Target.position, transform.position) < 0.1f)
+            {
+                Destroy(gameObject, 1.5f);
+            }
         }
     }
 }

@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
         material = GetComponent<MeshRenderer>().material;
         mission.MissionStart = false;
         missionComplete.Start = false;
+        missionFail.Start = false;
     }
     private void Update()
     {
