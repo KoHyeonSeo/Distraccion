@@ -66,7 +66,7 @@ public class TwistBlock : MonoBehaviour
             transform.position += Vector3.down * Time.deltaTime;
             yield return null;
         }
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
     private void OnTriggerEnter(Collider other)
     {
