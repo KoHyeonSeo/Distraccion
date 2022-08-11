@@ -35,12 +35,7 @@ public class PlayerMove : MonoBehaviour
         // 사용자 노드 클릭시(Fire2) 초기화
         if (playerInput.MoveKey)
         {
-            // 베지어 곡선으로 트위스트 블록 이동
-            if (currentNode.CompareTag("Twist"))
-            {
-                TwistMove();
-            }
-            //  A* 알고리즘으로 노드 
+            //  A* 알고리즘으로 노드 이동
             // 노드인 PointBlock을 단 한번만 체크
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
@@ -101,7 +96,11 @@ public class PlayerMove : MonoBehaviour
                 isVisited = false;
             }
         }
-        
+        // 베지어 곡선으로 트위스트 블록 이동
+        if (currentNode.gameObject.layer == LayerMask.NameToLayer("Twist"))
+        {
+            TwistMove();
+        }
         // 플레이어 노드 이동
         else
         {
