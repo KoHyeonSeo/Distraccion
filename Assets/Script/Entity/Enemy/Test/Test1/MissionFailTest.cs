@@ -27,6 +27,7 @@ public class MissionFailTest : MissionFail
             {
                 Enemy.GetComponent<Enemy>().IsStartFail = false;
                 curTime = 0;
+                Player.transform.position = playerStart + dir * (aggro + 2);
             }
         }
     }
