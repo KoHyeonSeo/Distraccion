@@ -30,12 +30,12 @@ public class TwistBlock : MonoBehaviour
     }
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Alpha0))
-        //{
-        //    isOnce = true;
-        //    StartCoroutine(ButtonDown());
-        //    isRotate = true;
-        //}
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            isOnce = true;
+            StartCoroutine(ButtonDown());
+            isRotate = true;
+        }
         if (isRotate)
         {
             for (int i = 0; i < blocksAngle.Count; i++)
