@@ -13,7 +13,7 @@ public class TwistBlock : MonoBehaviour
     private List<float> angle = new List<float>();
     private List<List<float>> blocksAngle = new List<List<float>>();
     private List<int> childNum = new List<int>();
-    private bool isRotate = false;
+    [SerializeField] private bool isRotate = false;
     private float curTime = 0;
     private void Start()
     {
@@ -72,11 +72,9 @@ public class TwistBlock : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isOnce)
         {
-            //print("Button Clicked~!!");
             isOnce = true;
             isRotate = true;
             CameraControl.Instance.OnShakeCamera(1);
-            // 착시효과 부분 위해 player layer 변경
             StartCoroutine(ButtonDown());
         }
     }
