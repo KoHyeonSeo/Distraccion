@@ -29,7 +29,7 @@ public class MovingGround : MonoBehaviour
                 float sp = speed * Time.fixedDeltaTime;
                 transform.position = PhysicsUtility.BezierCurve(dataSets, vTest);
                 transform.LookAt(PhysicsUtility.BezierCurve(dataSets, vTest));
-                vTest = Mathf.Clamp01(vTest + sp);  // 0~1
+                vTest = Mathf.Clamp01(vTest + sp);  
                 yield return new WaitForFixedUpdate();
             }
             while (vTest > 0)
