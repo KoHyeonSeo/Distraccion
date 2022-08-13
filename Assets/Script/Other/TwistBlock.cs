@@ -19,7 +19,7 @@ public class TwistBlock : MonoBehaviour
     {
         for (int i = 0; i < block.Count; i++)
         {
-            childNum.Add(block[i].transform.childCount);
+            childNum.Add(block[i].transform.childCount);  
             angle.Add(targetAngle / childNum[i]);
             blocksAngle.Add(new List<float>());
             for (int j = 0; j < childNum[i]; j++)
@@ -51,9 +51,21 @@ public class TwistBlock : MonoBehaviour
         {
             if (blocksAngle[index][i] < angle[index] * i)
             {
-                block.transform.GetChild(i).RotateAround(block.transform.GetChild(i).position,
-                    new Vector3(0, 1, 0), Time.deltaTime * speed);
-                blocksAngle[index][i] += Time.deltaTime * speed;
+                // Twist해야하는 블록 이름이 'TwistBlock_x'일 경우 x축으로 회전
+                if (block.name == "TwistBlock_x")
+                {
+                    // 자식위치, X축 기준으로 Time.fixedDeltaTime * speed로 움직임
+                    block.transform.GetChild(i).RotateAround(block.transform.GetChild(i).position,
+                    new Vector3(1, 0, 0), 0.009736f * speed);
+                    // 각도 누적값
+                    blocksAngle[index][i] += 0.009736f * speed;
+                }
+                else
+                {
+                    block.transform.GetChild(i).RotateAround(block.transform.GetChild(i).position,
+                    new Vector3(0, 1, 0), 0.009736f * speed);
+                    blocksAngle[index][i] += 0.009736f * speed;
+                }
             }
             yield return null;
         }
