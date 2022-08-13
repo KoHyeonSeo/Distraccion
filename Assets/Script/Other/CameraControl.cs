@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    public float minZoom = 3;
-    public float maxZoom = 11;
-    public float zoomSpeed = 3;
-    public float zoomLerpSpeed = 20;
-    float scroll;
-    float zoom;
+    //public float minZoom = 3;
+    //public float maxZoom = 11;
+    //public float zoomSpeed = 3;
+    //public float zoomLerpSpeed = 20;
+    //float scroll;
+    //float zoom;
 
     public static CameraControl Instance;
     private void Awake()
