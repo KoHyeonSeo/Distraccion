@@ -17,6 +17,8 @@ public class ButtonAndUpMap : MonoBehaviour
     }
 
     [SerializeField] private float buttonTime = 0.5f; 
+    [SerializeField] private GameObject door;
+    [SerializeField] private bool isHaveDoor;
 
     [Space]
     [Header("움직일 블록 등록 및 설정")]
@@ -29,9 +31,12 @@ public class ButtonAndUpMap : MonoBehaviour
     public bool isMoving = false;
     private bool isEnding = false;
     private bool isEndingOnce = false;
+    private bool isDoorRotate = false;
+    private bool isOnceChecking = false;
 
     private void Start()
     {
+        //MovingPoint 리스트 초기화
         for (int i = 0; i < movingBlocks.Count; i++)
         {
             movingPoints.Add(new List<Vector3>());
@@ -40,7 +45,7 @@ public class ButtonAndUpMap : MonoBehaviour
                 movingPoints[i].Add(Vector3.zero);
             }
         }
-
+        //MovingPoint 리스트에 도착지 기록
         for (int i = 0; i < movingBlocks.Count; i++)
         {
             for (int j = 0; j < movingBlocks[i].blocks.Count; j++)
@@ -70,7 +75,24 @@ public class ButtonAndUpMap : MonoBehaviour
         }
         if (isMoving && !isEnding)
         {
-            StartCoroutine("Moving");
+            if (isHaveDoor && !isOnceChecking)
+            {
+                isOnceChecking = true;
+                door.GetComponent<DoorBlockRotate>().isRotating = true;
+            }
+            if (isHaveDoor)
+            {
+                curTime += Time.deltaTime;
+                if (curTime > 3)
+                {
+                    curTime = 0;
+                    isHaveDoor = false;
+                }
+            }
+            else
+            {
+                StartCoroutine("Moving");
+            }
         }
     }
     IEnumerator ButtonDown()
