@@ -28,6 +28,7 @@ public class ButtonAndUpMap : MonoBehaviour
     private bool isOnce = false;
     public bool isMoving = false;
     private bool isEnding = false;
+    private bool isEndingOnce = false;
 
     private void Start()
     {
@@ -53,9 +54,23 @@ public class ButtonAndUpMap : MonoBehaviour
     }
     private void Update()
     {
+        if (isEnding && !isEndingOnce)
+        {
+            isEndingOnce = true;
+            for (int i = 0; i < movingBlocks.Count; i++)
+            {
+                for (int j = 0; j < movingBlocks[i].blocks.Count; j++)
+                {
+                    if (movingBlocks[i].blocks[j].GetComponent<IsHaveStairMoving>())
+                    {
+                        movingBlocks[i].blocks[j].GetComponent<IsHaveStairMoving>().CallStairMoving();
+                    }
+                }
+            }
+        }
         if (isMoving && !isEnding)
         {
-            StartCoroutine(Moving());
+            StartCoroutine("Moving");
         }
     }
     IEnumerator ButtonDown()
@@ -73,11 +88,9 @@ public class ButtonAndUpMap : MonoBehaviour
         while (true)
         {
             curTime += Time.deltaTime * 0.01f;
-            //Debug.Log(curTime);
             isEnding = true;
             for (int i = 0; i < movingBlocks.Count; i++)
             {
-                //Debug.Log($"Dist = " + Vector3.Distance(movingBlocks[i].blocks[0].transform.position, movingPoints[i][0]));
                 //waiting기다리는중
                 if (curTime < movingBlocks[i].waitingTime)
                 {
@@ -104,8 +117,9 @@ public class ButtonAndUpMap : MonoBehaviour
             //모든 블록이 이동을 마쳤다면
             if (isEnding)
             {
-                curTime = 0;
-                yield break;
+                Debug.Log("End");
+                isMoving = false;
+                StopAllCoroutines();
             }
             yield return null;
         }
@@ -117,7 +131,7 @@ public class ButtonAndUpMap : MonoBehaviour
             isOnce = true;
             isMoving = true;
             //CameraControl.Instance.OnShakeCamera(1, 0.3f);
-            StartCoroutine(ButtonDown());
+            StartCoroutine("ButtonDown");
         }
     }
 }
