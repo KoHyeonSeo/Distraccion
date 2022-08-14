@@ -51,20 +51,20 @@ public class TwistBlock : MonoBehaviour
         {
             if (blocksAngle[index][i] < angle[index] * i)
             {
-                // Twist해야하는 블록 이름이 'TwistBlock_x'일 경우 x축으로 회전
+                // Twist해야하는 블록 이름이 'TwistBlock_x'일 경우 x축 기준 회전
                 if (block.name == "TwistBlock_x")
                 {
-                    // 자식위치, X축 기준으로 Time.fixedDeltaTime * speed로 움직임
+                    // 자식위치, X축 기준으로 Time.fixedDeltaTime * speed(속도)로 움직임
                     block.transform.GetChild(i).RotateAround(block.transform.GetChild(i).position,
-                    new Vector3(1, 0, 0), 0.009736f * speed);
+                    new Vector3(-1, 0, 0),  Time.fixedDeltaTime* speed);  // 0.009736f
                     // 각도 누적값
-                    blocksAngle[index][i] += 0.009736f * speed;
+                    blocksAngle[index][i] += Time.fixedDeltaTime * speed;//0.009736f * speed;
                 }
                 else
                 {
                     block.transform.GetChild(i).RotateAround(block.transform.GetChild(i).position,
-                    new Vector3(0, 1, 0), 0.009736f * speed);
-                    blocksAngle[index][i] += 0.009736f * speed;
+                    new Vector3(0, -1, 0), Time.fixedDeltaTime * speed);
+                    blocksAngle[index][i] += Time.fixedDeltaTime * speed;
                 }
             }
             yield return null;

@@ -15388,7 +15388,7 @@ MonoBehaviour:
   block:
   - {fileID: 806005262}
   buttonTime: 0.5
-  targetAngle: 360
+  targetAngle: 250
   speed: 100
   isRotate: 0
 --- !u!1 &231994529
