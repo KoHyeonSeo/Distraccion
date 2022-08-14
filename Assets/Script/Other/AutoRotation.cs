@@ -16,10 +16,11 @@ public class AutoRotation : MonoBehaviour
     [SerializeField] private List<ChooseAxis> chooseAxis = new List<ChooseAxis>();
     [SerializeField] private float blockAngle = 90f;
     [SerializeField] private float buttonTime = 0.5f;
-    private bool isRotate = false;
+    
     private List<float> axis = new List<float>();
     private bool isOnce = false;
     private float curTime = 0;
+    public bool isRotate = false;
     
     private void Awake()
     {
