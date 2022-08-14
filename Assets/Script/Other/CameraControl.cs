@@ -49,19 +49,22 @@ public class CameraControl : MonoBehaviour
     {
 
         Vector3 startRotation = transform.eulerAngles;
+        //Vector3 startPosition = transform.position;
 
         float power = 10f;
         while (shakeTime > 0.0f)
         {
             float x = 0;
-            float y = 0;
-            float z = UnityEngine.Random.Range(-1f, 1f);
+            float y = UnityEngine.Random.Range(-1f, 1f);
+            float z = 0;
             transform.rotation = Quaternion.Euler(startRotation + new Vector3(x, y, z) * shakeIntensity * power);
+            //transform.position += new Vector3(x, y, z) * shakeIntensity * power;
 
             shakeTime -= Time.deltaTime;
 
             yield return null;
         }
+        //transform.position = new Vector3(startPosition.x, startPosition.y, startPosition.z);
         transform.rotation = Quaternion.Euler(startRotation.x, startRotation.y, startRotation.z);
     }
 }
