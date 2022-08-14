@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class MiddleStagePlayerMove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private PlayerInput playerInput;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        playerInput = GetComponent<PlayerInput>();  
+    }
+    private void Update()
+    {
+        //SpaceBar¿ª ¥≠∑∂¿ª ∂ß Jump
+        if (playerInput.UseItemButton)
+        {
+
+        }
     }
 }
