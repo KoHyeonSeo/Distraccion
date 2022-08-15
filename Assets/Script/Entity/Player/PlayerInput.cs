@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float mouseMaxDistance = 950f;
 
-
+    public const string XKeyBoard = "Horizontal";
     public const string XMouseName = "Mouse X";
     public const string YMouseName = "Mouse Y";
     public const string CancelName = "Cancel";
@@ -66,8 +66,13 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     public Vector3 MouseDir { get; private set; }
 
+    /// <summary>
+    /// 키보드 좌우 방향키를 눌렀을 경우
+    /// </summary>
+    public float XKeyBoardAxis { get; private set; }
     void Update()
     {
+        XKeyBoardAxis = Input.GetAxis(XKeyBoard);
         XMouseOut = Input.GetAxis(XMouseName);
         YMouseOut = Input.GetAxis(YMouseName);
         MousePosition = Input.mousePosition;
