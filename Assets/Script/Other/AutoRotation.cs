@@ -69,7 +69,7 @@ public class AutoRotation : MonoBehaviour
         {
             isOnce = true;
             isRotate = true;
-            CameraControl.Instance.OnShakeCamera(1, 0.3f);
+            CameraControl.Instance.OnShakeCamera(1, 0.1f);
             StartCoroutine("ButtonDown");
         }
     }

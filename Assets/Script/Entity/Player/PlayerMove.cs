@@ -71,7 +71,6 @@ public class PlayerMove : MonoBehaviour
                 // Raycast로 사용자가 가고자하는 타겟노드 찾기
                 if (playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
                 {
-
                     targetNode = playerInput.PointBlock.GetComponent<Node>();
                     openNode.Add(startNode);
                 }
@@ -89,25 +88,28 @@ public class PlayerMove : MonoBehaviour
                 //}
                 #endregion
 
-
                 // 길찾기
                 FindPath();
                 isCheck = false;
                 isVisited = false;
             }
         }
-        // 베지어 곡선으로 트위스트 블록 이동
-        if (currentNode.gameObject.layer == LayerMask.NameToLayer("Twist"))
+        if (!noWay)
         {
-            TwistMove();
-        }
-        // 플레이어 노드 이동
-        else
-        {
-            SimpleMove();
+            // 베지어 곡선으로 트위스트 블록 이동
+            if (currentNode.gameObject.layer == LayerMask.NameToLayer("Twist"))
+            {
+                TwistMove();
+            }
+            // 플레이어 노드 이동
+            else
+            {
+                SimpleMove();
+            }
         }
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
+        noWay = false;
     }
 
     private void TwistMove()
@@ -155,64 +157,63 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    bool noWay = false;
     // 길찾기
     void FindPath()
     {
-        //print($"Before1: {openNode.Count}, {openNode[0]}");  // 출발노드
+        //print($"1: {openNode.Count}, {openNode[0]}");  // 출발노드
         // 중심노드 & 근접노드 찾기
         FindNear();
-        //print($"Before2 : {openNode.Count}, {openNode[0]},{openNode[1]}");  // 출발노드 + 이웃노드
+        //print($"2 : {openNode.Count}, {openNode[0]}");//,{openNode[1]}");  // 출발노드 + 이웃노드
         // 중심Node => ClosedList
         openNode.Remove(currNode);
         closeNode.Add(currNode);
-        //print($"After : {openNode.Count}, {openNode[0]}");  // 이웃노드 중 fCost가 가장 작은 노드 (출발노드 => close)
-        // 길찾기 Loop ( 갈 수 있는 길이 있고 targetNode를 찾을 때까지)
-        if (openNode.Count > 0 && openNode[0] != targetNode)
-        {
-            FindPath();
-        }
-        // 길이 없는 경우
-        else if (openNode == null)
-        {
-            print("No Way");
-        }
-        // targetNode를 찾았다면 path 만들기
-        else if (openNode[0] == targetNode)
-        {
-            findPath.Clear();
-            Node Node = targetNode;
-            // 부모노드가 없는 startNode까지 거슬러 올라가면서 path 만들기
-            while (Node.parent != null)
-            {
-                // 지나갈 노드 색 파란색으로 표시
-                Node.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
-                // 거꾸로 노드 넣기
-                findPath.Insert(0, Node);
-                // 거꾸로 노드 위치 넣기
-                // 계단의 경우 findPathPos 다르게 입력해주기
-                if (Node.gameObject.name.Contains("Stair"))
-                {
-                    findPathPos.Insert(0, Node.transform.position + new Vector3(0.2f, 0.7f, 0));
-                }
-                else if (Node.gameObject.name.Contains("Button"))
-                {
-                    findPathPos.Insert(0, Node.transform.position + new Vector3(0, 0.3f, 0));
-                }
-                else
-                {
-                    findPathPos.Insert(0, Node.transform.position + Vector3.up);
-                }
-                // 부모 노드 거슬러 올라가기
-                Node = Node.parent;
-            }
-            findPath.Insert(0, startNode);
-            findPathPos.Insert(0, transform.position);
-        }
+        //print($"3 : {openNode.Count}");//, {openNode[0]}");  // 이웃노드 중 fCost가 가장 작은 노드 (출발노드 => close)
+
         // 갈 수 있는 길이 없는 경우
+        if (openNode.Count <= 0)
+        {
+            noWay = true;
+        }
         else
         {
-                Debug.Log("갈 수 있는 길이 없습니다.");
-                return;
+            // 길찾기 Loop ( 갈 수 있는 길이 있고 targetNode를 찾을 때까지)
+            if (openNode.Count > 0 && openNode[0] != targetNode)
+            {
+                FindPath();
+            }
+            // targetNode를 찾았다면 path 만들기
+            else if (openNode[0] == targetNode)
+            {
+                findPath.Clear();
+                Node Node = targetNode;
+                // 부모노드가 없는 startNode까지 거슬러 올라가면서 path 만들기
+                while (Node.parent != null)
+                {
+                    // 지나갈 노드 색 파란색으로 표시
+                    Node.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+                    // 거꾸로 노드 넣기
+                    findPath.Insert(0, Node);
+                    // 거꾸로 노드 위치 넣기
+                    // 상황에 따라 플레이어가 이동해야할 position 다르게 입력
+                    if (Node.gameObject.name.Contains("Stair"))
+                    {
+                        findPathPos.Insert(0, Node.transform.position + new Vector3(0.2f, 0.7f, 0));
+                    }
+                    else if (Node.gameObject.name.Contains("Button"))
+                    {
+                        findPathPos.Insert(0, Node.transform.position + new Vector3(0, 0.3f, 0));
+                    }
+                    else
+                    {
+                        findPathPos.Insert(0, Node.transform.position + Vector3.up);
+                    }
+                    // 부모 노드 거슬러 올라가기
+                    Node = Node.parent;
+                }
+                findPath.Insert(0, startNode);
+                findPathPos.Insert(0, transform.position);
+            }
         }
     }
 
@@ -262,7 +263,6 @@ public class PlayerMove : MonoBehaviour
         }
         // openNode 정렬 by fCost
         openNode.Sort(SortByfCost);
-
     }
 
     // 해당 방향 근접노드 찾기
@@ -270,11 +270,11 @@ public class PlayerMove : MonoBehaviour
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 200, false);
+        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 10, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, 1, layer))
         {
-            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 200, false);  // 충돌한 지점까지의 Ray선 
+            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 10, false);  // 충돌한 지점까지의 Ray선 
             Node Node = hit.transform.GetComponent<Node>();
             //Node.walkAble = true;
             Node.SetCost(startNode.transform.position, targetNode.transform.position);
