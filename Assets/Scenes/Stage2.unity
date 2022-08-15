@@ -2056,10 +2056,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2245ef7b42f3c45a34c49c15f1ed75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minZoom: 3
-  maxZoom: 11
-  zoomSpeed: 3
-  zoomLerpSpeed: 10
 --- !u!43 &359530136
 Mesh:
   m_ObjectHideFlags: 0
@@ -22496,6 +22492,7 @@ MonoBehaviour:
     Z: 1
   blockAngle: 90
   buttonTime: 0.05
+  isRotate: 0
 --- !u!23 &4001089152023960318
 MeshRenderer:
   m_ObjectHideFlags: 0
