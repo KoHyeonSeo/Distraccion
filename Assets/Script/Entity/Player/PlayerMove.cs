@@ -270,11 +270,11 @@ public class PlayerMove : MonoBehaviour
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 10, false);
+        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, 1, layer))
         {
-            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 10, false);  // 충돌한 지점까지의 Ray선 
+            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 30, false);  // 충돌한 지점까지의 Ray선 
             Node Node = hit.transform.GetComponent<Node>();
             //Node.walkAble = true;
             Node.SetCost(startNode.transform.position, targetNode.transform.position);
