@@ -24,12 +24,14 @@ public class PlayerMove : MonoBehaviour
     private bool isCheck = false;
 
     Scene scene;
+    CharacterController cc;
 
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         gameObject.layer = LayerMask.NameToLayer("Default");
         scene = SceneManager.GetActiveScene();
+        cc = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -39,7 +41,6 @@ public class PlayerMove : MonoBehaviour
         if (playerInput.MoveKey)
         {
             //  A* 알고리즘으로 노드 이동
-            // 노드인 PointBlock을 단 한번만 체크
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
                 isCheck = true;
@@ -122,6 +123,7 @@ public class PlayerMove : MonoBehaviour
 
     int idx = 0;
     float ratio = 0;
+    int hitCount = 0;
     public Material mat;
     public Material mat_button;
     void SimpleMove()
@@ -136,8 +138,18 @@ public class PlayerMove : MonoBehaviour
             if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
             {
                 playerDir.y = 0;
-                transform.forward = -playerDir;
-                //transform.rotation = Quaternion.LookRotation(-playerDir);
+                transform.forward = playerDir;
+                // Twist 블럭에서 player up 방향 설정
+                RaycastHit hit;
+                int layer = 1 << LayerMask.NameToLayer("Node");
+                if (Physics.Raycast(transform.position, -transform.up, out hit, 1, layer) && hit.collider.CompareTag("Twist"))
+                {
+                    //hitCount++;
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 30);
+                    transform.position = hit.point + hit.normal * 0.1f;
+                    transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                }
+                //transform.up = findPath[idx].gameObject;
             }
             if (ratio >= 1)
             {
@@ -145,6 +157,8 @@ public class PlayerMove : MonoBehaviour
                 ratio = 0;
             }
         }
+
+        //print(hitCount);
 
         // 이동한 노드 색 초기화
         for (int i = 0; i < findPath.Count; i++)
@@ -278,7 +292,7 @@ public class PlayerMove : MonoBehaviour
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
+        //Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {

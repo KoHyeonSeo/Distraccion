@@ -11,7 +11,7 @@ TagManager:
   - Trick
   - Enemy
   - Move
-  - move
+  - Twist
   layers:
   - Default
   - TransparentFX
