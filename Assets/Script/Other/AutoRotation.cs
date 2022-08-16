@@ -63,13 +63,14 @@ public class AutoRotation : MonoBehaviour
         }
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !isOnce)
         {
             isOnce = true;
             isRotate = true;
-            CameraControl.Instance.OnShakeCamera(1, 0.1f);
+            CameraControl.Instance.OnShakeCamera();
             StartCoroutine("ButtonDown");
         }
     }
