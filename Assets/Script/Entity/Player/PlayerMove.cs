@@ -11,8 +11,10 @@ public class PlayerMove : MonoBehaviour
     public Node currNode;  // openNode에 포함된 노드 중  fCost가 가장 작은 노드
     public Node targetNode;
     public Transform currentNode;
+
     public Node trick1;
     public Node trick2;
+    //public List<Node>trick = new List<Node>();
     public Transform checkNode;  // Player Layer 'Top'으로 변경하는 블록
 
     public List<Node> openNode = new List<Node>();  // 값을 정하기 전의 노드 리스트
@@ -25,6 +27,7 @@ public class PlayerMove : MonoBehaviour
 
     Scene scene;
     CharacterController cc;
+
 
     private void Start()
     {
@@ -146,8 +149,9 @@ public class PlayerMove : MonoBehaviour
                 {
                     //hitCount++;
                     Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-                    transform.position = hit.point;// + hit.normal * 0.1f;
-                    transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                    transform.position = hit.transform.position +  hit.transform.forward;// + hit.normal * 0.1f;
+                    //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
+                    transform.up = hit.transform.forward;
                 }
                 //transform.up = findPath[idx].gameObject;
             }
@@ -241,39 +245,40 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    
     bool isVisited = false;
     void FindNear()
     {
         currNode = openNode[0];  // 비용이 가장 작은 노드
 
         // 앞
-        AddNearOpen(transform.forward, 1);
+        AddNearOpen(transform.forward);
         // 뒤
-        AddNearOpen(-transform.forward, 1);
+        AddNearOpen(-transform.forward);
         // 오른쪽
-        AddNearOpen(transform.right, 1);
+        AddNearOpen(transform.right);
         // 왼쪽
-        AddNearOpen(-transform.right, 1);
+        AddNearOpen(-transform.right);
         // 위앞 
-        AddNearOpen(Vector3.up + transform.forward, 1);
+        AddNearOpen(Vector3.up + transform.forward);
         // 위뒤
-        AddNearOpen(Vector3.up - transform.forward, 1);
+        AddNearOpen(Vector3.up - transform.forward);
         // 위좌
-        AddNearOpen(Vector3.up - transform.right, 1);
+        AddNearOpen(Vector3.up - transform.right);
         // 위우
-        AddNearOpen(Vector3.up + transform.right, 1);
+        AddNearOpen(Vector3.up + transform.right);
         // 아래앞
-        AddNearOpen(Vector3.down + transform.forward, 1);
+        AddNearOpen(Vector3.down + transform.forward);
         // 아래뒤
-        AddNearOpen(Vector3.down - transform.forward, 1);
+        AddNearOpen(Vector3.down - transform.forward);
         // 아래좌
-        AddNearOpen(Vector3.down - transform.right, 1);
+        AddNearOpen(Vector3.down - transform.right);
         // 아래우
-        AddNearOpen(Vector3.down + transform.forward, 1);
+        AddNearOpen(Vector3.down + transform.forward);
         // Stage3의 경우 아치형노드가 있어 추가 노드 검사 실행
         if (scene.name == "Stage3")
         {
-            AddNearOpen(transform.right + new Vector3(0, 0.5f, 0), 5);
+            AddNearOpen(transform.right + new Vector3(0, 0.5f, 0));
         }
 
         // 만약 trick1 노드가 이웃노드를 찾는 중이라면 trick2를 openNode에 넣어주기
@@ -294,8 +299,9 @@ public class PlayerMove : MonoBehaviour
         openNode.Sort(SortByfCost);
     }
 
+    public float rayLength=1;
     // 해당 방향 근접노드 찾기
-    void AddNearOpen(Vector3 dir, int rayLength)
+    void AddNearOpen(Vector3 dir)
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
