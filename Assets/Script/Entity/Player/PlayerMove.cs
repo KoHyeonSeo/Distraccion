@@ -12,9 +12,10 @@ public class PlayerMove : MonoBehaviour
     public Node targetNode;
     public Transform currentNode;
 
-    public Node trick1;
-    public Node trick2;
-    //public List<Node>trick = new List<Node>();
+    //public Node trick1;
+    //public Node trick2;
+    public List<Node> trick1 = new List<Node>();
+    public List<Node> trick2 = new List<Node>();
     public Transform checkNode;  // Player Layer 'Top'으로 변경하는 블록
 
     public List<Node> openNode = new List<Node>();  // 값을 정하기 전의 노드 리스트
@@ -281,19 +282,33 @@ public class PlayerMove : MonoBehaviour
             AddNearOpen(transform.right + new Vector3(0, 0.5f, 0));
         }
 
-        // 만약 trick1 노드가 이웃노드를 찾는 중이라면 trick2를 openNode에 넣어주기
-        if (isVisited == false && currNode.gameObject.name == "trick1")
+        // trick부분 연결
+        if (isVisited == false && currNode.gameObject.CompareTag("Trick1"))
         {
-            trick2.parent = currNode;
-            openNode.Add(trick2);
-            isVisited = true;
+            for (int i=0; i<trick1.Count; i++)
+            {
+                if (trick1[i].gameObject.name == currNode.gameObject.name)
+                {
+                    Node next = trick2[i];
+                    next.parent = currNode;
+                    openNode.Add(next);
+                    isVisited = true;
+                }
+            }
         }
-        // 만약 trick2 노드가 이웃노드를 찾는 중이라면 trick1를 openNode에 넣어주기
-        if (isVisited == false && currNode.gameObject.name == "trick2")
+
+        if (isVisited == false && currNode.gameObject.CompareTag("Trick2"))
         {
-            trick1.parent = currNode;
-            openNode.Add(trick1);
-            isVisited = true;
+            for (int i = 0; i < trick2.Count; i++)
+            {
+                if (trick2[i].gameObject.name == currNode.gameObject.name)
+                {
+                    Node next = trick1[i];
+                    next.parent = currNode;
+                    openNode.Add(next);
+                    isVisited = true;
+                }
+            }
         }
         // openNode 정렬 by fCost
         openNode.Sort(SortByfCost);

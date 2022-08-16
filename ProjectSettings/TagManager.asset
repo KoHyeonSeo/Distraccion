@@ -8,10 +8,11 @@ TagManager:
   - Node
   - Block
   - Item
-  - Trick
   - Enemy
   - Move
   - Twist
+  - Trick1
+  - Trick2
   layers:
   - Default
   - TransparentFX
