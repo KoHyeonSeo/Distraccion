@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    //public bool walkAble = false;
-
     //출발점 기준
     public float gCost;
     //도작점 기준
