@@ -124,6 +124,7 @@ public class PlayerMove : MonoBehaviour
     int idx = 0;
     float ratio = 0;
     int hitCount = 0;
+    public bool matChange;
     public Material mat;
     public Material mat_button;
     void SimpleMove()
@@ -141,12 +142,11 @@ public class PlayerMove : MonoBehaviour
                 transform.forward = playerDir;
                 // Twist 블럭에서 player up 방향 설정
                 RaycastHit hit;
-                int layer = 1 << LayerMask.NameToLayer("Node");
-                if (Physics.Raycast(transform.position, -transform.up, out hit, 1, layer) && hit.collider.CompareTag("Twist"))
+                if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
                 {
                     //hitCount++;
-                    Debug.DrawRay(hit.point, hit.normal, Color.green, 30);
-                    transform.position = hit.point + hit.normal * 0.1f;
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    transform.position = hit.point;// + hit.normal * 0.1f;
                     transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 }
                 //transform.up = findPath[idx].gameObject;
@@ -161,15 +161,18 @@ public class PlayerMove : MonoBehaviour
         //print(hitCount);
 
         // 이동한 노드 색 초기화
-        for (int i = 0; i < findPath.Count; i++)
+        if (matChange)
         {
-            if (findPath[idx].name.Contains("Button"))
+            for (int i = 0; i < findPath.Count; i++)
             {
-                findPath[idx].GetComponent<MeshRenderer>().material = mat_button;
-            }
-            else
-            {
-                findPath[idx].GetComponent<MeshRenderer>().material = mat;
+                if (findPath[idx].name.Contains("Button"))
+                {
+                    findPath[idx].GetComponent<MeshRenderer>().material = mat_button;
+                }
+                else
+                {
+                    findPath[idx].GetComponent<MeshRenderer>().material = mat;
+                }
             }
         }
     }
@@ -207,8 +210,12 @@ public class PlayerMove : MonoBehaviour
                 // 부모노드가 없는 startNode까지 거슬러 올라가면서 path 만들기
                 while (Node.parent != null)
                 {
-                    // 지나갈 노드 색 파란색으로 표시
-                    Node.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+                    if (matChange)
+                    {
+                        // 지나갈 노드 색 파란색으로 표시
+                        Node.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+                    }
+                    
                     // 거꾸로 노드 넣기
                     findPath.Insert(0, Node);
                     // 거꾸로 노드 위치 넣기
@@ -296,11 +303,10 @@ public class PlayerMove : MonoBehaviour
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {
-            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 30, false);  // 충돌한 지점까지의 Ray선 
+            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 200, false);  // 충돌한 지점까지의 Ray선 
             Node Node = hit.transform.GetComponent<Node>();
-            //Node.walkAble = true;
             Node.SetCost(startNode.transform.position, targetNode.transform.position);
-            if (!openNode.Contains(Node) && !closeNode.Contains(Node)) //&& Node.walkAble)
+            if (!openNode.Contains(Node) && !closeNode.Contains(Node))
             {
                 Node.parent = currNode;
                 openNode.Add(Node);
