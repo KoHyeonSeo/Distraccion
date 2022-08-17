@@ -142,32 +142,16 @@ public class PlayerMove : MonoBehaviour
         // 찾은 길 인덱스를 통해 순회
         if (findPath.Count - 1 > idx)
         {
-            print(findPath[idx]);
            // Twist 이동 방식
-            if (findPath[idx].gameObject.CompareTag("Twist") && findPath[idx +1].gameObject.CompareTag("Twist"))
+            if (findPath[idx].CompareTag("Twist") && findPath[idx +1].CompareTag("Twist"))
             {
-                print("1111");
                 transform.position = findPathPos[idx + 1];
                 idx++;
-            }
-            // Arch 이동 방식
-            else if (findPath[idx].gameObject.CompareTag("Arch"))
-            {
-                print("2222");
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, -transform.up, out hit, 2))
-                {
-                    print("3333");
-                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-                    transform.position = hit.transform.position + hit.transform.up;
-                    transform.up = hit.normal;
-                }
             }
             // Node 이동 방식
             else
             {
-                print("4444");
-                ratio += 0.8f*Time.deltaTime;//3 * Time.deltaTime;
+                ratio += 0.8f * Time.deltaTime;
                 transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
                 if (ratio >= 1)
                 {
@@ -176,7 +160,6 @@ public class PlayerMove : MonoBehaviour
                 }
             }
 
-
             // 회전(trick노드 제외)
             if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
             {
@@ -184,12 +167,18 @@ public class PlayerMove : MonoBehaviour
                 playerDir.y = 0;
                 transform.forward = playerDir;  // 플레이어의 앞방향 : 현재 찾은 노드 위치 -> 다음 찾은 노드 위치
 
-                // 플레이어 아래방향으로 ray쏘았을 때 Arch / Twist 노드일 경우
-                
+                // 플레이어 아래방향으로 ray쏘았을 때 Twist / Arch 노드일 경우
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, -transform.up, out hit, 5) && hit.collider.CompareTag("Arch"))
+                {
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    transform.position = hit.transform.position;
+                    transform.up = hit.normal;
+                }
                 //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
                 //{
                 //    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-                //    transform.position = hit.transform.position +  hit.transform.forward;
+                //    transform.position = hit.transform.position + hit.transform.forward;
                 //    transform.up = hit.transform.forward;
                 //}
             }
