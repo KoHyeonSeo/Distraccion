@@ -32,15 +32,16 @@ public class PlayerMove : MonoBehaviour
     private bool noWay = false;
 
     Scene scene;
-    CharacterController cc;
 
 
     private void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
-        gameObject.layer = LayerMask.NameToLayer("Default");
         scene = SceneManager.GetActiveScene();
-        cc = GetComponent<CharacterController>();
+        playerInput = GetComponent<PlayerInput>();
+        if (scene.name == "Stage2")
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
     }
 
     void Update()
@@ -135,12 +136,14 @@ public class PlayerMove : MonoBehaviour
     public bool matChange;
     public Material mat;
     public Material mat_button;
+    Vector3 playerDir;
     void SimpleMove()
     {
+        // 찾은 길 인덱스를 통해 순회
         if (findPath.Count - 1 > idx)
         {
            // 이동 방식
-            if (findPath[idx].CompareTag("Twist")&&findPath[idx +1].CompareTag("Twist"))
+            if (findPath[idx].CompareTag("Twist") && findPath[idx +1].CompareTag("Twist"))
             {
                 transform.position = findPathPos[idx + 1];
                 idx++;
@@ -160,25 +163,25 @@ public class PlayerMove : MonoBehaviour
             // 회전(trick노드 제외)
             if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
             {
-                Vector3 playerDir;
-                if (idx == 0)
-                {
-                    playerDir = findPathPos[idx+1] - findPathPos[idx];
-                }
-                else
-                {
-                    playerDir = findPathPos[idx] - findPathPos[idx - 1];
-                }
+                playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
+                //playerDir.y = 0;
+                transform.forward = playerDir;  // 플레이어의 앞방향 : 현재 찾은 노드 위치 -> 다음 찾은 노드 위치
 
-                playerDir.y = 0;
-                transform.forward = playerDir;
+                // 플레이어 아래방향으로 길이 1만큼 ray쏘았을 때 Twist / Arch 노드일 경우
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
+                while (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Arch"))
                 {
-                    Debug.DrawRay(hit.point, hit.normal, Color.blue, 200);
-                    transform.position = hit.transform.position +  hit.transform.forward;
-                    transform.up = hit.transform.forward;
+                    print("Arch!");
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    transform.position = hit.transform.position + hit.transform.up;
+                    transform.up = hit.normal;
                 }
+                //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
+                //{
+                //    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                //    transform.position = hit.transform.position +  hit.transform.forward;
+                //    transform.up = hit.transform.forward;
+                //}
             }
         }
        /* else
@@ -304,6 +307,7 @@ public class PlayerMove : MonoBehaviour
         if (scene.name == "Stage3")
         {
             AddNearOpen(transform.right + new Vector3(0, 0.5f, 0));
+            AddNearOpen(-transform.right + new Vector3(0, 0.5f, 0));
         }
 
         // trick부분 연결
@@ -320,7 +324,6 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
-
         if (isVisited == false && currNode.gameObject.CompareTag("Trick2"))
         {
             for (int i = 0; i < trick.Count; i++)
@@ -344,7 +347,7 @@ public class PlayerMove : MonoBehaviour
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        //Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
+        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {

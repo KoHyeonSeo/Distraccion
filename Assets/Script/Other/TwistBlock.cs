@@ -9,11 +9,13 @@ public class TwistBlock : MonoBehaviour
     [SerializeField] private float buttonTime = 0.5f;
     [SerializeField] private float targetAngle = 90f;
     [SerializeField] private float speed = 25f;
-    private bool isOnce = false;
+    
     private List<float> angle = new List<float>();
     private List<List<float>> blocksAngle = new List<List<float>>();
     private List<int> childNum = new List<int>();
-    [SerializeField] private bool isRotate = false;
+
+    private bool isOnce = false;
+    public bool isTwist = false;
     private float curTime = 0;
     private void Start()
     {
@@ -34,9 +36,9 @@ public class TwistBlock : MonoBehaviour
         {
             isOnce = true;
             StartCoroutine(ButtonDown());
-            isRotate = true;
+            isTwist = true;
         }
-        if (isRotate)
+        if (isTwist)
         {
             for (int i = 0; i < blocksAngle.Count; i++)
             {
@@ -85,7 +87,7 @@ public class TwistBlock : MonoBehaviour
         if (other.CompareTag("Player") && !isOnce)
         {
             isOnce = true;
-            isRotate = true;
+            isTwist = true;
             CameraControl.Instance.OnShakeCamera(1);
             StartCoroutine(ButtonDown());
         }
