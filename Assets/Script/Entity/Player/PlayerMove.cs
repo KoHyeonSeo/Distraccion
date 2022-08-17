@@ -12,10 +12,13 @@ public class PlayerMove : MonoBehaviour
     public Node targetNode;
     public Transform currentNode;
 
-    //public Node trick1;
-    //public Node trick2;
-    public List<Node> trick1 = new List<Node>();
-    public List<Node> trick2 = new List<Node>();
+    [Serializable]
+    public struct trick
+    {
+        public Node trick1;
+        public Node trick2;
+    }
+    [SerializeField] private List<trick> chooseAxis = new List<trick>();
     public Transform checkNode;  // Player Layer 'Top'으로 변경하는 블록
 
     public List<Node> openNode = new List<Node>();  // 값을 정하기 전의 노드 리스트
@@ -102,32 +105,14 @@ public class PlayerMove : MonoBehaviour
                 isVisited = false;
             }
         }
-        if (!noWay)
-        {
-            // 베지어 곡선으로 트위스트 블록 이동
-            if (currentNode.gameObject.layer == LayerMask.NameToLayer("Twist"))
-            {
-                TwistMove();
-            }
-            // 플레이어 노드 이동
-            else
-            {
-                SimpleMove();
-            }
-        }
+        SimpleMove();
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
         noWay = false;
     }
 
-    private void TwistMove()
-    {
-        throw new NotImplementedException();
-    }
-
     int idx = 0;
     float ratio = 0;
-    int hitCount = 0;
     public bool matChange;
     public Material mat;
     public Material mat_button;
@@ -135,35 +120,55 @@ public class PlayerMove : MonoBehaviour
     {
         if (findPath.Count - 1 > idx)
         {
-            ratio += 3 * Time.deltaTime;
-            // 모든 거리를 일정한 시간으로 이동하도록 설정
-            transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
-            Vector3 playerDir = findPathPos[idx + 1] - findPathPos[idx];
-            // 평지인 경우만 회전
+           // 이동 방식
+            if (findPath[idx].CompareTag("Twist")&&findPath[idx +1].CompareTag("Twist"))
+            {
+                transform.position = findPathPos[idx + 1];
+                idx++;
+            }
+            else
+            {
+                ratio += 3 * Time.deltaTime;
+                transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
+                if (ratio >= 1)
+                {
+                    idx++;
+                    ratio = 0;
+                }
+            }
+
+
+            // 회전(trick노드 제외)
             if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
             {
+                Vector3 playerDir;
+                if (idx == 0)
+                {
+                    playerDir = findPathPos[idx+1] - findPathPos[idx];
+                }
+                else
+                {
+                    playerDir = findPathPos[idx] - findPathPos[idx - 1];
+                }
+
                 playerDir.y = 0;
                 transform.forward = playerDir;
-                // Twist 블럭에서 player up 방향 설정
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
                 {
-                    //hitCount++;
-                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-                    transform.position = hit.transform.position +  hit.transform.forward;// + hit.normal * 0.1f;
-                    //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
+                    Debug.DrawRay(hit.point, hit.normal, Color.blue, 200);
+                    transform.position = hit.transform.position +  hit.transform.forward;
                     transform.up = hit.transform.forward;
                 }
-                //transform.up = findPath[idx].gameObject;
-            }
-            if (ratio >= 1)
-            {
-                idx++;
-                ratio = 0;
             }
         }
+       /* else
+        {
 
-        //print(hitCount);
+            transform.position = findPathPos[idx] + findPath[idx].transform.forward;
+            transform.up = findPath[idx].transform.forward;
+        }*/
+
 
         // 이동한 노드 색 초기화
         if (matChange)
@@ -315,7 +320,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     public float rayLength=1;
-    // 해당 방향 근접노드 찾기
+    // currNode에서 ray이용해 해당 방향 근접노드 찾기
     void AddNearOpen(Vector3 dir)
     {
         Ray ray = new Ray(currNode.transform.position, dir);
