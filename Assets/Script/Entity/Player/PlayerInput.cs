@@ -72,6 +72,7 @@ public class PlayerInput : MonoBehaviour
     public float XKeyBoardAxis { get; private set; }
     void Update()
     {
+        #region 입력값 업데이트
         XKeyBoardAxis = Input.GetAxis(XKeyBoard);
         XMouseOut = Input.GetAxis(XMouseName);
         YMouseOut = Input.GetAxis(YMouseName);
@@ -81,9 +82,15 @@ public class PlayerInput : MonoBehaviour
         MoveKey = Input.GetButtonDown(MoveName);
         InteractKey = Input.GetButton(InteractName);
         UseItemButton = Input.GetButtonDown(UseItemName);
-        if(UseItemButton)
+        #endregion
+
+        #region Debug Test
+        if (UseItemButton)
             Debug.Log("UseItemButton true");
 
+        #endregion
+
+        #region 가리키는 블록과 방향 업데이트
         Vector3 mousepos = MousePosition;
         mousepos.z = mouseMaxDistance;
         Vector3 v = Camera.main.ScreenToWorldPoint(mousepos);
@@ -106,5 +113,16 @@ public class PlayerInput : MonoBehaviour
             PointBlock = null;
         }
 
+        #endregion
+
+        #region 아이템 Swap
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            int max = GameManager.Instance.ItemProp.Count;
+            int cur = GameManager.Instance.CurItemIndex;
+            cur = cur + 1 >= max ? cur = 0 : cur + 1;
+            GameManager.Instance.CurItemIndex = cur;
+        }
+        #endregion
     }
 }
