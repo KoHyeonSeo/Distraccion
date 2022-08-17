@@ -10,17 +10,18 @@ public class PlayerMove : MonoBehaviour
     public Node startNode;
     public Node currNode;  // openNode에 포함된 노드 중  fCost가 가장 작은 노드
     public Node targetNode;
+
     public Transform currentNode;
+    public Transform checkNode;  // Player Layer 'Top'으로 변경하는 블록
 
     [Serializable]
-    public struct trick
+    public struct trickNode
     {
         public Node trick1;
         public Node trick2;
     }
-    [SerializeField] private List<trick> chooseAxis = new List<trick>();
-    public Transform checkNode;  // Player Layer 'Top'으로 변경하는 블록
-
+    
+    public List<trickNode> trick = new List<trickNode>();
     public List<Node> openNode = new List<Node>();  // 값을 정하기 전의 노드 리스트
     public List<Node> closeNode = new List<Node>();  // 값이 정해진 노드 리스트
     public List<Node> findPath = new List<Node>();
@@ -28,6 +29,7 @@ public class PlayerMove : MonoBehaviour
 
     private PlayerInput playerInput;
     private bool isCheck = false;
+    private bool noWay = false;
 
     Scene scene;
     CharacterController cc;
@@ -105,10 +107,27 @@ public class PlayerMove : MonoBehaviour
                 isVisited = false;
             }
         }
-        SimpleMove();
+        if (!noWay)
+        {
+            // 베지어 곡선으로 트위스트 블록 이동
+            if (currentNode.gameObject.layer == LayerMask.NameToLayer("Twist"))
+            {
+                TwistMove();
+            }
+            // 플레이어 노드 이동
+            else
+            {
+                SimpleMove();
+            }
+        }
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
         noWay = false;
+    }
+
+    private void TwistMove()
+    {
+        throw new NotImplementedException();
     }
 
     int idx = 0;
@@ -187,7 +206,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    bool noWay = false;
+    
     // 길찾기
     void FindPath()
     {
@@ -290,11 +309,11 @@ public class PlayerMove : MonoBehaviour
         // trick부분 연결
         if (isVisited == false && currNode.gameObject.CompareTag("Trick1"))
         {
-            for (int i=0; i<trick1.Count; i++)
+            for (int i=0; i<trick.Count; i++)
             {
-                if (trick1[i].gameObject.name == currNode.gameObject.name)
+                if (trick[i].trick1.name == currNode.gameObject.name)
                 {
-                    Node next = trick2[i];
+                    Node next = trick[i].trick2;
                     next.parent = currNode;
                     openNode.Add(next);
                     isVisited = true;
@@ -304,11 +323,11 @@ public class PlayerMove : MonoBehaviour
 
         if (isVisited == false && currNode.gameObject.CompareTag("Trick2"))
         {
-            for (int i = 0; i < trick2.Count; i++)
+            for (int i = 0; i < trick.Count; i++)
             {
-                if (trick2[i].gameObject.name == currNode.gameObject.name)
+                if (trick[i].trick2.name == currNode.gameObject.name)
                 {
-                    Node next = trick1[i];
+                    Node next = trick[i].trick1;
                     next.parent = currNode;
                     openNode.Add(next);
                     isVisited = true;
