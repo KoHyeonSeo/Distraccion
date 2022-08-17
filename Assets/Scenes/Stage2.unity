@@ -4202,11 +4202,10 @@ MonoBehaviour:
   currNode: {fileID: 0}
   targetNode: {fileID: 0}
   currentNode: {fileID: 0}
-  trick1:
-  - {fileID: 1708469214}
-  trick2:
-  - {fileID: 7001149480970203380}
   checkNode: {fileID: 320259028}
+  trick:
+  - trick1: {fileID: 1708469214}
+    trick2: {fileID: 7001149480970203380}
   openNode: []
   closeNode: []
   findPath: []

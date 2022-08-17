@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 8299532818056550681}
   - component: {fileID: 8299532818056550662}
   - component: {fileID: 8299532818056550663}
-  - component: {fileID: 8299532818056550660}
-  - component: {fileID: 8299532818056550661}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -101,44 +99,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8299532818056550660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8299532818056550658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6d9f096ff1ca34f9412f2be1f74612, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startNode: {fileID: 0}
-  currNode: {fileID: 0}
-  targetNode: {fileID: 0}
-  currentNode: {fileID: 0}
-  trick1: {fileID: 0}
-  trick2: {fileID: 0}
-  openNode: []
-  closeNode: []
-  findPath: []
-  findPathPos: []
-  checkNode: {fileID: 0}
-  mat: {fileID: 2100000, guid: b2352ff028b20d742ace33acb8acda81, type: 2}
-  mat_button: {fileID: 2100000, guid: 5b75b0f19967d43469b5dd8857fb3f05, type: 2}
---- !u!114 &8299532818056550661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8299532818056550658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71fe70e2ba01614782477ac07dc9185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseMaxDistance: 950
 --- !u!1 &8299532819358579380
 GameObject:
   m_ObjectHideFlags: 0
