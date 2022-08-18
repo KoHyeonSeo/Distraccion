@@ -47,6 +47,7 @@ public class MovingGround : MonoBehaviour
                 vTest = Mathf.Clamp01(vTest + sp);
                 yield return new WaitForFixedUpdate();
             }
+            //transform.up = dataSets[-1].right;
             break;
         }
     }
