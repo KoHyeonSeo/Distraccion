@@ -29,7 +29,7 @@ public class ButtonAndUpMap : MonoBehaviour
     private List<List<Vector3>> movingPoints = new List<List<Vector3>>();
     private bool isOnce = false;
     public bool isMoving = false;
-    private bool isEnding = false;
+    public bool isEnding = false;
     private bool isEndingOnce = false;
     private bool isDoorRotate = false;
     private bool isOnceChecking = false;
