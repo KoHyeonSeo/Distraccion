@@ -169,11 +169,12 @@ public class PlayerMove : MonoBehaviour
             }
 
             // 회전
-            if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
+            if (findPath[idx].gameObject.layer ==  LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick") && !archB.enabled)
             {
                 playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
                 playerDir.y = 0;
-                transform.forward = playerDir;  
+                transform.forward = playerDir;
+                archB.enabled = false;
 
                 // Arch Bezier 이동
                 //RaycastHit hit;
@@ -181,15 +182,15 @@ public class PlayerMove : MonoBehaviour
             }
 
             // Twist 안 된 경우
-            if(!twist.isTwist)
-            {
-                transform.position += transform.right;
+            //if(!twist.isTwist)
+            //{
+            //    transform.position += transform.right;
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-            }
+            //}
 
         }
     //// 찾은 길 인덱스를 통해 순회
@@ -368,9 +369,9 @@ public class PlayerMove : MonoBehaviour
         }
 
         // trick부분 연결
-        if (isVisited == false && currNode.gameObject.CompareTag("Trick1"))
+        if (isVisited == false && currNode.gameObject.CompareTag("Trick"))
         {
-            for (int i=0; i<trick.Count; i++)
+            for (int i = 0; i < trick.Count; i++)
             {
                 if (trick[i].trick1.name == currNode.gameObject.name)
                 {
@@ -378,22 +379,19 @@ public class PlayerMove : MonoBehaviour
                     next.parent = currNode;
                     openNode.Add(next);
                     isVisited = true;
+                    break;
                 }
-            }
-        }
-        if (isVisited == false && currNode.gameObject.CompareTag("Trick2"))
-        {
-            for (int i = 0; i < trick.Count; i++)
-            {
-                if (trick[i].trick2.name == currNode.gameObject.name)
+                else if (trick[i].trick2.name == currNode.gameObject.name)
                 {
                     Node next = trick[i].trick1;
                     next.parent = currNode;
                     openNode.Add(next);
                     isVisited = true;
+                    break;
                 }
             }
         }
+
         // openNode 정렬 by fCost
         openNode.Sort(SortByfCost);
     }
