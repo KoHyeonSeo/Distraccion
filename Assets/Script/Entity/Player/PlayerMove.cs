@@ -32,6 +32,7 @@ public class PlayerMove : MonoBehaviour
     private bool noWay = false;
 
     Scene scene;
+    MovingGround archB;
 
 
     private void Start()
@@ -42,6 +43,8 @@ public class PlayerMove : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Default");
         }
+        archB = GetComponent<MovingGround>();
+        archB.enabled = false;
     }
 
     void Update()
@@ -137,7 +140,7 @@ public class PlayerMove : MonoBehaviour
     public Material mat;
     public Material mat_button;
     Vector3 playerDir;
-    public float playerMoveSpeed;
+    public float playerMoveSpeed = 3;
     
     void SimpleMove()
     {
@@ -163,7 +166,6 @@ public class PlayerMove : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Arch"))
                 {
-                    MovingGround archB = GetComponent<MovingGround>();
                     archB.enabled = true;
                     transform.position += transform.up;
                 }

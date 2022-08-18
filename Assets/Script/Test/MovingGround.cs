@@ -29,17 +29,18 @@ public class MovingGround : MonoBehaviour
                 float sp = speed * Time.fixedDeltaTime;
                 transform.position = PhysicsUtility.BezierCurve(dataSets, vTest);
                 transform.LookAt(PhysicsUtility.BezierCurve(dataSets, vTest));
-                vTest = Mathf.Clamp01(vTest + sp);  
+                vTest = Mathf.Clamp01(vTest + sp);
                 yield return new WaitForFixedUpdate();
             }
-            //while (vTest > 0)
-            //{
-            //    float sp = speed * Time.fixedDeltaTime;
-            //    vTest = Mathf.Clamp01(vTest - sp);
-            //    transform.position = PhysicsUtility.BezierCurve(dataSets, vTest);
-            //    transform.LookAt(PhysicsUtility.BezierCurve(dataSets, vTest));
-            //    yield return new WaitForFixedUpdate();
-            //}
+            while (vTest > 0)
+            {
+                //break;
+                float sp = speed * Time.fixedDeltaTime;
+                vTest = Mathf.Clamp01(vTest - sp);
+                transform.position = PhysicsUtility.BezierCurve(dataSets, vTest);
+                transform.LookAt(PhysicsUtility.BezierCurve(dataSets, vTest));
+                yield return new WaitForFixedUpdate();
+            }
         }
     }
 }
