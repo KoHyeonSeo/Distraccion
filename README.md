@@ -112,11 +112,11 @@
     - Menu - SH
     - Start / End - SH 
     - GameOver - SH
-    - Item 상호작용 UI - SH
-    - Item 창 - HS
+    - Item 상호작용 UI - HS V
+    - Item 창 - HS V
 - 사운드 - SH + HS
     - 배경음악
-    - 블럭 돌아갈때 소리 -> 돌이 돌아가는 소리
+    - 블럭 돌아갈때 소리 -> 돌이 돌아가는 소리 
     - 이외
 - 에셋  - SH + HS V
 ( 디자인 -> 에셋 )
