@@ -147,30 +147,41 @@ public class PlayerMove : MonoBehaviour
     {
         if (findPath.Count - 1 > idx)
         {
-            if (findPath[idx + 1].gameObject.CompareTag("Arch"))
+            if (archB.enabled == true)
             {
-                archB.enabled = true;
+
             }
             else if (findPath[idx].CompareTag("Twist") && findPath[idx + 1].CompareTag("Twist"))
             {
-                transform.position = findPathPos[idx + 1];
+                //if (archB.enabled) print("11111");
+                transform.position = findPathPos[idx + 1] + new Vector3(0, 0.5f, 0);
                 idx++;
             }
             else
             {
+                //if (archB.enabled) print("22222222");
                 // Lerp 이동
-                ratio += playerMoveSpeed * Time.deltaTime;
-                transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
-                if (ratio >= 1)
+                if (findPath[idx + 1].CompareTag("Arch"))
                 {
-                    idx++;
-                    ratio = 0;
+                    archB.enabled = true;
+                    findPath.RemoveAt(idx + 1);
+                }
+                else
+                {
+                    ratio += playerMoveSpeed * Time.deltaTime;
+                    transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
+                    if (ratio >= 1)
+                    {
+                        idx++;
+                        ratio = 0;
+                    }
                 }
             }
 
             // 회전
-            if (findPath[idx].gameObject.layer ==  LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick") && !archB.enabled)
+            if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick") && !archB.enabled)
             {
+                if (archB.enabled) print("3333333333");
                 playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
                 playerDir.y = 0;
                 transform.forward = playerDir;
