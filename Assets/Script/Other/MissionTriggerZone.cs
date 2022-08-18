@@ -18,11 +18,11 @@ public class MissionTriggerZone : MonoBehaviour
         {
             if (player.GetComponent<PlayerInput>().UseItemButton && isChecking)
             {
-                //Debug.Log("아이템 사용!");
-                //Debug.Log("1. 발동");
+                Debug.Log("아이템 사용!");
+                Debug.Log("1. 발동");
                 if (GameManager.Instance.ItemProp[GameManager.Instance.CurItemIndex].isHaveItem)
                 {
-                    //Debug.Log("2. 아이템 있음");
+                    Debug.Log("2. 아이템 있음");
                     MissionStart = true;
                     ChooseItem = GameManager.Instance.ItemProp[GameManager.Instance.CurItemIndex].Item;
                 }
@@ -34,7 +34,7 @@ public class MissionTriggerZone : MonoBehaviour
         //Debug.Log("0. 닿음");
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("나는 player");
+            Debug.Log("나는 player");
             isChecking = true;
         }
     }

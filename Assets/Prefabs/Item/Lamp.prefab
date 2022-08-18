@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2273681324447400112}
   - component: {fileID: 2273681324447400127}
   - component: {fileID: 2273681324447400126}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +168,10 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 21620d6fdea75574585915597dbfa4fe, type: 3}
       propertyPath: m_Name
       value: MagicLamp_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 21620d6fdea75574585915597dbfa4fe, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21620d6fdea75574585915597dbfa4fe, type: 3}
