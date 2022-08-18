@@ -30,7 +30,7 @@ public class TrickBlockMatch : MonoBehaviour
     int seq = -1;
     private IEnumerator Checking()
     {
-        while (seq < buttons.Count)
+        while (seq < buttons.Count-1)
         {
             if (buttons[seq + 1].isEnding)
             {
@@ -59,7 +59,7 @@ public class TrickBlockMatch : MonoBehaviour
                         {
                             GameObject myBlock2 = trickBlocks[seq].trick2Blocks[j];
                             Vector3 myDir2 = (myBlock2.transform.GetChild(0).transform.position - myBlock2.transform.position).normalized;
-                            myDir2.x = Mathf.Abs(myDir2.x);  myDir2.y = Mathf.Abs(myDir2.y);  myDir2.z = Mathf.Abs(myDir2.z);
+                            myDir2.x = Mathf.Abs(myDir2.x); myDir2.y = Mathf.Abs(myDir2.y); myDir2.z = Mathf.Abs(myDir2.z);
                             if (myDir == myDir2)
                             {
                                 //Debug.Log($"myBlock : {myBlock1} -> " + myDir);
