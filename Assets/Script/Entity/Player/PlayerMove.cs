@@ -33,6 +33,7 @@ public class PlayerMove : MonoBehaviour
 
     Scene scene;
     MovingGround archB;
+    public TwistBlock twist;
 
 
     private void Start()
@@ -146,13 +147,25 @@ public class PlayerMove : MonoBehaviour
     {
         if (findPath.Count - 1 > idx)
         {
-            // Lerp 이동
-            ratio += playerMoveSpeed * Time.deltaTime;
-            transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
-            if (ratio >= 1)
+            if (findPath[idx + 1].gameObject.CompareTag("Arch"))
             {
+                archB.enabled = true;
+            }
+            else if (findPath[idx].CompareTag("Twist") && findPath[idx + 1].CompareTag("Twist"))
+            {
+                transform.position = findPathPos[idx + 1];
                 idx++;
-                ratio = 0;
+            }
+            else
+            {
+                // Lerp 이동
+                ratio += playerMoveSpeed * Time.deltaTime;
+                transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
+                if (ratio >= 1)
+                {
+                    idx++;
+                    ratio = 0;
+                }
             }
 
             // 회전
@@ -160,19 +173,25 @@ public class PlayerMove : MonoBehaviour
             {
                 playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
                 playerDir.y = 0;
-                transform.forward = playerDir;  // 플레이어의 앞방향 : 현재 찾은 노드 위치 -> 다음 찾은 노드 위치
+                transform.forward = playerDir;  
 
                 // Arch Bezier 이동
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Arch"))
-                {
-                    archB.enabled = true;
-                    transform.position += transform.up;
-                }
+                //RaycastHit hit;
+                //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Arch"))
             }
+
+            // Twist 안 된 경우
+            if(!twist.isTwist)
+            {
+                transform.position += transform.right;
+
+            }
+            else
+            {
+
+            }
+
         }
-
-
     //// 찾은 길 인덱스를 통해 순회
     //if (findPath.Count - 2 > idx)
     //{
@@ -385,7 +404,7 @@ public class PlayerMove : MonoBehaviour
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
+        //Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {
