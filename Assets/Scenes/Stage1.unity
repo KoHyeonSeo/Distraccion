@@ -243,7 +243,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1344
+  m_Name: pb_Mesh-9684
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3446,7 +3446,7 @@ GameObject:
   - component: {fileID: 274051773}
   m_Layer: 7
   m_Name: Cube (33)
-  m_TagString: Trick2
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4665,7 +4665,6 @@ Transform:
   - {fileID: 1529218261}
   - {fileID: 1133478696}
   - {fileID: 1526681698}
-  - {fileID: 578578820}
   - {fileID: 885917613}
   - {fileID: 1868791906}
   m_Father: {fileID: 80283672}
@@ -5999,7 +5998,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1332
+  m_Name: pb_Mesh-9672
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6284,120 +6283,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574116189}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &578578819
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 578578820}
-  - component: {fileID: 578578824}
-  - component: {fileID: 578578823}
-  - component: {fileID: 578578822}
-  - component: {fileID: 578578821}
-  m_Layer: 7
-  m_Name: Block (10)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &578578820
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578578819}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.04300022, y: -2.8133917, z: -4.0526943}
-  m_LocalScale: {x: 1, y: 0.6, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 406899259}
-  m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &578578821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578578819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf877545ed9002040bf7caca224ab77a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gCost: 0
-  hCost: 0
-  fCost: 0
-  parent: {fileID: 0}
---- !u!65 &578578822
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578578819}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &578578823
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578578819}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31e90611eb706fb4897a53c33b504d62, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &578578824
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578578819}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &581220793
 GameObject:
@@ -25711,7 +25596,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1264
+  m_Name: pb_Mesh-9604
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26029,7 +25914,7 @@ GameObject:
   - component: {fileID: 601060594}
   m_Layer: 7
   m_Name: Cube (7)
-  m_TagString: Trick2
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26381,7 +26266,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29066
+  m_Name: pb_Mesh72294
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27429,9 +27314,11 @@ MonoBehaviour:
   closeNode: []
   findPath: []
   findPathPos: []
+  twist: {fileID: 0}
   matChange: 0
   mat: {fileID: 0}
   mat_button: {fileID: 0}
+  playerMoveSpeed: 10
   rayLength: 1
 --- !u!1 &722204802
 GameObject:
@@ -29856,7 +29743,7 @@ GameObject:
   - component: {fileID: 885917614}
   m_Layer: 7
   m_Name: Block (11)
-  m_TagString: Trick1
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29869,13 +29756,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885917612}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.04300022, y: -2.8133917, z: -5.0526943}
+  m_LocalPosition: {x: -0.04300034, y: -2.8133917, z: -4.0526943}
   m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1510464076}
   m_Father: {fileID: 406899259}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &885917614
 MonoBehaviour:
@@ -30684,7 +30571,7 @@ GameObject:
   - component: {fileID: 1011856504}
   m_Layer: 7
   m_Name: Block (1)
-  m_TagString: Trick2
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49437,7 +49324,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1298
+  m_Name: pb_Mesh-9638
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -52859,7 +52746,6 @@ MonoBehaviour:
   - {fileID: 348903522}
   - {fileID: 284924244}
   - {fileID: 1704278526}
-  - {fileID: 578578819}
   - {fileID: 885917612}
   - {fileID: 1868791905}
   - {fileID: 723194150}
@@ -53163,7 +53049,7 @@ GameObject:
   - component: {fileID: 1249861414}
   m_Layer: 7
   m_Name: Block (11)
-  m_TagString: Trick1
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53815,7 +53701,7 @@ GameObject:
   - component: {fileID: 1319309497}
   m_Layer: 7
   m_Name: Block (14)
-  m_TagString: Trick1
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54644,7 +54530,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29068
+  m_Name: pb_Mesh72296
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -59999,7 +59885,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1276
+  m_Name: pb_Mesh-9616
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -60400,7 +60286,7 @@ GameObject:
   - component: {fileID: 1780842003}
   m_Layer: 7
   m_Name: Cube (46)
-  m_TagString: Trick2
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61152,7 +61038,7 @@ GameObject:
   - component: {fileID: 1860294976}
   m_Layer: 7
   m_Name: Cube (38)
-  m_TagString: Trick2
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61527,7 +61413,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 406899259}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1868791907
 MonoBehaviour:
@@ -62159,7 +62045,7 @@ GameObject:
   - component: {fileID: 1913419379}
   m_Layer: 7
   m_Name: Cube (32)
-  m_TagString: Trick2
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63891,7 +63777,7 @@ GameObject:
   - component: {fileID: 2014711481}
   m_Layer: 7
   m_Name: Cube (39)
-  m_TagString: Trick2
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65012,7 +64898,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1310
+  m_Name: pb_Mesh-9650
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
