@@ -4210,9 +4210,11 @@ MonoBehaviour:
   closeNode: []
   findPath: []
   findPathPos: []
+  twist: {fileID: 0}
   matChange: 0
   mat: {fileID: 2100000, guid: 90191cf24fd66574ca5453d02f621769, type: 2}
   mat_button: {fileID: 2100000, guid: 5b75b0f19967d43469b5dd8857fb3f05, type: 2}
+  playerMoveSpeed: 3
   rayLength: 1
 --- !u!114 &945282071
 MonoBehaviour:
@@ -5564,7 +5566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7021609929419652093, guid: ce91a3939365e7f458e1fea2498e65b7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce91a3939365e7f458e1fea2498e65b7, type: 3}
