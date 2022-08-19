@@ -17,12 +17,13 @@ public class StartUI : MonoBehaviour
     public float fadeOutSpeed;
     public float buttonSpeed;
 
-    private bool isReady = false;
+    public bool isReady = false;
     public bool isClicked = false;
 
     TextMeshProUGUI loadText;
     CanvasGroup stageName;
     Image buttonImage;
+    PlayerInput playerInput;
 
     private void Awake()
     {
@@ -37,12 +38,16 @@ public class StartUI : MonoBehaviour
 
     public void Start()
     {
+        // StartUI 끝날때까지 player 움직이지 않도록 설정
         fadeImg.gameObject.SetActive(true);
         fadeImg.color = new Color(0, 0, 0, 1.0f);
         if (!isReady)
         {
             StartCoroutine("FadeOut");
+            isReady = true;
+            print("4444444");
         }
+        print("55555555");
     }
 
     private IEnumerator FadeOut()
@@ -85,7 +90,7 @@ public class StartUI : MonoBehaviour
         loadText.color = new Color(1, 1, 1, 0);
         fadeImg.color = new Color(0, 0, 0, 0.5f);
 
-        // 4.Button
+        // 4. Button
         t = 0;
         while (t < 1)
         {
@@ -102,28 +107,23 @@ public class StartUI : MonoBehaviour
         {
             if (isClicked)
             {
-                t += buttonSpeed * Time.deltaTime;
-                stageName.alpha = 1 - t;
-                buttonImage.color = new Color(1, 1, 1, 1 - t);
-                fadeImg.color = new Color(0, 0, 0, 0.5f - t / 2);
-                isReady = true;
-                print("Ready");
-                break;
+                while (t < 1)
+                {
+                    t += buttonSpeed * Time.deltaTime;
+                    stageName.alpha = 1 - t;
+                    buttonImage.color = new Color(1, 1, 1, 1 - t);
+                    fadeImg.color = new Color(0, 0, 0, 0.5f - t / 2);
+                    print("Ready");
+                    print("111111111");
+                    yield return null;
+                }
+                stageName.alpha = 0;
+                buttonImage.color = new Color(1, 1, 1, 0);
+                fadeImg.color = new Color(0, 0, 0, 0);
+                isClicked = false;
+                print("22222222");
             }
             break;
         }
-        
-
-
-        //// 5. Fade Out Completely & Game Start
-        //t = 0.5f;
-        //while (t < 1)
-        //{
-        //    t += fadeOutSpeed * Time.deltaTime;
-        //    panelImage.color = new Color(1, 1, 1, 1-t);
-        //    yield return null;
-        //}
-        //panelImage.color = new Color(1, 1, 1, 0);
-        yield return new WaitForSeconds(1);
     }
 }
