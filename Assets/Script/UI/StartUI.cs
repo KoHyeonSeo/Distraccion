@@ -42,10 +42,10 @@ public class StartUI : MonoBehaviour
     }
     private void Update()
     {
-        if (isReady)
-        {
-            print("end");
-        }
+        //if (isReady)
+        //{
+        //    print("end");
+        //}
     }
 
     private IEnumerator FadeOut()
