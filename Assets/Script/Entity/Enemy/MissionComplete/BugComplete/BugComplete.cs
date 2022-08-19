@@ -29,6 +29,7 @@ public class BugComplete : MissionComplete
     {
         if (!Start)
         {
+            Enemy.GetComponent<Enemy>().animator.SetTrigger("RunAway");
             Init();
             bug = Instantiate(Item);
             bug.transform.position = Player.transform.GetChild(0).transform.position;
@@ -67,6 +68,7 @@ public class BugComplete : MissionComplete
                 if (curTime > runAwayTime)
                 {
                     Enemy.GetComponent<Enemy>().IsStartComplete = false;
+                    Enemy.GetComponent<Enemy>().isDieAnimationUse = true;
                     Enemy.GetComponent<Enemy>().IsDead = true;
                 }
             }

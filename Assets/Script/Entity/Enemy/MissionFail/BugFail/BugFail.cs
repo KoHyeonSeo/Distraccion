@@ -18,7 +18,7 @@ public class BugFail : MissionFail
             startY = Enemy.transform.position.y;
             Enemy.GetComponent<Rigidbody>().useGravity = true;
             Enemy.GetComponent<Rigidbody>().freezeRotation = true;
-            Enemy.GetComponent<Rigidbody>().AddForce(power * Enemy.transform.up, ForceMode.Impulse);
+            //Enemy.GetComponent<Rigidbody>().AddForce(power * Enemy.transform.up, ForceMode.Impulse);
             dir = Player.transform.position - Enemy.transform.position;
             aggro = Enemy.GetComponent<EnemyDetection>().aggroRange;
             playerStartPos = Player.transform.position;
