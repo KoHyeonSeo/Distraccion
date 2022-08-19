@@ -15,10 +15,10 @@ public class StartUI : MonoBehaviour
     public float buttonSpeed;
 
     private bool isReady = false;
+    private bool isClicked = false;
 
     TextMeshProUGUI loadText;
     CanvasGroup stageName;
-    Image panelImage;
     Image buttonImage;
 
     private void Awake()
@@ -27,9 +27,7 @@ public class StartUI : MonoBehaviour
         loadText = load.GetComponent<TextMeshProUGUI>();
         GameObject stage = fadeList[1];
         stageName = stage.GetComponent<CanvasGroup>();
-        GameObject panel = fadeList[2];
-        panelImage = panel.GetComponent<Image>();
-        GameObject button = fadeList[3];
+        GameObject button = fadeList[2];
         buttonImage = button.GetComponent<Image>();
     }
 
@@ -45,6 +43,8 @@ public class StartUI : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
+        yield return new WaitForSeconds(1);
+
         // 1. Loading
         float t = 0;
         while (t <1)
@@ -54,7 +54,7 @@ public class StartUI : MonoBehaviour
             yield return null;
         }
         loadText.color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
 
         // 2. StageName
@@ -66,7 +66,7 @@ public class StartUI : MonoBehaviour
             yield return null;
         }
         stageName.alpha = 1;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
 
 
         // 3. Fade Out 
@@ -74,16 +74,14 @@ public class StartUI : MonoBehaviour
         while (t < 0.5f)
         {
             t += fadeOutSpeed * Time.deltaTime;
-            loadText.color = new Color(1, 1, 1, 0);
-            panelImage.color = new Color(1, 1, 1, 1-t);
+            loadText.color = new Color(1, 1, 1, 1-t);
+            fadeImg.color = new Color(0, 0, 0, 1-t);
             yield return null;
         }
-        panelImage.color = new Color(1, 1, 1, 0.5f);
-        yield return new WaitForSeconds(2);
+        loadText.color = new Color(1, 1, 1, 0);
+        fadeImg.color = new Color(0, 0, 0, 0.5f);
 
-
-        // 4. Button
-        // 버튼 누르면 - stageName, 버튼, panel 이미지 모두 변경
+        // 4.Button
         t = 0;
         while (t < 1)
         {
@@ -92,42 +90,37 @@ public class StartUI : MonoBehaviour
             yield return null;
         }
         buttonImage.color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
-
-        // 5. Fade Out Completely & Game Start
-        t = 0.5f;
-        while (t < 1)
+        // 버튼 누르면 - stageName, 버튼, panel 이미지 모두 사라지게
+        t = 0;
+        while (true)
         {
-            t += fadeOutSpeed * Time.deltaTime;
-            panelImage.color = new Color(1, 1, 1, 1-t);
-            yield return null;
+            if (isClicked)
+            {
+
+                t += buttonSpeed * Time.deltaTime;
+                stageName.alpha = 1 - t;
+                buttonImage.color = new Color(1, 1, 1, 1 - t);
+                fadeImg.color = new Color(0, 0, 0, 0.5f - t / 2);
+                isReady = true;
+                print("Ready");
+                break;
+            }
+            break;
         }
-        panelImage.color = new Color(1, 1, 1, 0);
-        yield return new WaitForSeconds(2);
+        
+
+
+        //// 5. Fade Out Completely & Game Start
+        //t = 0.5f;
+        //while (t < 1)
+        //{
+        //    t += fadeOutSpeed * Time.deltaTime;
+        //    panelImage.color = new Color(1, 1, 1, 1-t);
+        //    yield return null;
+        //}
+        //panelImage.color = new Color(1, 1, 1, 0);
+        yield return new WaitForSeconds(1);
     }
-
-
-    //public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
-    //{
-    //    float _timeStartedLerping = Time.time;  // 현재시간
-    //    float timeSinceStarted = Time.time - _timeStartedLerping;  // 경과시간
-    //    float percentageComplete = timeSinceStarted / lerpTime;
-
-    //    // Alpha Lerping 
-    //    while (true)
-    //    {
-    //        // Time.deltaTime은 정확한 지점에 다다르지 못할 수 있으므로 직접 계산
-    //        timeSinceStarted = Time.time - _timeStartedLerping;
-    //        percentageComplete = timeSinceStarted / lerpTime;
-
-    //        float currentValue = Mathf.Lerp(start, end, percentageComplete);
-    //        cg.alpha = currentValue;
-
-    //        // EndOfFrame까지 기다린 뒤 while문 Finish
-    //        if (percentageComplete >= 1) break;
-    //        yield return new WaitForEndOfFrame();
-    //    }
-    //    print("Done");
-    //}
 }
