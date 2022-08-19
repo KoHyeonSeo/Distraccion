@@ -94,12 +94,9 @@ public class Enemy : MonoBehaviour
                     missionComplete.MissionCompleteSetting();
                 }
                 //혹시 Enemy의 크기가 달라진 상태로 왔다면, 원상복구 시켜줌
-                else
+                if (transform.localScale != startScale)
                 {
-                    if (transform.localScale != startScale)
-                    {
-                        transform.localScale = Vector3.Lerp(transform.localScale, startScale, 0.01f);
-                    }
+                    transform.localScale = Vector3.Lerp(transform.localScale, startScale, 0.01f);
                 }
             }
         }

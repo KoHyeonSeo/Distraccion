@@ -86,7 +86,7 @@ public class PlayerInput : MonoBehaviour
 
         #region Debug Test
         if (UseItemButton)
-            Debug.Log("UseItemButton true");
+            Debug.Log($"UseItemButton true: {GameManager.Instance.ItemProp[GameManager.Instance.CurItemIndex].Item}");
 
         #endregion
 
