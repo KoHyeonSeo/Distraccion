@@ -15,7 +15,7 @@ public class ButtonAndUpMap : MonoBehaviour
         public float distance;
         public float speed;
     }
-
+    [SerializeField] private AudioClip audioClip;
     [SerializeField] private float buttonTime = 0.5f; 
     [SerializeField] private GameObject door;
     [SerializeField] private bool isHaveDoor;
@@ -23,19 +23,21 @@ public class ButtonAndUpMap : MonoBehaviour
     [Space]
     [Header("움직일 블록 등록 및 설정")]
     [SerializeField] private List<MovingBlock> movingBlocks = new List<MovingBlock>();
-    
+
+    public bool isMoving = false;
+    public bool isEnding = false;
+    private AudioSource audioSource;
     private float curTime = 0;
     private float buttonCurTime = 0;
     private List<List<Vector3>> movingPoints = new List<List<Vector3>>();
     private bool isOnce = false;
-    public bool isMoving = false;
-    public bool isEnding = false;
     private bool isEndingOnce = false;
-    private bool isDoorRotate = false;
     private bool isOnceChecking = false;
+    private bool isOnceShaking = false;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         //MovingPoint 리스트 초기화
         for (int i = 0; i < movingBlocks.Count; i++)
         {
@@ -61,6 +63,7 @@ public class ButtonAndUpMap : MonoBehaviour
     {
         if (isEnding && !isEndingOnce)
         {
+            isOnceShaking = false;
             isEndingOnce = true;
             for (int i = 0; i < movingBlocks.Count; i++)
             {
@@ -75,6 +78,12 @@ public class ButtonAndUpMap : MonoBehaviour
         }
         if (isMoving && !isEnding)
         {
+            if (!isOnceShaking)
+            {
+                audioSource.PlayOneShot(audioClip);
+                CameraControl.Instance.OnShakeCamera(1, 0.05f);
+                isOnceShaking = true;
+            }
             if (isHaveDoor && !isOnceChecking)
             {
                 isOnceChecking = true;

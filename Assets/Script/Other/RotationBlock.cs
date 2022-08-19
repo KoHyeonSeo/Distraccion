@@ -28,6 +28,12 @@ public class RotationBlock : MonoBehaviour
     [SerializeField] private float handleSetting = 10f;
 
     [Space]
+    [Header("핸들과 오브젝트 회전 방향 설정 (1 or -1)")]
+    [SerializeField] private int handleDir = 1;
+    [SerializeField] private int objectDir = -1;
+
+
+    [Space]
     [Header("레버의 핸들 관련 오브젝트 등록")]
     [SerializeField] private List<GameObject> Handle = new List<GameObject>();
     [SerializeField] private bool isHandleControl = false;
@@ -242,7 +248,7 @@ public class RotationBlock : MonoBehaviour
             //Debug.Log(dir);
         }
         Vector2 handle = rotation * handleSetting;
-        handleMove = (Mathf.Abs(handle.x) + Mathf.Abs(handle.y)) * -dir;
+        handleMove = (Mathf.Abs(handle.x) + Mathf.Abs(handle.y)) * dir * handleDir;
         //핸들 회전
         transform.Rotate(handleMove * Convert.ToInt32(handleAxis.X), handleMove * Convert.ToInt32(handleAxis.Y), handleMove * Convert.ToInt32(handleAxis.Z));
 
@@ -250,7 +256,7 @@ public class RotationBlock : MonoBehaviour
         for (int i = 0; i < chooseAxis.Count; i++)
         {
             Vector2 rotateBlock = rotation * rotationBlockSettinf;
-            blockMove = (Mathf.Abs(rotateBlock.x) + Mathf.Abs(rotateBlock.y)) * -dir;
+            blockMove = (Mathf.Abs(rotateBlock.x) + Mathf.Abs(rotateBlock.y)) * dir * objectDir;
             //여러 오브젝트들로 묶여진 회전블록 회전
             if (chooseAxis[i].block.transform.childCount > 0)
             {
