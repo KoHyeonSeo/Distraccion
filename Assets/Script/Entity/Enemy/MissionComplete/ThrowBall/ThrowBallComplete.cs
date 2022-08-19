@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "MissionComplete/ThrowBall")]
 public class ThrowBallComplete : MissionComplete
 {
+    [Header("Mission")]
     //공을 타겟 위치를 향해 던지고 
     //Enemy는 저 공쪽으로 간다.
     [SerializeField] private GameObject targetPosition;
@@ -12,15 +13,21 @@ public class ThrowBallComplete : MissionComplete
     [SerializeField] private float walkingTime = 2;
     [SerializeField] private float EnemywalkingTime = 3;
     [SerializeField] private float backDistance = 3f;
+
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip audioClip;
     private GameObject item;
-    Vector3 dir;
+    private Vector3 dir;
     private float curTime = 0;
     private bool isThrow = false;
+    private bool audioOnce = false;
+
     public override void MissionCompleteSetting()
     {
         if (!Start)
         {
-            Enemy.GetComponent<Enemy>().animator.SetTrigger("Fly");
+            audioOnce = false;
             curTime = 0;
             isThrow = false;
             Enemy.GetComponent<Enemy>().StartCoroutine(Throw());
@@ -28,6 +35,14 @@ public class ThrowBallComplete : MissionComplete
         }
         if (isThrow)
         {
+            if (!audioOnce)
+            {
+                audioOnce = true;
+                Enemy.GetComponent<Enemy>().animator.SetTrigger("Fly");
+                Enemy.GetComponent<Enemy>().audioSource.clip = audioClip;
+                Enemy.GetComponent<Enemy>().audioSource.loop = true;
+                Enemy.GetComponent<Enemy>().audioSource.Play();
+            }
             curTime += Time.deltaTime;
             Enemy.transform.position += -dir * walkSpeed * Time.deltaTime;
             if (curTime > EnemywalkingTime)

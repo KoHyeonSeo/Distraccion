@@ -18,3 +18,4 @@ MonoBehaviour:
   flyRange: 0.75350153
   runAwaySpeed: 3
   runAwayTime: 10
+  audioClip: {fileID: 8300000, guid: 0fb76352009b71c4fa56d37ddbeaf714, type: 3}
