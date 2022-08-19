@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goDistance: 1
   backDistance: 2
+  audioClip: {fileID: 8300000, guid: caaafcf2e7cf0684aa6b0e6d1f6af17a, type: 3}

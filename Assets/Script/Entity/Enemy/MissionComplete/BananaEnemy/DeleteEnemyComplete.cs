@@ -5,14 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "MissionComplete/DeleteEnemy")]
 public class DeleteEnemyComplete : MissionComplete
 {
+    [Header("Mission")]
     public float goDistance = 2f;
     public float backDistance = 6f;
     private GameObject item;
     private bool IsNotPut;
+
+    [Space]
+    [Header("Audio")]
+    [SerializeField] private AudioClip audioClip;
+    private bool audioOnce = false;
     public override void MissionCompleteSetting()
     {
         if (!Start)
         {
+            audioOnce = false;
             Enemy.GetComponent<Enemy>().animator.SetTrigger("Fly");
             Enemy.GetComponent<Enemy>().StartCoroutine(Move());
             IsNotPut = false;
@@ -21,6 +28,13 @@ public class DeleteEnemyComplete : MissionComplete
         {
             if (IsNotPut)
             {
+                if (!audioOnce)
+                {
+                    audioOnce = true;
+                    Enemy.GetComponent<Enemy>().audioSource.clip = audioClip;
+                    Enemy.GetComponent<Enemy>().audioSource.loop = true;
+                    Enemy.GetComponent<Enemy>().audioSource.Play();
+                }
                 Vector3 dir = item.transform.position - Enemy.transform.position;
                 dir.Normalize();
                 Enemy.transform.position += dir * 3 * Time.deltaTime;

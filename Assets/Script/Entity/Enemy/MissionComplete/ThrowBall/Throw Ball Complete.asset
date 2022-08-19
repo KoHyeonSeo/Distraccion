@@ -18,3 +18,4 @@ MonoBehaviour:
   walkingTime: 2
   EnemywalkingTime: 10
   backDistance: 3
+  audioClip: {fileID: 8300000, guid: 5f4c215735cc4a14a9909310da4b2dce, type: 3}

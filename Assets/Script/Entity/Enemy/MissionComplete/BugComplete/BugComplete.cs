@@ -5,18 +5,25 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "MissionComplete/Bug")]
 public class BugComplete : MissionComplete
 {
+    [Header("Mission")]
     [SerializeField] private float waitTime = 1.5f;
     [SerializeField] private float backDistance = 2f;
     [SerializeField] private Transform runAwayPos;
     [SerializeField] private float flyRange = 1;
     [SerializeField] private float runAwaySpeed = 4;
     [SerializeField] private float runAwayTime = 5f;
+    
+    [Space]
+    [Header("Audio")]
+    [SerializeField] private AudioClip audioClip;
+
     private GameObject bug;
     private float curTime = 0;
     private bool isRunAway = false;
     private bool isOnceCall = false;
     private float backTime = 1f;
     private Vector3 flyDir;
+    private bool audioOnce = false;
     private void Init()
     {
         Enemy.GetComponent<Rigidbody>().useGravity = false;
@@ -29,7 +36,9 @@ public class BugComplete : MissionComplete
     {
         if (!Start)
         {
+            audioOnce = false;
             Enemy.GetComponent<Enemy>().animator.SetTrigger("RunAway");
+
             Init();
             bug = Instantiate(Item);
             bug.transform.position = Player.transform.GetChild(0).transform.position;
@@ -41,6 +50,13 @@ public class BugComplete : MissionComplete
         {
             if (!isRunAway)
             {
+                if (!audioOnce)
+                {
+                    audioOnce = true;
+                    Enemy.GetComponent<Enemy>().audioSource.clip = audioClip;
+                    Enemy.GetComponent<Enemy>().audioSource.loop = true;
+                    Enemy.GetComponent<Enemy>().audioSource.Play();
+                }
                 curTime += Time.deltaTime;
                 if (curTime > waitTime)
                 {

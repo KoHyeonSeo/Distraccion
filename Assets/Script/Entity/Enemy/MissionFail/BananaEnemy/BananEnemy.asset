@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a1478e533bc0a349a6ecadc99e27a4b, type: 3}
-  m_Name: Banana Enemy Fail
+  m_Name: BananEnemy
   m_EditorClassIdentifier: 
   bigScaleTime: 1

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("사운드 관련 설정")]
+    [SerializeField] private AudioClip failSound;
+
+    [Space]
+    [Header("미션관련 설정")]
     [SerializeField] private Mission mission;
     [SerializeField] private MissionComplete missionComplete;
     [SerializeField] private MissionFail missionFail;
@@ -13,17 +18,19 @@ public class Enemy : MonoBehaviour
     private Material material;
     private bool isEnd = false;
     private GameObject player;
+    private bool isSoundOnce = false;
     public bool IsDead;
     public bool isDieAnimationUse = true;
-   
+    [System.NonSerialized] public AudioSource audioSource;
+    [System.NonSerialized] public Animator animator;
     public bool IsStartFail { get; set; }
     public bool IsStartComplete { get; set; }
     public bool IsCheckingItem { get; set; }
     public GameObject ColliderObject { get; set; }
     Vector3 startScale;
-    public Animator animator;
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = transform.GetChild(0).GetComponent<Animator>();
         startScale = transform.localScale;
         mission.Enemy = gameObject;
@@ -62,10 +69,20 @@ public class Enemy : MonoBehaviour
                 //MissionFailSetting -> Update
                 if (IsStartFail)
                 {
+                    if (!isSoundOnce)
+                    {
+                        audioSource.clip = failSound;
+                        audioSource.Play();
+                        isSoundOnce = true;
+                    }
                     animator.SetTrigger("Attack");
                     missionFail.Enemy = gameObject;
                     missionFail.Player = ColliderObject;
                     missionFail.MissionFailSetting();
+                }
+                else if(!IsStartFail && !IsStartComplete)
+                {
+                    isSoundOnce = false;
                 }
                 //Player가 미션을 성공했다면 missionComplete 계속 실행
                 //MissionCompleteSetting -> Update 역할
