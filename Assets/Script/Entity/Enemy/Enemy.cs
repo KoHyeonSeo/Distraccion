@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private MissionComplete missionComplete;
     [SerializeField] private MissionFail missionFail;
     [SerializeField] private MissionTriggerZone missionTriggerZone;
+
+    [Space]
+    [Header("Enemy 관련 설정")]
+    [SerializeField] private float scaredPower = 10;
     //미션은 계속 use하면서 있다가 플레이어가 미션 조건을 달성할 시 
     //MissionComplete라는 스크립트 오브젝터블을 발동
     private Material material;
@@ -71,6 +75,7 @@ public class Enemy : MonoBehaviour
                 {
                     if (!isSoundOnce)
                     {
+                        ColliderObject.GetComponent<PlayerScared>().Damage(scaredPower);
                         audioSource.clip = failSound;
                         audioSource.Play();
                         isSoundOnce = true;
