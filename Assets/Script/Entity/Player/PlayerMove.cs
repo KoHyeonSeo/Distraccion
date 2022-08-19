@@ -477,6 +477,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    bool isOnce = false;
     // 현재 플레이어가 밟고 있는 노드 찾는 함수
     void RayCastDown()
     {
@@ -488,15 +489,26 @@ public class PlayerMove : MonoBehaviour
         if (Physics.Raycast(playerRay, out playerHit))
         {
             // 노드를 밟고 있다면 
-            if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node"))
+            if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node") && !isOnce)
             {
                 currentNode = playerHit.transform;
                 // 만약 currentNode가 checkNode일 경우 player의 Layer Top으로 변경해주기
                 if (currentNode == checkNode)
                 {
-                    gameObject.layer = LayerMask.NameToLayer("Top");
+                    ChangeLayersRecursively(transform, "Top");
+                    isOnce = true;
                 }
             }
+        }
+    }
+
+    // 하위 자식 오브젝트 레이어 한번에 변경하는 함수
+    public static void ChangeLayersRecursively(Transform trans, string name)
+    {
+        trans.gameObject.layer = LayerMask.NameToLayer(name);
+        foreach (Transform child in trans)
+        {
+            ChangeLayersRecursively(child, name);
         }
     }
 
