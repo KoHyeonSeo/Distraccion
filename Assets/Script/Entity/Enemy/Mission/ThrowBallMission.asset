@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b0e648adbdad14a9ec1b4ac2e19a97, type: 3}
   m_Name: ThrowBallMission
   m_EditorClassIdentifier: 
-  missionItem: {fileID: 5727444155905301786, guid: 552d76f376c15914288aca042ab198a5, type: 3}
+  missionItem: {fileID: 6469333557693949503, guid: ec6dadfa916313745923d952be04ffbe, type: 3}
   MissionStart: 0
