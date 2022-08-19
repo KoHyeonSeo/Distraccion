@@ -44,8 +44,11 @@ public class PlayerMove : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Default");
         }
-        archB = GetComponent<MovingGround>();
-        archB.enabled = false;
+        if (scene.name == "Stage3")
+        {
+            archB = GetComponent<MovingGround>();
+            archB.enabled = false;
+        }
     }
 
     void Update()
@@ -54,6 +57,7 @@ public class PlayerMove : MonoBehaviour
         // 사용자 노드 클릭시(Fire2) 초기화
         if (playerInput.MoveKey)
         {
+            print("11111111");
             //  A* 알고리즘으로 노드 이동
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
@@ -61,6 +65,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (isCheck)
             {
+                print("2222222222");
                 // 노드리스트 부모
                 for (int i = 0; i < openNode.Count; i++)
                 {
@@ -112,28 +117,20 @@ public class PlayerMove : MonoBehaviour
                 isVisited = false;
             }
         }
-        if (!noWay)
+        // PlayerMove
+        if (scene.name == "Stage3")
         {
-            // 베지어 곡선으로 트위스트 블록 이동
-            if (currentNode.gameObject.layer == LayerMask.NameToLayer("Twist"))
-            {
-                TwistMove();
-            }
-            // 플레이어 노드 이동
-            else
-            {
-                SimpleMove();
-            }
+            SimpleMove_Stage3();
+        }
+        else
+        {
+            SimpleMove();
         }
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
         noWay = false;
     }
 
-    private void TwistMove()
-    {
-        throw new NotImplementedException();
-    }
 
     int idx = 0;
     float ratio = 0;
@@ -143,13 +140,65 @@ public class PlayerMove : MonoBehaviour
     Vector3 playerDir;
     public float playerMoveSpeed = 3;
     
+
     void SimpleMove()
+    {
+        if (findPath.Count - 1 > idx)
+        {
+            ratio += 3 * Time.deltaTime;
+            // 모든 거리를 일정한 시간으로 이동하도록 설정
+            transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
+            Vector3 playerDir = findPathPos[idx + 1] - findPathPos[idx];
+            // 평지인 경우만 회전
+            if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
+            {
+                playerDir.y = 0;
+                transform.forward = playerDir;
+                // Twist 블럭에서 player up 방향 설정
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
+                {
+                    //hitCount++;
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
+                    //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
+                    transform.up = hit.transform.forward;
+                }
+                //transform.up = findPath[idx].gameObject;
+            }
+            if (ratio >= 1)
+            {
+                idx++;
+                ratio = 0;
+            }
+        }
+
+        //print(hitCount);
+
+        // 이동한 노드 색 초기화
+        if (matChange)
+        {
+            for (int i = 0; i < findPath.Count; i++)
+            {
+                if (findPath[idx].name.Contains("Button"))
+                {
+                    findPath[idx].GetComponent<MeshRenderer>().material = mat_button;
+                }
+                else
+                {
+                    findPath[idx].GetComponent<MeshRenderer>().material = mat;
+                }
+            }
+        }
+    }
+
+    void SimpleMove_Stage3()
     {
         if (findPath.Count - 1 > idx)
         {
             if (archB.enabled == true)
             {
-
+                return;
             }
             else if (findPath[idx].CompareTag("Twist") && findPath[idx + 1].CompareTag("Twist"))
             {

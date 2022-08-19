@@ -17,7 +17,7 @@ public class StartUI : MonoBehaviour
         float timeSinceStarted = Time.time - _timeStartedLerping;  // 경과시간
         float percentageComplete = timeSinceStarted / lerpTime;
 
-        // Lerping 
+        // Alpha Lerping 
         while (true)
         {
             // Time.deltaTime은 정확한 지점에 다다르지 못할 수 있으므로 직접 계산
@@ -25,7 +25,6 @@ public class StartUI : MonoBehaviour
             percentageComplete = timeSinceStarted / lerpTime;
 
             float currentValue = Mathf.Lerp(start, end, percentageComplete);
-
             cg.alpha = currentValue;
 
             // EndOfFrame까지 기다린 뒤 while문 Finish
