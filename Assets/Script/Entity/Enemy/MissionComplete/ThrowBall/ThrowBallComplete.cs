@@ -59,7 +59,7 @@ public class ThrowBallComplete : MissionComplete
         Player.transform.LookAt(targetPos);
         while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
         {
-            Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.005f);
+            Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.007f);
             yield return null;
         }
 
