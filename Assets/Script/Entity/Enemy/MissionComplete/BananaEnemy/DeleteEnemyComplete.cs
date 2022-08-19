@@ -13,6 +13,7 @@ public class DeleteEnemyComplete : MissionComplete
     {
         if (!Start)
         {
+            Enemy.GetComponent<Enemy>().animator.SetTrigger("Fly");
             Enemy.GetComponent<Enemy>().StartCoroutine(Move());
             IsNotPut = false;
         }

@@ -59,4 +59,11 @@ public class Node : MonoBehaviour
             enemy = collision.collider.GetComponent<Enemy>();
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            gameObject.layer = 7;
+        }
+    }
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27618e1c776f4943b72d1385da72c51, type: 3}
   m_Name: Throw Ball Complete
   m_EditorClassIdentifier: 
-  targetPosition: {fileID: 0}
-  throwSpeed: 1000
+  targetPosition: {fileID: 1503625854208159020, guid: 430c46079e4c11c40825a8f5e185ebab, type: 3}
+  throwSpeed: 5000
   walkSpeed: 5
   walkingTime: 2
-  EnemywalkingTime: 1
+  EnemywalkingTime: 10
   backDistance: 3

@@ -20,6 +20,7 @@ public class ThrowBallComplete : MissionComplete
     {
         if (!Start)
         {
+            Enemy.GetComponent<Enemy>().animator.SetTrigger("Fly");
             curTime = 0;
             isThrow = false;
             Enemy.GetComponent<Enemy>().StartCoroutine(Throw());
@@ -31,32 +32,32 @@ public class ThrowBallComplete : MissionComplete
             Enemy.transform.position += -dir * walkSpeed * Time.deltaTime;
             if (curTime > EnemywalkingTime)
             {
-                Enemy.GetComponent<Enemy>().IsDead = true;
-                Enemy.GetComponent<Enemy>().IsStartComplete = false;
+                Destroy(Enemy);
             }
         }
     }
     //Player가 공을 던지는 행위 구현
     private IEnumerator Throw()
     {
-        dir = targetPosition.transform.position - Player.transform.position;
-        dir.Normalize();
-        Vector3 targetPos = Player.transform.position - (Enemy.transform.position - Player.transform.position).normalized * backDistance;
+        Vector3 targetPos = Player.transform.position - Player.transform.forward  * backDistance;
         //Player.transform.LookAt(new Vector3(targetPos.x, Player.transform.position.y, targetPos.z));
+        Player.transform.LookAt(targetPos);
         while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
         {
-            Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.01f);
+            Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.005f);
             yield return null;
         }
 
-        Player.transform.LookAt(new Vector3(targetPosition.transform.position.x, Player.transform.position.y, targetPosition.transform.position.z));
+        Player.transform.LookAt(new Vector3(-targetPosition.transform.position.x, Player.transform.position.y, -targetPosition.transform.position.z));
         curTime = 0;
         item = Instantiate(Item);
+        dir = targetPosition.transform.position - Player.transform.position;
+        dir.Normalize();
         item.transform.position = Player.transform.GetChild(0).transform.position;
         item.gameObject.layer = 0;
-        item.GetComponent<Rigidbody>().AddForce(-dir * throwSpeed);
+        item.GetComponent<Rigidbody>().AddForce(-dir * throwSpeed * Time.deltaTime,ForceMode.Impulse);
         yield return new WaitForSeconds(1f);
-        Enemy.transform.LookAt(new Vector3(targetPosition.transform.position.x, Player.transform.position.y, targetPosition.transform.position.z));
+        Enemy.transform.LookAt(new Vector3(-targetPosition.transform.position.x, Enemy.transform.position.y, targetPosition.transform.position.z));
         yield return new WaitForSeconds(1.5f);
         isThrow = true;
     }

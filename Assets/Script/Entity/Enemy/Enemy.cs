@@ -14,14 +14,17 @@ public class Enemy : MonoBehaviour
     private bool isEnd = false;
     private GameObject player;
     public bool IsDead;
-
+    public bool isDieAnimationUse = true;
+   
     public bool IsStartFail { get; set; }
     public bool IsStartComplete { get; set; }
     public bool IsCheckingItem { get; set; }
     public GameObject ColliderObject { get; set; }
     Vector3 startScale;
+    public Animator animator;
     private void Start()
     {
+        animator = transform.GetChild(0).GetComponent<Animator>();
         startScale = transform.localScale;
         mission.Enemy = gameObject;
         material = GetComponent<MeshRenderer>().material;
@@ -59,6 +62,7 @@ public class Enemy : MonoBehaviour
                 //MissionFailSetting -> Update
                 if (IsStartFail)
                 {
+                    animator.SetTrigger("Attack");
                     missionFail.Enemy = gameObject;
                     missionFail.Player = ColliderObject;
                     missionFail.MissionFailSetting();
@@ -86,6 +90,10 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Dead()
     {
+        if (isDieAnimationUse)
+        {
+            animator.SetTrigger("Death");
+        }
         float alpha = material.color.a;
         while (alpha > 0)
         {

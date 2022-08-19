@@ -10,10 +10,10 @@ public class ThrowBallFail : MissionFail
     [SerializeField] private float colorTime = 1f;
     public override void MissionFailSetting()
     {
-        Vector3 dir = Enemy.transform.forward;
+        Vector3 dir = Player.transform.forward;
         dir.Normalize();
         float aggro = Enemy.GetComponent<EnemyDetection>().aggroRange;
-        Player.transform.position = Vector3.Lerp(Player.transform.position, Player.transform.position + dir * (aggro + 2), Time.deltaTime);
+        Player.transform.position = Vector3.Lerp(Player.transform.position, Player.transform.position + -dir * (aggro + 2), Time.deltaTime);
 
         curTime += Time.deltaTime;
         if (curTime >= colorTime)
