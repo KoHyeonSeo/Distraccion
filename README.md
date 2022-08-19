@@ -129,6 +129,12 @@
     - 휘어져있는 블록 - HS
     - twist block -> Player가 갈 수 있도록 - SH
 - Map - HS + SH (각자 하나씩 더 준비) + 가능하면 더 준비 V
+- Bug Testing
+- Stage Testing (Complete List)
+    - Stage 0 V
+    - Stage 1 V
+    - Stage 2 
+    - Stage 3
 ## <b> 베타까지 해야할 것</b>
 - 피리 부는 부분 그 노랫소리 어떻게 해야할 지 생각
 - Middle Secret Stage 완성 
