@@ -6,6 +6,9 @@ using TMPro;
 
 public class StartUI : MonoBehaviour
 {
+    // singleton
+    public static StartUI Instance;
+
     public Image fadeImg;
     public List<GameObject> fadeList = new List<GameObject>();
 
@@ -15,7 +18,7 @@ public class StartUI : MonoBehaviour
     public float buttonSpeed;
 
     private bool isReady = false;
-    private bool isClicked = false;
+    public bool isClicked = false;
 
     TextMeshProUGUI loadText;
     CanvasGroup stageName;
@@ -23,6 +26,7 @@ public class StartUI : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         GameObject load = fadeList[0];
         loadText = load.GetComponent<TextMeshProUGUI>();
         GameObject stage = fadeList[1];
@@ -98,7 +102,6 @@ public class StartUI : MonoBehaviour
         {
             if (isClicked)
             {
-
                 t += buttonSpeed * Time.deltaTime;
                 stageName.alpha = 1 - t;
                 buttonImage.color = new Color(1, 1, 1, 1 - t);

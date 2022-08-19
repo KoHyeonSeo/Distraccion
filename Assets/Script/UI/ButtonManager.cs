@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-    
-    void Start()
+    public void OnClickStartButton()
     {
-        
-    }
-
-    
-    void Update()
-    {
-        
+        StartUI.Instance.isClicked = true;
     }
 }
