@@ -108,7 +108,7 @@
 - 스토리 요소 - SH + HS
     - 이 스토리에 맞는 애니메이션 미리 체킹해놓기
 - Entity
-    - Player Scared 제작
+    - Player Scared 제작 V
 - UI
     - Menu - SH
     - Start / End - SH 
@@ -138,6 +138,8 @@
 - Build Testing
 ## <b> 베타까지 해야할 것</b>
 - 피리 부는 부분 그 노랫소리 어떻게 해야할 지 생각
+- Stage 0에서 노래 들리면서 위로 올라가며 메인메뉴가 나오는거 구현
+- 그려지면서 나오는 이쁜거 그거 구현
 - Middle Secret Stage 완성 
 - 인트로
 - 씨네머신
