@@ -6,9 +6,6 @@ using TMPro;
 
 public class StartUI : MonoBehaviour
 {
-    // singleton
-    public static StartUI Instance;
-
     public Image fadeImg;
     public List<GameObject> fadeList = new List<GameObject>();
 
@@ -16,9 +13,10 @@ public class StartUI : MonoBehaviour
     public float stringSpeed;
     public float fadeOutSpeed;
     public float buttonSpeed;
+    public float buttonOutSpeed;
 
     public bool isReady = false;
-    public bool isClicked = false;
+    private bool isClicked = false;
 
     TextMeshProUGUI loadText;
     CanvasGroup stageName;
@@ -27,7 +25,6 @@ public class StartUI : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         GameObject load = fadeList[0];
         loadText = load.GetComponent<TextMeshProUGUI>();
         GameObject stage = fadeList[1];
@@ -41,13 +38,14 @@ public class StartUI : MonoBehaviour
         // StartUI 끝날때까지 player 움직이지 않도록 설정
         fadeImg.gameObject.SetActive(true);
         fadeImg.color = new Color(0, 0, 0, 1.0f);
-        if (!isReady)
+        StartCoroutine("FadeOut");
+    }
+    private void Update()
+    {
+        if (isReady)
         {
-            StartCoroutine("FadeOut");
-            isReady = true;
-            print("4444444");
+            print("end");
         }
-        print("55555555");
     }
 
     private IEnumerator FadeOut()
@@ -109,21 +107,28 @@ public class StartUI : MonoBehaviour
             {
                 while (t < 1)
                 {
-                    t += buttonSpeed * Time.deltaTime;
+                    t += buttonOutSpeed * Time.deltaTime;
+
                     stageName.alpha = 1 - t;
                     buttonImage.color = new Color(1, 1, 1, 1 - t);
                     fadeImg.color = new Color(0, 0, 0, 0.5f - t / 2);
-                    print("Ready");
-                    print("111111111");
                     yield return null;
                 }
                 stageName.alpha = 0;
                 buttonImage.color = new Color(1, 1, 1, 0);
                 fadeImg.color = new Color(0, 0, 0, 0);
                 isClicked = false;
-                print("22222222");
             }
-            break;
+            else
+            {
+                isReady = true;
+                yield break;
+            }
+            yield return null;
         }
+    }
+    public void OnClickStartButton()
+    {
+        isClicked = true;
     }
 }
