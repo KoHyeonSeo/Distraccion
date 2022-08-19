@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public List<ItemBox> ItemProp {
         get { return itemBoxes; }
-        set { itemBoxes = value; } 
+        set { itemBoxes = value; }
     }
     /// <summary>
     /// 인덱스를 넣어 해당 아이템을 소유한 상태로 바꾸는 쓰기 전용 프로퍼티
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             if (!item.isHaveItem)
             {
                 item.isHaveItem = true;
-                itemBoxes[value] = item;    
+                itemBoxes[value] = item;
             }
         }
     }
@@ -79,7 +79,6 @@ public class GameManager : MonoBehaviour
     public GameObject playerGameobject { get; private set; }
     private void Start()
     {
-
         curScene = SceneManager.GetActiveScene().buildIndex;
     }
     private void Update()
@@ -89,7 +88,21 @@ public class GameManager : MonoBehaviour
             playerGameobject = GameObject.Find("Player");
             curScene = SceneManager.GetActiveScene().buildIndex;
         }
+        //PlayStart();
     }
 
+    #endregion
+
+    #region Scene Start관련
+    //void PlayStart()
+    //{
+    //    // StartUI가 모두 재생되고 시작 버튼이 눌려 게임 준비가 완료되면 
+    //    if (StartUI.Instance.isReady)
+    //    {
+    //        // PlayerInput 스크립트 활성화
+    //        playerGameobject.GetComponent<PlayerInput>().enabled = true;
+    //        print($"2 : {Time.time}");
+    //    }
+    //}
     #endregion
 }
