@@ -135,6 +135,7 @@
     - Stage 1 V
     - Stage 2 
     - Stage 3
+- Build Testing
 ## <b> 베타까지 해야할 것</b>
 - 피리 부는 부분 그 노랫소리 어떻게 해야할 지 생각
 - Middle Secret Stage 완성 
