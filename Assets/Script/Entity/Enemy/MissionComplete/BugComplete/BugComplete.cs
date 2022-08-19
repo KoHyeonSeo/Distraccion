@@ -50,6 +50,7 @@ public class BugComplete : MissionComplete
         {
             if (!isRunAway)
             {
+                Enemy.transform.LookAt(runAwayPos.position);
                 if (!audioOnce)
                 {
                     audioOnce = true;
@@ -78,7 +79,7 @@ public class BugComplete : MissionComplete
                     Enemy.GetComponent<Enemy>().StartCoroutine(Fly());
                     isOnceCall = true;
                 }
-                Enemy.transform.LookAt(-runAwayPos.position);
+                Enemy.transform.LookAt(runAwayPos.position);
                 curTime += Time.deltaTime;
                 Enemy.transform.position += flyDir * runAwaySpeed * Time.deltaTime;
                 if (curTime > runAwayTime)
