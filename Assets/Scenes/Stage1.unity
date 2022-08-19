@@ -55629,6 +55629,8 @@ MonoBehaviour:
     Z: 0
   rotationBlockSettinf: 0.5
   handleSetting: 20
+  handleDir: 1
+  objectDir: -1
   Handle:
   - {fileID: 1802793832155413811}
   - {fileID: 7353474339452558294}

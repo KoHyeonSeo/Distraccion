@@ -400,6 +400,8 @@ MonoBehaviour:
     Z: 1
   rotationBlockSettinf: 0.1
   handleSetting: 10
+  handleDir: 1
+  objectDir: -1
   Handle:
   - {fileID: 310165821}
   - {fileID: 283990111}
@@ -9805,7 +9807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &216358153
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9819,11 +9821,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1796929152}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 47, y: -41}
+  m_AnchoredPosition: {x: 48.6, y: -48.2}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &216358154
@@ -11372,6 +11374,8 @@ MonoBehaviour:
     Z: 0
   rotationBlockSettinf: 0.1
   handleSetting: 10
+  handleDir: 1
+  objectDir: -1
   Handle: []
   isHandleControl: 0
 --- !u!54 &264497761
@@ -36018,12 +36022,12 @@ GameObject:
   - component: {fileID: 847176752}
   - component: {fileID: 847176751}
   m_Layer: 5
-  m_Name: Lamp
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &847176750
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36037,11 +36041,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1796929152}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 46.99997, y: -40.999985}
+  m_AnchoredPosition: {x: 48.599976, y: -48.199997}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &847176751
@@ -36064,7 +36068,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 84e2100437c43b34298eedd91036a160, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb2cee71a18e0fb44a5de120654c9878, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -36889,11 +36893,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1796929152}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 46.99997, y: -40.999985}
+  m_AnchoredPosition: {x: 48.599976, y: -48.199997}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &862094444
@@ -53624,9 +53628,9 @@ MonoBehaviour:
   itemBoxes:
   - Item: {fileID: 7426727271953884272, guid: dacd49f750ef8424dbca25155e17cc8e, type: 3}
     isHaveItem: 1
-  - Item: {fileID: 5727444155905301786, guid: 552d76f376c15914288aca042ab198a5, type: 3}
+  - Item: {fileID: 6469333557693949503, guid: ec6dadfa916313745923d952be04ffbe, type: 3}
     isHaveItem: 0
-  - Item: {fileID: 2273681324447400125, guid: bfe58b7a17a0f774f8ad17c9676312fa, type: 3}
+  - Item: {fileID: 5727444155905301786, guid: 552d76f376c15914288aca042ab198a5, type: 3}
     isHaveItem: 0
 --- !u!4 &1365111893
 Transform:
@@ -58349,8 +58353,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536749945}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.000030517578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60579,6 +60583,7 @@ MonoBehaviour:
     Z: 1
   blockAngle: 90
   buttonTime: 0.5
+  audioClip: {fileID: 0}
   isRotate: 0
 --- !u!54 &1646563476
 Rigidbody:
@@ -69747,9 +69752,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 870148688}
-  - {fileID: 862094443}
   - {fileID: 216358153}
   - {fileID: 847176750}
+  - {fileID: 862094443}
   m_Father: {fileID: 1818166400}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70946,8 +70951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemUI:
   - {fileID: 216358152}
-  - {fileID: 862094442}
   - {fileID: 847176749}
+  - {fileID: 862094442}
 --- !u!1 &1818738712
 GameObject:
   m_ObjectHideFlags: 0
