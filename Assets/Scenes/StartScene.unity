@@ -1161,8 +1161,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: DISTRACCION
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 15999386c2f8ae44dbdbab9c82841c38, type: 2}
-  m_sharedMaterial: {fileID: -2039544646542468644, guid: 15999386c2f8ae44dbdbab9c82841c38, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 31a5c904b022c574d86326720732c90a, type: 2}
+  m_sharedMaterial: {fileID: -7712372424168142418, guid: 31a5c904b022c574d86326720732c90a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
