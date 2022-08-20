@@ -112,7 +112,7 @@
 - UI
     - Menu - SH
     - Start / End - SH 
-    - GameOver - SH
+    - GameOver - HS V
     - Item 상호작용 UI - HS V
     - Item 창 - HS V
 - 사운드 - SH + HS
