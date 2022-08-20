@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Cursor : MonoBehaviour
@@ -6,67 +7,21 @@ public class Cursor : MonoBehaviour
     //[SerializeField] private float offsetDistance = 1f;
     //private Camera cam;
     private Animator anim;
-    private PlayerMove player;
+    private PlayerInput player;
     private RectTransform rect;
-
 
     private void Start()
     {
-        player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
-        rect = GetComponent<RectTransform>();
+        player = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
+        rect = GetComponent<RectTransform>();
     }
 
-    private void Update()
+    public void CursorClick()
     {
-        print("0000000");
-        print($"1 : { player.isCheck}");
-        if (player.isCheck)
-        {
-            print("111111");
-            rect.anchoredPosition = Input.mousePosition;
-            print("22222");
-            anim.SetTrigger("Click");
-            print("333333333");
-        }
+        rect.transform.position = player.MousePosition;
+        anim.SetTrigger("Click");
+        print("11111");
     }
-    
-
-
-//private void Start()
-//    {
-//        if (cam == null)
-//        {
-//            cam = Camera.main;
-//        }
-//        animController = GetComponent<Animator>();
-//        player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
-//    }
-
-//    // 카메라 항상 바라보게 하기
-//    void LateUpdate()
-//    {
-//        if (cam != null)
-//        {
-//            Vector3 cameraForward = cam.transform.rotation * Vector3.forward;
-//            Vector3 cameraUp = cam.transform.rotation * Vector3.up;
-
-//            transform.LookAt(transform.position + cameraForward, cameraUp);
-//        }
-//    }
-
-//    // 클릭한 곳 커서 나타내기
-//    public void ShowCursor(Vector3 position)
-//    {
-//        if (cam != null && animController != null)
-//        {
-//            Vector3 cameraForwardOffset = cam.transform.rotation * new Vector3(0f, 0f, offsetDistance);
-//            transform.position = position - cameraForwardOffset;
-//            if (player.isCheck)
-//            {
-//                animController.SetTrigger("ClickTrigger");
-//            }
-//        }
-//    }
 }
 

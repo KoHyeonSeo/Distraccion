@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
     MovingGround archB;
     Animator anim;
     public TwistBlock twist;
-    public GameObject cursor;
+    public Cursor cursor;
 
 
     private void Start()
@@ -65,8 +65,8 @@ public class PlayerMove : MonoBehaviour
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
                 isCheck = true;
-                cursor.transform.position = playerInput.ClickedPosition;
-                print("111111111");
+                cursor.CursorClick();
+                print("2222222");
             }
             if (isCheck)
             {
