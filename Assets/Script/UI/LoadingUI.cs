@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LoadingUI : MonoBehaviour
 {
@@ -20,18 +21,28 @@ public class LoadingUI : MonoBehaviour
     private bool isOnce = true;
 
     TextMeshProUGUI loadText;
-    CanvasGroup stageName;
+    CanvasGroup nameCG;
     Image buttonImage;
     PlayerInput playerInput;
+    CanvasGroup itemCG;
+    Scene scene;
+
 
     private void Awake()
     {
         GameObject load = fadeList[0];
         loadText = load.GetComponent<TextMeshProUGUI>();
         GameObject stage = fadeList[1];
-        stageName = stage.GetComponent<CanvasGroup>();
+        nameCG = stage.GetComponent<CanvasGroup>();
         GameObject button = fadeList[2];
         buttonImage = button.GetComponent<Image>();
+        scene = SceneManager.GetActiveScene();
+        if (!scene.name.Contains("Quest"))
+        {
+            print("Not quest");
+            GameObject item = fadeList[3];
+            itemCG = item.GetComponent<CanvasGroup>();
+        }
     }
 
     public void Start()
@@ -67,15 +78,15 @@ public class LoadingUI : MonoBehaviour
         yield return new WaitForSeconds(1);
 
 
-        // 2. StageName
+        // 2. nameCG
         t = 0;
         while (t < 1)
         {
             t += stringSpeed * Time.deltaTime;
-            stageName.alpha = t;
+            nameCG.alpha = t;
             yield return null;
         }
-        stageName.alpha = 1;
+        nameCG.alpha = 1;
         yield return new WaitForSeconds(1);
 
 
@@ -109,16 +120,24 @@ public class LoadingUI : MonoBehaviour
         while (t < 1)
         {
             t += buttonOutSpeed * Time.deltaTime;
-            print("0000000");
-            stageName.alpha = 1 - t;
+            //print("0000000");
+            nameCG.alpha = 1 - t;
             buttonImage.color = new Color(1, 1, 1, 1 - t);
             fadeImg.color = new Color(0, 0, 0, 0.5f - t / 2);
+            if (!scene.name.Contains("Quest"))
+            {
+                itemCG.alpha = t;
+            }
             yield return null;
         }
-        stageName.alpha = 0;
+        nameCG.alpha = 0;
         buttonImage.color = new Color(1, 1, 1, 0);
         fadeImg.color = new Color(0, 0, 0, 0);
-        print("1111111");
+        if (!scene.name.Contains("Quest"))
+        {
+            itemCG.alpha = 1;
+        }
+        //print("1111111");
         yield return new WaitForSeconds(1);
     }
     public void OnClickStartButton()
@@ -126,7 +145,7 @@ public class LoadingUI : MonoBehaviour
         isClicked = true;
     }
 }
-    // 버튼 누르면 - stageName, 버튼, panel 이미지 모두 사라지게
+    // 버튼 누르면 - nameCG, 버튼, panel 이미지 모두 사라지게
     //t = 0;
     //    if (isClicked)
     //    {
@@ -134,12 +153,12 @@ public class LoadingUI : MonoBehaviour
     //            {
     //                t += buttonOutSpeed * Time.deltaTime;
     //                print("0000000");
-    //                stageName.alpha = 1 - t;
+    //                nameCG.alpha = 1 - t;
     //                buttonImage.color = new Color(1, 1, 1, 1 - t);
     //                fadeImg.color = new Color(0, 0, 0, 0.5f - t / 2);
     //                yield return null;
     //            }
-    //            stageName.alpha = 0;
+    //            nameCG.alpha = 0;
     //            buttonImage.color = new Color(1, 1, 1, 0);
     //            fadeImg.color = new Color(0, 0, 0, 0);
     //            print("1111111");
@@ -163,12 +182,12 @@ public class LoadingUI : MonoBehaviour
         //        {
         //            t += buttonOutSpeed * Time.deltaTime;
         //            print("0000000");
-        //            stageName.alpha = 1 - t;
+        //            nameCG.alpha = 1 - t;
         //            buttonImage.color = new Color(1, 1, 1, 1 - t);
         //            fadeImg.color = new Color(0, 0, 0, 0.5f - t / 2);
         //            yield return null;
         //        }
-        //        stageName.alpha = 0;
+        //        nameCG.alpha = 0;
         //        buttonImage.color = new Color(1, 1, 1, 0);
         //        fadeImg.color = new Color(0, 0, 0, 0);
         //        isClicked = false;
