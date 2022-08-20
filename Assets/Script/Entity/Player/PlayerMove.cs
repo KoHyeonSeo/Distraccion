@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
 
     public Transform currentNode;
     public Transform checkNode;  // Player Layer 'Top'으로 변경하는 블록
+    public Transform clickNode;  // 클릭한 노드
 
     [Serializable]
     public struct trickNode
@@ -64,6 +65,7 @@ public class PlayerMove : MonoBehaviour
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
                 isCheck = true;
+                clickNode = playerInput.PointBlock.transform;
             }
             if (isCheck)
             {
