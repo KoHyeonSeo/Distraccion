@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour
     public List<Vector3> findPathPos = new List<Vector3>();
 
     private PlayerInput playerInput;
-    private bool isCheck = false;
+    public bool isCheck = false;
     private bool noWay = false;
 
     Scene scene;

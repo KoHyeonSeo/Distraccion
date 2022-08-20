@@ -33,7 +33,7 @@ public class StartSceneManager : MonoBehaviour
 
     private IEnumerator MenuFadeIn()
     {
-        //yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
 
         // GameName FadeIn
         float t = 0;
