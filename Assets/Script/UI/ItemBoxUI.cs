@@ -14,6 +14,7 @@ public class ItemBoxUI : MonoBehaviour
     }
     private void Update()
     {
+        index = Mathf.Clamp(index, 0, itemUI.Count);
         if(index != GameManager.Instance.CurItemIndex || !GameManager.Instance.ItemProp[index].isHaveItem)
         {
             ChangeItem();
