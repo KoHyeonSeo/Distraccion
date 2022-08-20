@@ -8,16 +8,18 @@ public class Stage3Start : MonoBehaviour
     public Transform column1;
     public Transform column2;
     Transform player;
+    Animator anim;
     [SerializeField] private Transform startNode;
 
     void Start()
     {
         player = GameManager.Instance.playerGameobject.transform;
-        
+        anim = player.GetComponentInChildren<Animator>();
         StartCoroutine(stageStart());
     }
 
 
+    bool check = false;
     private IEnumerator stageStart()
     {
         // 카메라 쉐이크
@@ -34,6 +36,7 @@ public class Stage3Start : MonoBehaviour
         }
         topButton.localEulerAngles = new Vector3(0, -90, -180);
         yield return new WaitForSeconds(2);
+        anim.SetTrigger("Walk");
 
         // 플레이어 startNode로 이동
         float t = 7f;
@@ -43,6 +46,7 @@ public class Stage3Start : MonoBehaviour
             player.position = new Vector3(player.position.x, player.position.y, t);
             yield return null;
         }
+        anim.SetTrigger("Idle");
         player.position = new Vector3(player.position.x, player.position.y, 5.9f);
         yield return new WaitForSeconds(2);
 

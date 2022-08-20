@@ -33,12 +33,14 @@ public class PlayerMove : MonoBehaviour
 
     Scene scene;
     MovingGround archB;
+    Animator anim;
     public TwistBlock twist;
 
 
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
+        anim = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
         if (scene.name == "Stage2")
         {
@@ -89,7 +91,6 @@ public class PlayerMove : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, 1, layer))
                 {
                     startNode = hit.transform.GetComponent<Node>();
-                    //startNode.walkAble = true;
                 }
                 // Raycast로 사용자가 가고자하는 타겟노드 찾기
                 if (playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
@@ -143,6 +144,10 @@ public class PlayerMove : MonoBehaviour
 
     void SimpleMove()
     {
+        if (playerInput.MoveKey)
+        {
+            anim.SetTrigger("Move");
+        }
         if (findPath.Count - 1 > idx)
         {
             ratio += 3 * Time.deltaTime;
@@ -164,8 +169,14 @@ public class PlayerMove : MonoBehaviour
                     //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
                     transform.up = hit.transform.forward;
                 }
-                //transform.up = findPath[idx].gameObject;
             }
+
+            if (currentNode == targetNode)
+            {
+                print("*******");
+                anim.SetTrigger("Idle");
+            }
+
             if (ratio >= 1)
             {
                 idx++;
@@ -173,7 +184,8 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        //print(hitCount);
+     
+
 
         // 이동한 노드 색 초기화
         if (matChange)
@@ -194,6 +206,10 @@ public class PlayerMove : MonoBehaviour
 
     void SimpleMove_Stage3()
     {
+        if (playerInput.MoveKey)
+        {
+            anim.SetTrigger("Move");
+        }
         if (findPath.Count - 1 > idx)
         {
             if (archB.enabled == true)
@@ -205,6 +221,11 @@ public class PlayerMove : MonoBehaviour
                 //if (archB.enabled) print("11111");
                 transform.position = findPathPos[idx + 1] + new Vector3(0, 0.5f, 0);
                 idx++;
+                if (currentNode == targetNode)
+                {
+                    print("*******");
+                    anim.SetTrigger("Idle");
+                }
             }
             else
             {
@@ -214,11 +235,21 @@ public class PlayerMove : MonoBehaviour
                 {
                     archB.enabled = true;
                     findPath.RemoveAt(idx + 1);
+                    if (currentNode == targetNode)
+                    {
+                        print("*******");
+                        anim.SetTrigger("Idle");
+                    }
                 }
                 else
                 {
                     ratio += playerMoveSpeed * Time.deltaTime;
                     transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
+                    if (currentNode == targetNode)
+                    {
+                        print("*******");
+                        anim.SetTrigger("Idle");
+                    }
                     if (ratio >= 1)
                     {
                         idx++;
@@ -240,7 +271,7 @@ public class PlayerMove : MonoBehaviour
                 //RaycastHit hit;
                 //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Arch"))
             }
-
+            
             // Twist 안 된 경우
             //if(!twist.isTwist)
             //{
