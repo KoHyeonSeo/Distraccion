@@ -207,15 +207,15 @@ public class PlayerTest : MonoBehaviour
             }
             else
             {
-                //if (archB.enabled) print("22222222");
-                // Lerp 이동
-                if (findPath[idx + 1].CompareTag("Arch"))
-                {
-                    //archB.enabled = true;
-                    findPath.RemoveAt(idx + 1);
-                }
-                else
-                {
+                ////if (archB.enabled) print("22222222");
+                //// Lerp 이동
+                //if (findPath[idx + 1].CompareTag("Arch"))
+                //{
+                //    //archB.enabled = true;
+                //    findPath.RemoveAt(idx + 1);
+                //}
+                //else
+                //{
                     ratio += playerMoveSpeed * Time.deltaTime;
                     transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
                     if (ratio >= 1)
@@ -223,7 +223,7 @@ public class PlayerTest : MonoBehaviour
                         idx++;
                         ratio = 0;
                     }
-                }
+                //}
             }
 
             // 회전 && !archB.enabled
