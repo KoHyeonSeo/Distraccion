@@ -70,6 +70,12 @@ public class PlayerInput : MonoBehaviour
     /// 키보드 좌우 방향키를 눌렀을 경우
     /// </summary>
     public float XKeyBoardAxis { get; private set; }
+
+    /// <summary>
+    /// 클릭한 위치를 반환 (무언가에 닿았을 시)
+    /// 안닿았을 시 Vector.zero값을 반환
+    /// </summary>
+    public Vector3 ClickedPosition { get; private set; }    
     void Update()
     {
         #region 입력값 업데이트
@@ -107,9 +113,11 @@ public class PlayerInput : MonoBehaviour
         {
             //Debug.Log($"hit = {hit.collider.gameObject}");
             PointBlock = hit.collider.gameObject;
+            ClickedPosition = Camera.main.WorldToScreenPoint(hit.transform.position);
         }
         else
         {
+            ClickedPosition = Vector3.zero;
             PointBlock = null;
         }
 
