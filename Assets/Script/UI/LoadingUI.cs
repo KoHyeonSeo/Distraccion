@@ -39,7 +39,6 @@ public class LoadingUI : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         if (!scene.name.Contains("Quest"))
         {
-            print("Not quest");
             GameObject item = fadeList[3];
             itemCG = item.GetComponent<CanvasGroup>();
         }
@@ -59,6 +58,12 @@ public class LoadingUI : MonoBehaviour
             StartCoroutine("GameReady");
             isClicked = false;
             isOnce = false;
+            // Stage3 Start Script È°¼ºÈ­
+            if (scene.name == "Stage3")
+            {
+                Stage3Start stage3 = GameObject.Find("Map").GetComponent<Stage3Start>();
+                stage3.enabled = true;
+            }
         }
     }
 
@@ -138,7 +143,7 @@ public class LoadingUI : MonoBehaviour
             itemCG.alpha = 1;
         }
         //print("1111111");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForEndOfFrame();
     }
     public void OnClickStartButton()
     {
