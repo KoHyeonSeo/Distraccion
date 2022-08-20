@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
 
     public Transform currentNode;
     public Transform checkNode;  // Player Layer 'Top'으로 변경하는 블록
-    public Transform clickNode;  // 클릭한 노드
+    public Vector3 clickedPos;  // 클릭한 노드 스크린 좌표
 
     [Serializable]
     public struct trickNode
@@ -36,6 +36,7 @@ public class PlayerMove : MonoBehaviour
     MovingGround archB;
     Animator anim;
     public TwistBlock twist;
+    public GameObject cursor;
 
 
     private void Start()
@@ -60,16 +61,15 @@ public class PlayerMove : MonoBehaviour
         // 사용자 노드 클릭시(Fire2) 초기화
         if (playerInput.MoveKey)
         {
-            print("11111111");
             //  A* 알고리즘으로 노드 이동
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
                 isCheck = true;
-                clickNode = playerInput.PointBlock.transform;
+                cursor.transform.position = playerInput.ClickedPosition;
+                print("111111111");
             }
             if (isCheck)
             {
-                print("2222222222");
                 // 노드리스트 부모
                 for (int i = 0; i < openNode.Count; i++)
                 {

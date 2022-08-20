@@ -3,25 +3,31 @@
 
 public class Cursor : MonoBehaviour
 {
-    // extra distance offset toward camera
-    [SerializeField] private float offsetDistance = 1f;
-    private Camera cam;
+    //[SerializeField] private float offsetDistance = 1f;
+    //private Camera cam;
     private Animator anim;
     private PlayerMove player;
+    private RectTransform rect;
 
 
     private void Start()
     {
         player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        rect = GetComponent<RectTransform>();
         anim = GetComponent<Animator>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
+        print("0000000");
+        print($"1 : { player.isCheck}");
         if (player.isCheck)
         {
-            
+            print("111111");
+            rect.anchoredPosition = Input.mousePosition;
+            print("22222");
             anim.SetTrigger("Click");
+            print("333333333");
         }
     }
     
