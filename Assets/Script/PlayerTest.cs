@@ -60,9 +60,6 @@ public class PlayerTest : MonoBehaviour
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
                 isCheck = true;
-            }
-            if (isCheck)
-            {
                 print("2222222222");
                 // 노드리스트 부모
                 for (int i = 0; i < openNode.Count; i++)
@@ -78,6 +75,25 @@ public class PlayerTest : MonoBehaviour
                 closeNode.Clear();
                 findPath.Clear();
                 findPathPos.Clear();
+            }
+            if (isCheck)
+            {
+                print("33333333333");
+                //print("2222222222");
+                //// 노드리스트 부모
+                //for (int i = 0; i < openNode.Count; i++)
+                //{
+                //    openNode[i].parent = null;
+                //}
+                //for (int i = 0; i < closeNode.Count; i++)
+                //{
+                //    closeNode[i].parent = null;
+                //}
+                //// 관련 리스트,변수 비우기
+                //openNode.Clear();
+                //closeNode.Clear();
+                //findPath.Clear();
+                //findPathPos.Clear();
                 idx = 0;
                 ratio = 0;
                 // Raycast로 사용자 출발노드 찾기
@@ -104,7 +120,7 @@ public class PlayerTest : MonoBehaviour
                 //    {
                 //        targetNode = hit.transform.GetComponent<Node>();
                 //        //targetNode.walkAble = true;
-                //        openNode.Add(startNode);
+                //        openNode.Add(startNode);d
                 //    }
                 //}
                 #endregion
@@ -144,30 +160,170 @@ public class PlayerTest : MonoBehaviour
         if (findPath.Count - 1 > idx)
         {
             ratio += 3 * Time.deltaTime;
+            playerDir = findPathPos[idx + 1] - findPathPos[idx];
+            Vector3 target = findPathPos[idx + 1] + findPath[idx + 1].transform.right;
             // 모든 거리를 일정한 시간으로 이동하도록 설정
-            transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
-            Vector3 playerDir = findPathPos[idx + 1] - findPathPos[idx];
+            //1. 가려는 곳도 twist고 지금 있는 곳도 twist인 경우
+            if (findPath[idx].CompareTag("Twist") && findPath[idx + 1].CompareTag("Twist"))
+            {
+                transform.position = findPathPos[idx + 1] + findPath[idx + 1].transform.right;
+                //Debug.Log($"==========================================");
+                //Debug.Log($"1. 가야할 곳: {findPathPos[idx + 1] + findPath[idx + 1].transform.forward}");
+                //Debug.Log($"1. 가야할 객체 위치: {findPathPos[idx + 1]}");
+                //Debug.Log($"1. 가야할 객체: {findPath[idx + 1]}");
+                //Debug.Log($"==========================================");
+
+                ratio = 0;
+                idx++;
+            }
+            //2. 가려는 곳은 twist가 아니고, 지금 있는 곳은 twist인 경우
+            else if(findPath[idx].CompareTag("Twist") && !findPath[idx + 1].CompareTag("Twist"))
+            {
+                transform.position = findPathPos[idx + 1];
+                //Debug.Log($"==========================================");
+                //Debug.Log($"2. 가야할 곳: {findPathPos[idx + 1]}");
+                //Debug.Log($"2. 가야할 객체 위치: {findPathPos[idx + 1]}");
+                //Debug.Log($"2ㄴ. 가야할 객체: {findPath[idx + 1]}");
+                //Debug.Log($"==========================================");
+                if (ratio >= 1)
+                {
+                    idx++;
+                    ratio = 0;
+                }
+            }
+            //3. 가려는 곳은 twist고 지금 있는 곳은 twist가 아닌 경우
+            else if(!findPath[idx].CompareTag("Twist") && findPath[idx + 1].CompareTag("Twist"))
+            {
+                transform.position = findPathPos[idx + 1] + findPath[idx + 1].transform.right;
+                //Debug.Log($"==========================================");
+                //Debug.Log($"3. 가야할 곳: {findPathPos[idx + 1] + findPath[idx + 1].transform.forward}");
+                //Debug.Log($"3. 가야할 객체 위치: {findPathPos[idx + 1]}");
+                //Debug.Log($"3. 가야할 객체: {findPath[idx + 1]}");
+                //Debug.Log($"==========================================");
+                ratio = 0;
+                idx++;
+            }
+            //4. 가려는 곳, 지금 있는 곳 모두 twist가 아닌 경우
+            else
+            {
+                transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio); 
+                if (Vector3.Distance(transform.position, findPathPos[idx + 1] ) < 0.01f)
+                {
+                    transform.position = findPathPos[idx + 1];
+                }
+                if (ratio >= 1)
+                {
+                    idx++;
+                    ratio = 0;
+                }
+            }
+
             // 평지인 경우만 회전
             if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
             {
-                playerDir.y = 0;
-                transform.forward = playerDir;
-                // Twist 블럭에서 player up 방향 설정
+                // Twist 블럭에서 player back 방향 설정
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
+                if (Physics.Raycast(transform.position, -transform.forward, out hit, 1) && hit.collider.CompareTag("Twist"))
                 {
                     //hitCount++;
                     Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-                    transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
+                    //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
+                    //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal
+                    Vector3 n = target;
+                    //Debug.Log(playerDir.normalized.y);
+                    n.z = 0;
+                    if (playerDir.normalized.y > -0.1)
+                        n.x *= -1;
+                    else
+                    {
+                        n.y *= -1;
+                    }
+                    transform.forward = n;
+                }
+                // Twist 블럭에서 player foward 방향 설정
+                else if (Physics.Raycast(transform.position, transform.forward, out hit, 1) && hit.collider.CompareTag("Twist"))
+                {
+                    //hitCount++;
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
                     //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
-                    transform.up = hit.transform.forward;
+                    Vector3 n = target;
+                    //Debug.Log(playerDir.normalized.y);
+                    n.z = 0;
+                    if (playerDir.normalized.y > -0.1)
+                        n.x *= -1;
+                    else
+                    {
+                        n.y *= -1;
+                    }
+                    transform.forward = n;
+                }
+                // Twist 블럭에서 player down 방향 설정
+                else if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
+                {
+                    //hitCount++;
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
+                    //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
+                    Vector3 n = target;
+                    //Debug.Log(playerDir.normalized.y);
+                    if (playerDir.normalized.y > -0.1)
+                        n.x *= -1;
+                    else
+                    {
+                        n.y *= -1;
+                    }
+                    n.z = 0;
+                    transform.forward = n;
+                }
+                // Twist 블럭에서 player left 방향 설정
+                else if (Physics.Raycast(transform.position, -transform.right, out hit, 1) && hit.collider.CompareTag("Twist"))
+                {
+                    //hitCount++;
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
+                    //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
+                    Vector3 n = target;
+                    //Debug.Log(playerDir.normalized.y);
+                    n.z = 0;
+                    if (playerDir.normalized.y > -0.1)
+                        n.x *= -1;
+                    else
+                    {
+                        n.y *= -1;
+                    }
+                    transform.forward = n;
+                }
+                // Twist 블럭에서 player right 방향 설정
+                else if (Physics.Raycast(transform.position, transform.right, out hit, 1) && hit.collider.CompareTag("Twist"))
+                {
+                    //hitCount++;
+                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
+                    //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
+                    //Vector3 normal = target;
+                    //if (normal != Vector3.zero)
+                    //    transform.LookAt(normal);
+                    //Debug.Log(normal);
+                    Vector3 n = target;
+                    //Debug.Log(playerDir.normalized.y);
+                    n.z = 0;
+                    if (playerDir.normalized.y > -0.5)
+                        n.x *= -1;
+                    else
+                    {
+                        n.y *= -1;
+                    }
+                    transform.forward = n;
+                }
+                //twist Block이 아닌경우
+                else
+                {
+                    playerDir.y = 0;
+                    if (playerDir != Vector3.zero)
+                        transform.forward = playerDir;
                 }
                 //transform.up = findPath[idx].gameObject;
-            }
-            if (ratio >= 1)
-            {
-                idx++;
-                ratio = 0;
             }
         }
 
@@ -377,6 +533,10 @@ public class PlayerTest : MonoBehaviour
                     {
                         findPathPos.Insert(0, Node.transform.position + new Vector3(0, 0.3f, 0));
                     }
+                    else if (Node.gameObject.CompareTag("Twist"))
+                    {
+                        findPathPos.Insert(0, Node.transform.position);
+                    }
                     else
                     {
                         findPathPos.Insert(0, Node.transform.position + Vector3.up);
@@ -465,7 +625,7 @@ public class PlayerTest : MonoBehaviour
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {
-            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 200, false);  // 충돌한 지점까지의 Ray선 
+            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 10, false);  // 충돌한 지점까지의 Ray선 
             Node Node = hit.transform.GetComponent<Node>();
             Node.SetCost(startNode.transform.position, targetNode.transform.position);
             if (!openNode.Contains(Node) && !closeNode.Contains(Node))
