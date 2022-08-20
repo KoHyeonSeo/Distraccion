@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerScared : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class PlayerScared : MonoBehaviour
     public void RunAway()
     {
         Debug.Log("¡Í±›");
+        SceneManager.LoadScene("GameOverScene");
     }
 
 }
