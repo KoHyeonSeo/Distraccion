@@ -198,7 +198,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (archB.enabled == true)
             {
-                return;
+
             }
             else if (findPath[idx].CompareTag("Twist") && findPath[idx + 1].CompareTag("Twist"))
             {
