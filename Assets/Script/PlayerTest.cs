@@ -33,10 +33,12 @@ public class PlayerTest : MonoBehaviour
     Scene scene;
     //MovingGround archB;
     public TwistBlock twist;
+    Animator anim;
 
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
+        anim = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
         if (scene.name == "Stage2")
         {
@@ -157,6 +159,10 @@ public class PlayerTest : MonoBehaviour
 
     void SimpleMove()
     {
+        if (playerInput.MoveKey)
+        {
+            anim.SetTrigger("Move");
+        }
         if (findPath.Count - 1 > idx)
         {
             ratio += 3 * Time.deltaTime;
@@ -324,6 +330,10 @@ public class PlayerTest : MonoBehaviour
                         transform.forward = playerDir;
                 }
                 //transform.up = findPath[idx].gameObject;
+            }
+            else
+            {
+                anim.SetTrigger("Idle");
             }
         }
 
