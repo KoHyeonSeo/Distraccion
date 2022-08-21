@@ -69,8 +69,10 @@ public class RotationBlock : MonoBehaviour
     {
         if (!playerInput)
         {
-            playerInput = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
+            playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+            //Debug.Log(1);
         }
+        else
         {
             if (useAudio)
             {
@@ -93,8 +95,11 @@ public class RotationBlock : MonoBehaviour
                     }
                 }
             }
+                //Debug.Log("playerInput.PointBlock = " + playerInput.PointBlock);
+                //Debug.Log("gameObject = " + gameObject);
             if (!canNotRotate)
             {
+
                 if (playerInput.PointBlock == gameObject)
                 {
                     if (playerInput.InteractKey)

@@ -83,6 +83,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (!playerGameobject)
+        {
+            playerGameobject = GameObject.Find("Player");
+        }
         if (debugMode)
         {
             //Debug.Log(SceneManager.sceneCountInBuildSettings);
