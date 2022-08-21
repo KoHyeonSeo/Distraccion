@@ -37,11 +37,11 @@ public class LoadingUI : MonoBehaviour
         GameObject button = fadeList[2];
         buttonImage = button.GetComponent<Image>();
         scene = SceneManager.GetActiveScene();
-        if (!scene.name.Contains("Quest"))
-        {
-            GameObject item = fadeList[3];
-            itemCG = item.GetComponent<CanvasGroup>();
-        }
+        //if (!scene.name.Contains("Quest"))
+        //{
+        //    GameObject item = fadeList[3];
+        //    itemCG = item.GetComponent<CanvasGroup>();
+        //}
     }
 
     public void Start()
@@ -129,19 +129,19 @@ public class LoadingUI : MonoBehaviour
             nameCG.alpha = 1 - t;
             buttonImage.color = new Color(1, 1, 1, 1 - t);
             fadeImg.color = new Color(0, 0, 0, 0.5f - t / 2);
-            if (!scene.name.Contains("Quest"))
-            {
-                itemCG.alpha = t;
-            }
+            //if (!scene.name.Contains("Quest"))
+            //{
+            //    itemCG.alpha = t;
+            //}
             yield return null;
         }
         nameCG.alpha = 0;
         buttonImage.color = new Color(1, 1, 1, 0);
         fadeImg.color = new Color(0, 0, 0, 0);
-        if (!scene.name.Contains("Quest"))
-        {
-            itemCG.alpha = 1;
-        }
+        //if (!scene.name.Contains("Quest"))
+        //{
+        //    itemCG.alpha = 1;
+        //}
         //print("1111111");
         yield return new WaitForEndOfFrame();
     }
