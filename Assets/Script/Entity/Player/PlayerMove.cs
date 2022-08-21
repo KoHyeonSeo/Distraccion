@@ -66,7 +66,8 @@ public class PlayerMove : MonoBehaviour
             {
                 isCheck = true;
                 cursor.CursorClick();
-                print("2222222");
+                isComplete = false;
+                completeFindPath = false;
             }
             if (isCheck)
             {
@@ -116,19 +117,26 @@ public class PlayerMove : MonoBehaviour
 
                 // 길찾기
                 FindPath();
-                isCheck = false;
                 isVisited = false;
             }
         }
-        // PlayerMove
-        if (scene.name == "Stage3")
+        else if (!isCheck && isComplete)
         {
-            SimpleMove_Stage3();
+            anim.SetTrigger("Idle");
         }
-        else
+        // PlayerMove
+        //if (scene.name == "Stage3")
+        //{
+        //    SimpleMove_Stage3();
+        //}
+        //else
+        //{
+        if (completeFindPath)
         {
+            anim.SetTrigger("Move");
             SimpleMove();
         }
+        //}
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
         noWay = false;
@@ -142,13 +150,13 @@ public class PlayerMove : MonoBehaviour
     public Material mat_button;
     Vector3 playerDir;
     public float playerMoveSpeed = 3;
-    
+    private bool isComplete = false;
 
     void SimpleMove()
     {
         if (playerInput.MoveKey)
         {
-            anim.SetTrigger("Move");
+            //anim.SetTrigger("Move");
         }
         if (findPath.Count - 1 > idx)
         {
@@ -175,8 +183,9 @@ public class PlayerMove : MonoBehaviour
 
             if (currentNode.gameObject == targetNode.gameObject)
             {
-                print("*******");
-                anim.SetTrigger("Idle");
+                isCheck = false;
+                isComplete = true;
+                completeFindPath = false;
             }
 
             if (ratio >= 1)
@@ -358,9 +367,9 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-    
 
-    
+
+    private bool completeFindPath = false;
     // 길찾기
     void FindPath()
     {
@@ -422,6 +431,7 @@ public class PlayerMove : MonoBehaviour
                 findPathPos.Insert(0, transform.position);
             }
         }
+        completeFindPath = true;
     }
 
     
@@ -551,12 +561,11 @@ public class PlayerMove : MonoBehaviour
         {
             // 플레이어를 그 자식으로 넣는다.
             transform.parent = currentNode.parent;
-            print("Move11111111");
         }
         else
         {
             transform.parent = null;
-            print("Move22222222");
+
         }
     }
 
