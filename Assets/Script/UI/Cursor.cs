@@ -12,11 +12,20 @@ public class Cursor : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
+        if (GameManager.Instance.playerGameobject)
+        {
+            player = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
+        }
         anim = GetComponent<Animator>();
         rect = GetComponent<RectTransform>();
     }
-
+    private void Update()
+    {
+        if (!player)
+        {
+            player = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
+        }
+    }
     public void CursorClick()
     {
         rect.transform.position = player.MousePosition;

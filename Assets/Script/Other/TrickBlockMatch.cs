@@ -24,16 +24,22 @@ public class TrickBlockMatch : MonoBehaviour
 
     private void Start()
     {
-        playerMove = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        if (GameManager.Instance.playerGameobject)
+        {
+            playerMove = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        }
         StartCoroutine("Checking");
     }
     int seq = -1;
-    private IEnumerator Checking()
+    private void Update()
     {
         if (!playerMove)
         {
             playerMove = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
         }
+    }
+    private IEnumerator Checking()
+    {
         while (true)
         {
             if (seq + 1 < buttons.Count && buttons[seq + 1].isEnding)

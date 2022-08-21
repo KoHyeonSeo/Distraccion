@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviour
     {
         if (debugMode)
         {
-            for (int i = 0; i < SceneManager.sceneCount; i++)
+            //Debug.Log(SceneManager.sceneCountInBuildSettings);
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
             {
                 if (Input.GetKeyDown((KeyCode)(48 + i)))
                 {
