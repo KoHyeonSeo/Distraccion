@@ -173,7 +173,7 @@ public class PlayerMove : MonoBehaviour
                 }
             }
 
-            if (currentNode == targetNode)
+            if (currentNode.gameObject == targetNode.gameObject)
             {
                 print("*******");
                 anim.SetTrigger("Idle");

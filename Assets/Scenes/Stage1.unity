@@ -55348,6 +55348,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1059618307191767327, guid: 3176ae887338f4940889501f5d97554c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1679581035283561878, guid: 3176ae887338f4940889501f5d97554c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9659259
