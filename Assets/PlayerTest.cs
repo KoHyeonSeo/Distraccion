@@ -678,6 +678,7 @@ public class PlayerTest : MonoBehaviour
         }
     }
 
+    // currentNode
     void OnMovingBlock()
     {
         // 현재 밟고 있는 노드가 움직이는 경우
@@ -692,6 +693,7 @@ public class PlayerTest : MonoBehaviour
         }
     }
 
+    // 비용 계산
     int SortByfCost(Node c1, Node c2)
     {
         if (c1.fCost < c2.fCost) return -1;
@@ -699,7 +701,7 @@ public class PlayerTest : MonoBehaviour
         return 0;
     }
 
-    // 아이템 충돌
+    // Item 충돌
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Item")

@@ -166,12 +166,7 @@ public class SH_PlayerTest : MonoBehaviour
         {
             anim.SetTrigger("Move");
         }
-        else
-        {
-            anim.SetTrigger("Idle");
-        }
         
-
         if (findPath.Count - 1 > idx)
         {
             ratio += 2 * Time.deltaTime;
@@ -353,9 +348,6 @@ public class SH_PlayerTest : MonoBehaviour
                 }
             }
         }
-
-        //print(hitCount);
-
         // 이동한 노드 색 초기화
         if (matChange)
         {
@@ -421,6 +413,7 @@ public class SH_PlayerTest : MonoBehaviour
                 playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
                 playerDir.y = 0;
                 transform.forward = playerDir;
+
                 //archBezier.enabled = false;
 
                 // Arch Bezier 이동
@@ -438,8 +431,8 @@ public class SH_PlayerTest : MonoBehaviour
             //{
 
             //}
-
         }
+        #region 이전 코드
         //// 찾은 길 인덱스를 통해 순회
         //if (findPath.Count - 2 > idx)
         //{
@@ -495,6 +488,7 @@ public class SH_PlayerTest : MonoBehaviour
          }*/
 
         //CONTINUE:
+        #endregion
 
         // 이동한 노드 색 초기화
         if (matChange)
@@ -520,33 +514,36 @@ public class SH_PlayerTest : MonoBehaviour
     {
         //print($"1: {openNode.Count}, {openNode[0]}");  // 출발노드
 
-        // 중심노드 & 근접노드 찾기
+        // 1. 중심노드 & 근접노드 찾기
         FindNear();
 
         //print($"2 : {openNode.Count}, {openNode[0]}");//,{openNode[1]}");  // 출발노드 + 이웃노드
 
-        // 중심Node => ClosedList
+        // 2. currNode(비용 최소) => ClosedList
         openNode.Remove(currNode);
         closeNode.Add(currNode);
         //print($"3 : {openNode.Count}");//, {openNode[0]}");  // 이웃노드 중 fCost가 가장 작은 노드 (출발노드 => close)
 
-        // 갈 수 있는 길이 없는 경우
+
+        // 3-1. 길이 없는 경우
         if (openNode.Count <= 0)
         {
             noWay = true;
         }
+        // 3-2. 길이 있는 경우
         else
         {
-            // 길찾기 Loop ( 갈 수 있는 길이 있고 targetNode를 찾을 때까지)
+            // 1. 길찾기 Loop ( 갈 수 있는 길이 있고 targetNode를 찾을 때까지)
             if (openNode.Count > 0 && openNode[0] != targetNode)
             {
                 FindPath();
             }
-            // targetNode를 찾았다면 path 만들기
+            // 2. targetNode를 찾았다면 path 만들기
             else if (openNode[0] == targetNode)
             {
                 findPath.Clear();
-                Node Node = targetNode;
+                // 타겟노드부터 거꾸로 찾기
+                Node Node = targetNode;  
                 // 부모노드가 없는 startNode까지 거슬러 올라가면서 path 만들기
                 while (Node.parent != null)
                 {
@@ -558,7 +555,6 @@ public class SH_PlayerTest : MonoBehaviour
 
                     // 거꾸로 노드 넣기
                     findPath.Insert(0, Node);
-                    // 거꾸로 노드 위치 넣기
                     // 상황에 따라 플레이어가 이동해야할 position 다르게 입력
                     if (Node.gameObject.name.Contains("Stair"))
                     {
@@ -586,7 +582,9 @@ public class SH_PlayerTest : MonoBehaviour
     }
 
 
+    // Trick 무한 루프 방지 변수
     bool isVisited = false;
+    // 이웃 노드 찾아 openNode 정렬
     void FindNear()
     {
         currNode = openNode[0];  // 비용이 가장 작은 노드
@@ -645,14 +643,12 @@ public class SH_PlayerTest : MonoBehaviour
                 }
             }
         }
-
-        // openNode 정렬 by fCost
+        // openNode 정렬 
         openNode.Sort(SortByfCost);
     }
-
-    // 근접 노드 찾는 ray 길이
+    // 이웃 노드 찾는 ray 길이
     public float rayLength = 1;
-    // currNode에서 ray이용해 해당 방향 근접노드 찾기
+    // currNode의 이웃노드 찾기
     void AddNearOpen(Vector3 dir)
     {
         Ray ray = new Ray(currNode.transform.position, dir);
@@ -672,8 +668,9 @@ public class SH_PlayerTest : MonoBehaviour
         }
     }
 
+
+    // currentNode  한번만 찾기
     bool isOnce = false;
-    // 현재 플레이어가 밟고 있는 노드 찾는 함수
     void RayCastDown()
     {
         // 레이 생성, 방향은 아래
@@ -697,7 +694,7 @@ public class SH_PlayerTest : MonoBehaviour
         }
     }
 
-    // 하위 자식 오브젝트 레이어 한번에 변경하는 함수
+    // 하위 자식 오브젝트 레이어 한번에 변경
     public static void ChangeLayersRecursively(Transform trans, string name)
     {
         trans.gameObject.layer = LayerMask.NameToLayer(name);
@@ -707,6 +704,7 @@ public class SH_PlayerTest : MonoBehaviour
         }
     }
 
+    // Moving Block 위 Hierarchy 위치 변경
     void OnMovingBlock()
     {
         // 현재 밟고 있는 노드가 움직이는 경우
@@ -721,6 +719,7 @@ public class SH_PlayerTest : MonoBehaviour
         }
     }
 
+    // 비용 계산
     int SortByfCost(Node c1, Node c2)
     {
         if (c1.fCost < c2.fCost) return -1;
