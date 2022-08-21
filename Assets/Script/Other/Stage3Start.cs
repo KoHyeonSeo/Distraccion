@@ -34,7 +34,7 @@ public class Stage3Start : MonoBehaviour
             topButton.localEulerAngles = new Vector3(0, -90, z);
             yield return null;
         }
-        topButton.localEulerAngles = new Vector3(0, -90, -180);
+        topButton.localEulerAngles = new Vector3(0, -180, -180);
         yield return new WaitForSeconds(2);
         anim.SetTrigger("Walk");
 

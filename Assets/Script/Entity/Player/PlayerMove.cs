@@ -510,7 +510,6 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    bool isOnce = false;
     // 현재 플레이어가 밟고 있는 노드 찾는 함수
     void RayCastDown()
     {
@@ -521,6 +520,7 @@ public class PlayerMove : MonoBehaviour
         // 레이 발사
         if (Physics.Raycast(playerRay, out playerHit))
         {
+            Debug.DrawRay(playerHit.point, playerHit.normal, Color.green, 200);
             // 노드를 밟고 있다면 
             if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node") && !isOnce)
             {
@@ -529,7 +529,6 @@ public class PlayerMove : MonoBehaviour
                 if (currentNode == checkNode)
                 {
                     ChangeLayersRecursively(transform, "Top");
-                    isOnce = true;
                 }
             }
         }
@@ -552,10 +551,12 @@ public class PlayerMove : MonoBehaviour
         {
             // 플레이어를 그 자식으로 넣는다.
             transform.parent = currentNode.parent;
+            print("Move11111111");
         }
         else
         {
             transform.parent = null;
+            print("Move22222222");
         }
     }
 
