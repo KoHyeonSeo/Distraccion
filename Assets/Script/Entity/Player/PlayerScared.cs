@@ -49,6 +49,10 @@ public class PlayerScared : MonoBehaviour
     //Die¶û °°Àº °³³ä
     public void RunAway()
     {
+        for(int i = 0; i < GameManager.Instance.ItemProp.Count; i++)
+        {
+            GameManager.Instance.SetDontHaveItem = i;
+        }
         Debug.Log("Áê±Ý");
         SceneManager.LoadScene("GameOverScene");
     }
