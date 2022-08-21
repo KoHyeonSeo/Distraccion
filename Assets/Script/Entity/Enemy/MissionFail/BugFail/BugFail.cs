@@ -14,7 +14,18 @@ public class BugFail : MissionFail
     {
         if (!Start)
         {
+
             Start = true;
+
+            Vector3 target = Enemy.transform.position;
+            target.y = 0;
+            Player.transform.LookAt(target);
+
+
+            Vector3 target1 = Player.transform.position;
+            target1.y = 0;
+            Enemy.transform.LookAt(target1);
+
             startY = Enemy.transform.position.y;
             Enemy.GetComponent<Rigidbody>().useGravity = true;
             Enemy.GetComponent<Rigidbody>().freezeRotation = true;

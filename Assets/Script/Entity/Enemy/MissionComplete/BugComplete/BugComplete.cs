@@ -36,6 +36,12 @@ public class BugComplete : MissionComplete
     {
         if (!Start)
         {
+            Start = true;
+
+            Vector3 target = Player.transform.position;
+            target.y = 0;
+            Enemy.transform.LookAt(target);
+
             audioOnce = false;
             Enemy.GetComponent<Enemy>().animator.SetTrigger("RunAway");
 
