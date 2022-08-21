@@ -51,6 +51,8 @@ public class BugComplete : MissionComplete
             bug.transform.forward = Player.transform.forward;
             bug.GetComponent<Bug>().Target = Enemy.transform;
             flyDir = (-runAwayPos.position - Enemy.transform.position).normalized;
+
+            GameManager.Instance.SetDontHaveItem = GameManager.Instance.CurItemIndex;
         }
         else
         {

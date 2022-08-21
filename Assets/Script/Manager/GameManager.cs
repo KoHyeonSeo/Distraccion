@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         playerGameobject = GameObject.Find("Player");
     }
     private float curScene;
-
+    public bool debugMode = false;
     #region 아이템관련
     [Serializable]
     public struct ItemBox
@@ -83,6 +83,16 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (debugMode)
+        {
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                if (Input.GetKeyDown((KeyCode)(48 + i)))
+                {
+                    SceneManager.LoadScene(i);
+                }
+            }
+        }
         if (SceneManager.GetActiveScene().buildIndex != curScene)
         {
             playerGameobject = GameObject.Find("Player");

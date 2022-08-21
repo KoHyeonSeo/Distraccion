@@ -28224,8 +28224,8 @@ MonoBehaviour:
     - {fileID: 601060589}
     - {fileID: 2014711476}
     trick2Blocks:
-    - {fileID: 1249861412}
     - {fileID: 1319309495}
+    - {fileID: 1249861412}
     - {fileID: 1011856499}
     - {fileID: 885917612}
   buttons:
@@ -54935,8 +54935,12 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1307559554683734599, guid: cd6f33bbb9a3f8f4baf1bb17615f54b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307559554683734599, guid: cd6f33bbb9a3f8f4baf1bb17615f54b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.399
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 1307559554683734599, guid: cd6f33bbb9a3f8f4baf1bb17615f54b8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -55483,6 +55487,18 @@ PrefabInstance:
     - target: {fileID: 1059618307191767327, guid: 3176ae887338f4940889501f5d97554c, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679581035283561878, guid: 3176ae887338f4940889501f5d97554c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659259
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679581035283561878, guid: 3176ae887338f4940889501f5d97554c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.258819
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679581035283561878, guid: 3176ae887338f4940889501f5d97554c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3176ae887338f4940889501f5d97554c, type: 3}
@@ -61543,7 +61559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1444234873
 Transform:
   m_ObjectHideFlags: 0
@@ -62966,6 +62982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26428f27aa2bf0349a8912da77d7929e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugMode: 0
   itemBoxes:
   - Item: {fileID: 7426727271953884272, guid: dacd49f750ef8424dbca25155e17cc8e, type: 3}
     isHaveItem: 1

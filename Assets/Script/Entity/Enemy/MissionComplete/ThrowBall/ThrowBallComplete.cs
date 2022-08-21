@@ -32,6 +32,7 @@ public class ThrowBallComplete : MissionComplete
             curTime = 0;
             isThrow = false;
             Enemy.GetComponent<Enemy>().StartCoroutine(Throw());
+            GameManager.Instance.SetDontHaveItem = GameManager.Instance.CurItemIndex;
         }
         if (isThrow)
         {
@@ -59,7 +60,7 @@ public class ThrowBallComplete : MissionComplete
         Player.transform.LookAt(targetPos);
         while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
         {
-            Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.007f);
+            Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.01f);
             yield return null;
         }
 

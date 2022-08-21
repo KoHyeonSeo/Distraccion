@@ -30,9 +30,13 @@ public class TrickBlockMatch : MonoBehaviour
     int seq = -1;
     private IEnumerator Checking()
     {
-        while (seq < buttons.Count-1)
+        if (!playerMove)
         {
-            if (buttons[seq + 1].isEnding)
+            playerMove = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        }
+        while (true)
+        {
+            if (seq + 1 < buttons.Count && buttons[seq + 1].isEnding)
             {
                 seq++;
             }
