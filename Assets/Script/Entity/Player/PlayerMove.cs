@@ -383,7 +383,7 @@ public class PlayerMove : MonoBehaviour
             // 길찾기 Loop ( 갈 수 있는 길이 있고 targetNode를 찾을 때까지)
             if (openNode.Count > 0 && openNode[0] != targetNode)
             {
-                FindPath();
+                //FindPath();
             }
             // targetNode를 찾았다면 path 만들기
             else if (openNode[0] == targetNode)
