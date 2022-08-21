@@ -9,6 +9,18 @@ public class DeleteEnemyFail : MissionFail
     public float bigScaleTime = 1f;
     public override void MissionFailSetting()
     {
+        if (!Start)
+        {
+            Start = true;
+            Vector3 target = Enemy.transform.position;
+            target.y = 0;
+            Player.transform.LookAt(target);
+
+
+            Vector3 target1 = Player.transform.position;
+            target1.y = 0;
+            Enemy.transform.LookAt(target1);
+        }
         Enemy.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f) * Time.deltaTime * 5;
         curTime += Time.deltaTime;
         if (curTime > bigScaleTime)

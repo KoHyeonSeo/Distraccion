@@ -27,11 +27,11 @@ public class ThrowBallComplete : MissionComplete
     {
         if (!Start)
         {
+            Start = true;
             audioOnce = false;
             curTime = 0;
             isThrow = false;
             Enemy.GetComponent<Enemy>().StartCoroutine(Throw());
-            Start = true;
         }
         if (isThrow)
         {

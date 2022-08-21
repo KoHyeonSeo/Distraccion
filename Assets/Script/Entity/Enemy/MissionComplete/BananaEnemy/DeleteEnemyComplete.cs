@@ -19,6 +19,7 @@ public class DeleteEnemyComplete : MissionComplete
     {
         if (!Start)
         {
+            Start = true;
             audioOnce = false;
             Enemy.GetComponent<Enemy>().animator.SetTrigger("Fly");
             Enemy.GetComponent<Enemy>().StartCoroutine(Move());
