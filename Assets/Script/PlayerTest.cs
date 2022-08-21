@@ -233,7 +233,7 @@ public class PlayerTest : MonoBehaviour
                 {
                     //hitCount++;
                     Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-                    //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
+                    transform.position = hit.transform.position + hit.normal;// + hit.normal * 0.1f;
                     //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal
                     Vector3 n = target;
                     //Debug.Log(playerDir.normalized.y);
@@ -251,6 +251,7 @@ public class PlayerTest : MonoBehaviour
                 {
                     //hitCount++;
                     Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    transform.position = hit.transform.position + hit.normal;// + hit.normal * 0.1f;
                     //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
                     //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
                     Vector3 n = target;
@@ -269,6 +270,7 @@ public class PlayerTest : MonoBehaviour
                 {
                     //hitCount++;
                     Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    transform.position = hit.transform.position + hit.normal;// + hit.normal * 0.1f;
                     //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
                     //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
                     Vector3 n = target;
@@ -287,6 +289,7 @@ public class PlayerTest : MonoBehaviour
                 {
                     //hitCount++;
                     Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    transform.position = hit.transform.position + hit.normal;// + hit.normal * 0.1f;
                     //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
                     //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
                     Vector3 n = target;
@@ -305,6 +308,7 @@ public class PlayerTest : MonoBehaviour
                 {
                     //hitCount++;
                     Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                    transform.position = hit.transform.position + hit.normal;// + hit.normal * 0.1f;
                     //transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
                     //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
                     //Vector3 normal = target;
@@ -325,6 +329,7 @@ public class PlayerTest : MonoBehaviour
                 //twist Block이 아닌경우
                 else
                 {
+                    transform.position = hit.transform.position + hit.normal;// + hit.normal * 0.1f;
                     playerDir.y = 0;
                     if (playerDir != Vector3.zero)
                         transform.forward = playerDir;

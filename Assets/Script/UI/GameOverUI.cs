@@ -37,10 +37,10 @@ public class GameOverUI : MonoBehaviour
     }
     public void OnButtonYes()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void OnButtonQuit()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }
