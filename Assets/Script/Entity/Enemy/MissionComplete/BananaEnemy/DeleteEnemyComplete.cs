@@ -24,6 +24,7 @@ public class DeleteEnemyComplete : MissionComplete
             Enemy.GetComponent<Enemy>().animator.SetTrigger("Fly");
             Enemy.GetComponent<Enemy>().StartCoroutine(Move());
             IsNotPut = false;
+            GameManager.Instance.SetDontHaveItem = GameManager.Instance.CurItemIndex;
         }
         else
         {
