@@ -522,7 +522,7 @@ public class PlayerMove : MonoBehaviour
         {
             Debug.DrawRay(playerHit.point, playerHit.normal, Color.green, 200);
             // 노드를 밟고 있다면 
-            if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node") && !isOnce)
+            if (playerHit.collider.gameObject.layer == LayerMask.NameToLayer("Node"))
             {
                 currentNode = playerHit.transform;
                 // 만약 currentNode가 checkNode일 경우 player의 Layer Top으로 변경해주기
