@@ -16,7 +16,6 @@ public class LoadingUI : MonoBehaviour
     public float buttonSpeed;
     public float buttonOutSpeed;
 
-    public bool gameReady = false;
     private bool isClicked = false;
     private bool isOnce = true;
 
@@ -59,7 +58,7 @@ public class LoadingUI : MonoBehaviour
             isClicked = false;
             isOnce = false;
             // Stage3 Start Script È°¼ºÈ­
-            if (scene.name == "Stage3")
+            if (scene.name == "(Legacy)Stage3")
             {
                 Stage3Start stage3 = GameObject.Find("Map").GetComponent<Stage3Start>();
                 stage3.enabled = true;
