@@ -58,6 +58,7 @@ public class PlayerTest : MonoBehaviour
         if (playerInput.MoveKey)
         {
             print("11111111");
+            print($"isCheck = {isCheck} / playerInput.PointBlock = {playerInput.PointBlock} / playerInput.PointBlock.layer = {playerInput.PointBlock.layer}");
             //  A* 알고리즘으로 노드 이동
             if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
             {
@@ -110,6 +111,7 @@ public class PlayerTest : MonoBehaviour
                 // Raycast로 사용자가 가고자하는 타겟노드 찾기
                 if (playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
                 {
+
                     targetNode = playerInput.PointBlock.GetComponent<Node>();
                     openNode.Add(startNode);
                 }
@@ -136,7 +138,7 @@ public class PlayerTest : MonoBehaviour
         // PlayerMove
         if (scene.name == "Stage3")
         {
-            SimpleMove_Stage3();
+            SimpleMove();
         }
         else
         {
@@ -165,7 +167,7 @@ public class PlayerTest : MonoBehaviour
         }
         if (findPath.Count - 1 > idx)
         {
-            ratio += 3 * Time.deltaTime;
+            ratio += 1 * Time.deltaTime;
             playerDir = findPathPos[idx + 1] - findPathPos[idx];
             Vector3 target = findPathPos[idx + 1] + findPath[idx + 1].transform.right;
             // 모든 거리를 일정한 시간으로 이동하도록 설정
@@ -224,7 +226,7 @@ public class PlayerTest : MonoBehaviour
                 }
             }
 
-            // 평지인 경우만 회전
+            // 회전
             if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
             {
                 // Twist 블럭에서 player back 방향 설정
@@ -599,7 +601,7 @@ public class PlayerTest : MonoBehaviour
         if (scene.name == "Stage3")
         {
             AddNearOpen(transform.right + new Vector3(0, 0.5f, 0));
-            AddNearOpen(-transform.right + new Vector3(0, 0.5f, 0));
+            AddNearOpen(-transform.right + new Vector3(0, 0.5f, 0)); 
         }
 
         // trick부분 연결
@@ -636,11 +638,11 @@ public class PlayerTest : MonoBehaviour
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        //Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
+        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 200, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {
-            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 10, false);  // 충돌한 지점까지의 Ray선 
+            Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 30, false);  // 충돌한 지점까지의 Ray선 
             Node Node = hit.transform.GetComponent<Node>();
             Node.SetCost(startNode.transform.position, targetNode.transform.position);
             if (!openNode.Contains(Node) && !closeNode.Contains(Node))
