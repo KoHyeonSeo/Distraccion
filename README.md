@@ -81,7 +81,7 @@
 ## <b>프로토타입까지 해야할 것</b>
 - 기간이 생각보다 길어... 더 많이 할 수 있을듯...? 아니였고,,;;;
 - 기능 중심
-- 강수현
+- <b>강수현</b>
     - Player  
         - 해야할 것 / 내일
             - 착시 부분이동 V
@@ -90,7 +90,7 @@
             - 아이템 습득 V
     - 맵 배치 V
     - 이동 블럭 / 월요일
-- 고현서
+- <b>고현서</b>
     - 회전 블럭 V 
     - TwistBlock 구현 V
     - Enemy Structure and Test V  
@@ -103,7 +103,7 @@
         - 일요일 / 맵 배치 시작 V
         - 월요일 / 플레이어 놓고 테스트 V
 ## <b>알파까지 해야할 것</b>
-- 고현서
+- <b>고현서</b>
     - Enemy Quest 더 만들기 V
     - 소리 퀘스트 Base 구축 V
     - 스토리 요소
@@ -131,7 +131,7 @@
         - Stage 0 V
         - Stage 1 V
     - Build Testing V
-- 강수현
+- <b>강수현</b>
     - 스토리 요소
         - 이 스토리에 맞는 애니메이션 미리 체킹해놓기 V
     - UI
@@ -153,22 +153,22 @@
     - Build Testing V
 ## <b> 베타까지 해야할 것</b>
 - (피리 부는 부분 그 노랫소리 어떻게 해야할 지 생각) - 시간남으면 논의
-- 고현서
-    - Middle Secret Stage 완성(Stage 2개) - HS
+- <b>고현서</b>
+    - Middle Secret Stage 완성(Stage 2개)
     - 씨네머신 (Twist Block을 사용하여 꿈을 펼치기)
-        - Stage 0 이전의 Starting Story 씨네머신 - HS
+        - Stage 0 이전의 Starting Story 씨네머신
     - 각자 Stage에 문양 넣는거 구현
         - Stage 0에서 노래 들리면서 위로 올라가며 문양이 그려짐 (우리 로고같은거 넣으면 좋을듯) 
             - 그려지면서 나오는 이쁜거 그거 구현 
                 - 카메라를 단순히 위로 올려서 문양 보여줌)
     - 이펙트 (각자 넣고 싶은 곳에 넣기)
     - 버그 테스팅
-- 강수현
+- <b>강수현</b>
     - Stage 3 대체 맵 제작
         - Drag 블록 사용할 맵으로 선정
         - Drag Block 구현
     - 씨네머신 (Twist Block을 사용하여 꿈을 펼치기)
-        - Stage Complete 후 Ending Story 씨네머신 - SH
+        - Stage Complete 후 Ending Story 씨네머신
             - 초원
     - 각자 Stage에 문양 넣는거 구현
     - 이펙트 (각자 넣고 싶은 곳에 넣기)
