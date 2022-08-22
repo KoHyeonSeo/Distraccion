@@ -27,8 +27,15 @@ public class SH_MovingGround : MonoBehaviour
         {
             float sp = speed * Time.fixedDeltaTime;
             Vector3 rayDir = PhysicsUtility.BezierCurve(dataSets, vTest) - transform.position;
-            transform.localPosition = PhysicsUtility.BezierCurve(dataSets, vTest);
-            transform.forward = rayDir;
+            transform.localPosition = PhysicsUtility.BezierCurve(dataSets, vTest) + new Vector3(0, 0.5f, 0);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, rayDir, out hit, 5))
+            {
+                Debug.DrawRay(hit.point, hit.normal, Color.cyan, 200);
+                transform.up = hit.normal;
+                transform.up = -rayDir;
+            }
+            //transform.forward = rayDir;
             // 베지어 커브 점을 향해 ray를 쏴서 normal 벡터 방향을 구하고 player의 up방향과 일치시키기
 
             //if (Physics.Raycast(transform.position, rayDir, out hit, 5))
