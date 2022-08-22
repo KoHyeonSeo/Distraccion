@@ -92,8 +92,8 @@ public class StartSceneManager : MonoBehaviour
         settings.SetActive(true);
         Debug.Log("Settings");
     }
-
-   public void OnClickAudioToOff()
+      
+    public void OnClickAudioToOff()
     {
         AudioListener.volume = 0;
         audioOn.SetActive(false);
