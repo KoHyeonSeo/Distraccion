@@ -9369,6 +9369,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1388505106}
     m_Modifications:
+    - target: {fileID: 6578290870754535432, guid: e6196297128b1c8439847c4a86a7946d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -48.19995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6578290870772598861, guid: e6196297128b1c8439847c4a86a7946d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -48.19995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6578290871131910506, guid: e6196297128b1c8439847c4a86a7946d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 48.599976
+      objectReference: {fileID: 0}
+    - target: {fileID: 6578290871131910506, guid: e6196297128b1c8439847c4a86a7946d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -48.19995
+      objectReference: {fileID: 0}
     - target: {fileID: 6578290871680722972, guid: e6196297128b1c8439847c4a86a7946d, type: 3}
       propertyPath: m_Name
       value: ItemUI
