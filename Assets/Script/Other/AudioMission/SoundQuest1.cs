@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundQuest1 : MonoBehaviour
 {
     [SerializeField] private Mic mic;
+    [SerializeField] private GameObject resetButton;
     
     private int curGround = 0;
     private PlayerInput input;
@@ -32,10 +34,26 @@ public class SoundQuest1 : MonoBehaviour
     }
     public void OnButtonReset()
     {
+        StartCoroutine("ResetTurn");
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).transform.position = firstPosition[i];
         }
         curGround = 0;
+    }
+    public IEnumerator ResetTurn()
+    {
+        float angle = 0;
+        while (true)
+        {
+            if (angle >= 360)
+            {
+                yield break;
+
+            }
+            resetButton.GetComponent<RectTransform>().RotateAround(resetButton.GetComponent<RectTransform>().position, new Vector3(0, 0, 1), -Time.deltaTime * 400);
+            angle += Time.deltaTime * 400;
+            yield return null;
+        }
     }
 }

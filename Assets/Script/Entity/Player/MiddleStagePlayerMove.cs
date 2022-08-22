@@ -11,10 +11,12 @@ public class MiddleStagePlayerMove : MonoBehaviour
     private PlayerInput playerInput;
     private CharacterController cc;
     private int jumpCnt = 1;
+    private Animator animator;
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();  
         cc = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -22,9 +24,9 @@ public class MiddleStagePlayerMove : MonoBehaviour
         //수직속도 구하기
         yVelocity += gravity * Time.deltaTime;
 
-        //바닥에 닿아있다면
-        if(cc.collisionFlags == CollisionFlags.Below)
+        if (jumpCnt == 0 && cc.collisionFlags == CollisionFlags.Below)
         {
+            animator.SetTrigger("JumpEnd");
             //수직 속도를 0으로 하고 싶다.
             yVelocity = 0;
             //점프 카운트 초기화
@@ -33,12 +35,21 @@ public class MiddleStagePlayerMove : MonoBehaviour
         //SpaceBar을 눌렀을 때 Jump
         if (playerInput.UseItemButton && jumpCnt >= 1)
         {
+            animator.SetTrigger("Jump");
             yVelocity = jumpForce;
             jumpCnt--;
         }
-
+        float x = playerInput.XKeyBoardAxis;
+        if (x != 0 && cc.collisionFlags == CollisionFlags.Below)
+        {
+            animator.SetTrigger("Run");
+        }
+        else if(x == 0 && cc.collisionFlags == CollisionFlags.Below)
+        {
+            animator.SetTrigger("Idle");
+        }
         //이동
-        Vector3 dir = playerInput.XKeyBoardAxis * Vector3.right;
+        Vector3 dir = x * Vector3.right;
         dir.y = yVelocity;
 
         cc.Move(dir * speed * Time.deltaTime);
