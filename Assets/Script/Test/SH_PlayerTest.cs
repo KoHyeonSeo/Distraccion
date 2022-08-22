@@ -34,6 +34,7 @@ public class SH_PlayerTest : MonoBehaviour
     SH_MovingGround archBezier;
     public TwistBlock twist;
     Animator anim;
+    public Cursor cursor;
 
     private void Start()
     {
@@ -65,6 +66,7 @@ public class SH_PlayerTest : MonoBehaviour
             {
                 // 노드 선택 체크 변수
                 isCheck = true;
+                cursor.CursorClick();
 
                 // 초기화
                 for (int i = 0; i < openNode.Count; i++)
