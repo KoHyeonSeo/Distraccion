@@ -95,14 +95,14 @@ public class StartSceneManager : MonoBehaviour
 
    public void OnClickAudioToOff()
     {
-        Camera.main.GetComponent<AudioListener>().enabled = false;
+        AudioListener.volume = 0;
         audioOn.SetActive(false);
         audioOff.SetActive(true);
         Debug.Log("Audio Off");
     }
     public void OnClickAudioToOn()
     {
-        audioListener.enabled = true;
+        AudioListener.volume = 1;
         audioOff.SetActive(false);
         audioOn.SetActive(true);
         Debug.Log("Audio On");
