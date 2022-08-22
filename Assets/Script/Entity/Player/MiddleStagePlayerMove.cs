@@ -4,23 +4,43 @@ using UnityEngine;
 
 public class MiddleStagePlayerMove : MonoBehaviour
 {
-    private PlayerInput playerInput;
-    private Rigidbody rb;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float gravity = -20f;
+    private float yVelocity = 0;
+    private PlayerInput playerInput;
+    private CharacterController cc;
+    private int jumpCnt = 1;
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();  
-        rb = GetComponent<Rigidbody>(); 
+        cc = GetComponent<CharacterController>();
     }
     private void Update()
     {
-        //SpaceBar을 눌렀을 때 Jump
-        if (playerInput.UseItemButton)
+        //V = V0 + at
+        //수직속도 구하기
+        yVelocity += gravity * Time.deltaTime;
+
+        //바닥에 닿아있다면
+        if(cc.collisionFlags == CollisionFlags.Below)
         {
-            rb.AddForce(Vector3.up * jumpForce);
+            //수직 속도를 0으로 하고 싶다.
+            yVelocity = 0;
+            //점프 카운트 초기화
+            jumpCnt = 1;
         }
-        Vector3 dir = Vector3.right * playerInput.XKeyBoardAxis;
-        transform.position += dir * speed * Time.deltaTime;
+        //SpaceBar을 눌렀을 때 Jump
+        if (playerInput.UseItemButton && jumpCnt >= 1)
+        {
+            yVelocity = jumpForce;
+            jumpCnt--;
+        }
+
+        //이동
+        Vector3 dir = playerInput.XKeyBoardAxis * Vector3.right;
+        dir.y = yVelocity;
+
+        cc.Move(dir * speed * Time.deltaTime);
     }
 }

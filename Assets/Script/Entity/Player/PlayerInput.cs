@@ -14,7 +14,6 @@ public class PlayerInput : MonoBehaviour
     public const string MoveName = "Move";
     public const string InteractName = "Fire1";
     public const string UseItemName = "UseItem";
-
     private RaycastHit hit;
     
     /// <summary>
@@ -71,6 +70,11 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     public float XKeyBoardAxis { get; private set; }
 
+    /// <summary>
+    /// 키보드 엔터키를 눌렀을 경우
+    /// </summary>
+    public bool EnterKey { get; private set; }
+
     void Update()
     {
         #region 입력값 업데이트
@@ -83,6 +87,7 @@ public class PlayerInput : MonoBehaviour
         MoveKey = Input.GetButtonDown(MoveName);
         InteractKey = Input.GetButton(InteractName);
         UseItemButton = Input.GetButtonDown(UseItemName);
+        EnterKey = Input.GetKeyDown(KeyCode.Return);
         #endregion
 
         #region Debug Test
