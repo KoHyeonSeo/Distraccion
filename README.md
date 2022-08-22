@@ -151,7 +151,7 @@
         - Stage 2 V
         - Stage 3 
     - Build Testing V
-- alpha feedback
+- <b>알파 feedback</b>
     - 플레이어 버그
     - 배경이 하얀색이라서 플레이어가 안보임
     - 나중에 시간 남으면 외부에서 twist block을 만들어서 시도 해볼까
