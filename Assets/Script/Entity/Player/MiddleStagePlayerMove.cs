@@ -5,20 +5,20 @@ using UnityEngine;
 public class MiddleStagePlayerMove : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 10f;
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();  
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody>(); 
     }
     private void Update()
     {
         //SpaceBar¿ª ¥≠∑∂¿ª ∂ß Jump
         if (playerInput.UseItemButton)
         {
-            rb.AddForce(Vector2.up * jumpForce);
+            rb.AddForce(Vector3.up * jumpForce);
         }
         Vector3 dir = Vector3.right * playerInput.XKeyBoardAxis;
         transform.position += dir * speed * Time.deltaTime;
