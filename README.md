@@ -151,6 +151,7 @@
         - Stage 2 V
         - Stage 3 
     - Build Testing V
+- alpha feedback
 ## <b> 베타까지 해야할 것</b>
 - (피리 부는 부분 그 노랫소리 어떻게 해야할 지 생각) - 시간남으면 논의
 - <b>고현서</b>
