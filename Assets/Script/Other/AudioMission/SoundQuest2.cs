@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class SoundQuest2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Mic mic;
 
-    // Update is called once per frame
-    void Update()
+    public int curGround;
+    public List<GameObject> MovingBlocks = new List<GameObject>();
+    private List<Vector3> firstPosition = new List<Vector3>();
+
+    
+    private void Start()
     {
-        
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            firstPosition.Add(transform.GetChild(i).position);
+            MovingBlocks.Add(transform.GetChild(i).gameObject);
+        }
+    }
+    private void Update()
+    {
+        if (curGround < transform.childCount)
+            transform.GetChild(curGround).transform.position = firstPosition[curGround] + new Vector3(0, mic.rmsValue / 5, 0);
     }
 }
