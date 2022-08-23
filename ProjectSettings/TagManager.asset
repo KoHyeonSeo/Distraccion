@@ -15,6 +15,7 @@ TagManager:
   - Trick2
   - Arch
   - Trick
+  - MovingUp
   layers:
   - Default
   - TransparentFX
