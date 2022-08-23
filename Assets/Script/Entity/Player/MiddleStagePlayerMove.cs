@@ -42,6 +42,20 @@ public class MiddleStagePlayerMove : MonoBehaviour
         float x = playerInput.XKeyBoardAxis;
         if (x != 0 && cc.collisionFlags == CollisionFlags.Below)
         {
+            if (x < 0)
+            {
+                Vector3 local = transform.localScale;
+                if (local.z > 0)
+                    local.z *= -1;
+                transform.localScale = local;
+            }
+            else if (x > 0)
+            {
+                Vector3 local = transform.localScale;
+                if (local.z < 0)
+                    local.z *= -1;
+                transform.localScale = local;
+            }
             animator.SetTrigger("Run");
         }
         else if(x == 0 && cc.collisionFlags == CollisionFlags.Below)
