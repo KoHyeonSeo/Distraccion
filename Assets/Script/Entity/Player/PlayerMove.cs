@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
         public Node trick1;
         public Node trick2;
     }
-    
+
     public List<trickNode> trick = new List<trickNode>();
     public List<Node> openNode = new List<Node>();  // 값을 정하기 전의 노드 리스트
     public List<Node> closeNode = new List<Node>();  // 값이 정해진 노드 리스트
@@ -37,7 +37,7 @@ public class PlayerMove : MonoBehaviour
     Animator anim;
     public TwistBlock twist;
     public Cursor cursor;
-
+    public List<bool> isTrickVisited;
 
     private void Start()
     {
@@ -55,15 +55,34 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
         RayCastDown();
         // 사용자 노드 클릭시(Fire2) 초기화
         if (playerInput.MoveKey)
         {
-            //  A* 알고리즘으로 노드 이동
-            if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
+            isCheck = false;
+            // Raycast로 사용자 출발노드 찾기
+            Ray ray = new Ray(transform.position, -transform.up);
+            LayerMask layer = 1 << LayerMask.NameToLayer("Node");
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1, layer))
             {
+                startNode = hit.transform.GetComponent<Node>();
+            }
+            else
+            {
+                startNode = null;
+            }
+            //  A* 알고리즘으로 노드 이동
+            if (!isCheck && playerInput.PointBlock && playerInput.PointBlock.layer == LayerMask.NameToLayer("Node") && startNode != null)
+            {
+                isTrickVisited = new List<bool>();
+                //trick 방문처리 초기화
+                for (int i = 0; i < trick.Count; i++)
+                {
+                    isTrickVisited.Add(false);
+                }
                 isCheck = true;
                 cursor.CursorClick();
                 isComplete = false;
@@ -87,14 +106,14 @@ public class PlayerMove : MonoBehaviour
                 findPathPos.Clear();
                 idx = 0;
                 ratio = 0;
-                // Raycast로 사용자 출발노드 찾기
-                Ray ray = new Ray(transform.position, -transform.up);
-                LayerMask layer = 1 << LayerMask.NameToLayer("Node");
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 1, layer))
-                {
-                    startNode = hit.transform.GetComponent<Node>();
-                }
+                //// Raycast로 사용자 출발노드 찾기
+                //Ray ray = new Ray(transform.position, -transform.up);
+                //LayerMask layer = 1 << LayerMask.NameToLayer("Node");
+                //RaycastHit hit;
+                //if (Physics.Raycast(ray, out hit, 1, layer))
+                //{
+                //    startNode = hit.transform.GetComponent<Node>();
+                //}
                 // Raycast로 사용자가 가고자하는 타겟노드 찾기
                 if (playerInput.PointBlock.layer == LayerMask.NameToLayer("Node"))
                 {
@@ -117,7 +136,7 @@ public class PlayerMove : MonoBehaviour
 
                 // 길찾기
                 FindPath();
-                isVisited = false;
+                //isVisited = false;
             }
         }
         else if (!isCheck && isComplete)
@@ -181,21 +200,21 @@ public class PlayerMove : MonoBehaviour
                 }
             }
 
-            if (currentNode.gameObject == targetNode.gameObject)
-            {
-                isCheck = false;
-                isComplete = true;
-                completeFindPath = false;
-            }
 
             if (ratio >= 1)
             {
                 idx++;
                 ratio = 0;
+                if (currentNode.gameObject == targetNode.gameObject)
+                {
+                    isCheck = false;
+                    isComplete = true;
+                    completeFindPath = false;
+                }
             }
         }
 
-     
+
 
 
         // 이동한 노드 색 초기화
@@ -282,7 +301,7 @@ public class PlayerMove : MonoBehaviour
                 //RaycastHit hit;
                 //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Arch"))
             }
-            
+
             // Twist 안 된 경우
             //if(!twist.isTwist)
             //{
@@ -295,61 +314,61 @@ public class PlayerMove : MonoBehaviour
             //}
 
         }
-    //// 찾은 길 인덱스를 통해 순회
-    //if (findPath.Count - 2 > idx)
-    //{
-    //   // Twist 이동 방식
-    //    if (findPath[idx].CompareTag("Twist") && findPath[idx +1].CompareTag("Twist"))
-    //    {
-    //        //if (idx >= findPath.Count - 2)
-    //        //    goto CONTINUE;
-    //        transform.position = findPathPos[idx + 1];
-    //        idx++;
-    //    }
-    //    // Node 이동 방식
-    //    else
-    //    {
-    //        ratio += 3 * Time.deltaTime;
-    //        transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
-    //        if (ratio >= 1)
-    //        {
-    //            idx++;
-    //            ratio = 0;
-    //        }
-    //    }
-    //    // 회전(trick노드 제외)
-    //    if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
-    //    {
-    //        playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
-    //        playerDir.y = 0;
-    //        transform.forward = playerDir;  // 플레이어의 앞방향 : 현재 찾은 노드 위치 -> 다음 찾은 노드 위치
+        //// 찾은 길 인덱스를 통해 순회
+        //if (findPath.Count - 2 > idx)
+        //{
+        //   // Twist 이동 방식
+        //    if (findPath[idx].CompareTag("Twist") && findPath[idx +1].CompareTag("Twist"))
+        //    {
+        //        //if (idx >= findPath.Count - 2)
+        //        //    goto CONTINUE;
+        //        transform.position = findPathPos[idx + 1];
+        //        idx++;
+        //    }
+        //    // Node 이동 방식
+        //    else
+        //    {
+        //        ratio += 3 * Time.deltaTime;
+        //        transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
+        //        if (ratio >= 1)
+        //        {
+        //            idx++;
+        //            ratio = 0;
+        //        }
+        //    }
+        //    // 회전(trick노드 제외)
+        //    if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
+        //    {
+        //        playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
+        //        playerDir.y = 0;
+        //        transform.forward = playerDir;  // 플레이어의 앞방향 : 현재 찾은 노드 위치 -> 다음 찾은 노드 위치
 
-    //        // 플레이어 아래방향으로 ray쏘았을 때 Twist / Arch 노드일 경우
-    //        RaycastHit hit;
-    //        if (Physics.Raycast(transform.position, -transform.up, out hit, 5) && hit.collider.CompareTag("Arch"))
-    //        {
+        //        // 플레이어 아래방향으로 ray쏘았을 때 Twist / Arch 노드일 경우
+        //        RaycastHit hit;
+        //        if (Physics.Raycast(transform.position, -transform.up, out hit, 5) && hit.collider.CompareTag("Arch"))
+        //        {
 
-    //            //Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-    //            //transform.position = hit.transform.position + transform.up;
-    //            //transform.up = hit.normal;
-    //            //StartCoroutine(Arch());
-    //        }
-    //        //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
-    //        //{
-    //        //    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-    //        //    transform.position = hit.transform.position + hit.transform.forward;
-    //        //    transform.up = hit.transform.forward;
-    //        //}
-    //    }
-    //}
-    /* else
-     {
+        //            //Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+        //            //transform.position = hit.transform.position + transform.up;
+        //            //transform.up = hit.normal;
+        //            //StartCoroutine(Arch());
+        //        }
+        //        //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
+        //        //{
+        //        //    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+        //        //    transform.position = hit.transform.position + hit.transform.forward;
+        //        //    transform.up = hit.transform.forward;
+        //        //}
+        //    }
+        //}
+        /* else
+         {
 
-         transform.position = findPathPos[idx] + findPath[idx].transform.forward;
-         transform.up = findPath[idx].transform.forward;
-     }*/
+             transform.position = findPathPos[idx] + findPath[idx].transform.forward;
+             transform.up = findPath[idx].transform.forward;
+         }*/
 
-    //CONTINUE:
+        //CONTINUE:
 
         // 이동한 노드 색 초기화
         if (matChange)
@@ -407,7 +426,7 @@ public class PlayerMove : MonoBehaviour
                         // 지나갈 노드 색 파란색으로 표시
                         Node.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
                     }
-                    
+
                     // 거꾸로 노드 넣기
                     findPath.Insert(0, Node);
                     // 거꾸로 노드 위치 넣기
@@ -434,8 +453,7 @@ public class PlayerMove : MonoBehaviour
         completeFindPath = true;
     }
 
-    
-    bool isVisited = false;
+
     void FindNear()
     {
         currNode = openNode[0];  // 비용이 가장 작은 노드
@@ -471,26 +489,29 @@ public class PlayerMove : MonoBehaviour
             AddNearOpen(-transform.right + new Vector3(0, 0.5f, 0));
         }
 
-        // trick부분 연결
-        if (isVisited == false && currNode.gameObject.CompareTag("Trick"))
+        // trick 부분 연결
+        if (currNode.gameObject.CompareTag("Trick"))
         {
             for (int i = 0; i < trick.Count; i++)
             {
-                if (trick[i].trick1.name == currNode.gameObject.name)
+                if (!isTrickVisited[i])
                 {
-                    Node next = trick[i].trick2;
-                    next.parent = currNode;
-                    openNode.Add(next);
-                    isVisited = true;
-                    break;
-                }
-                else if (trick[i].trick2.name == currNode.gameObject.name)
-                {
-                    Node next = trick[i].trick1;
-                    next.parent = currNode;
-                    openNode.Add(next);
-                    isVisited = true;
-                    break;
+                    if (trick[i].trick1.name == currNode.gameObject.name)
+                    {
+                        Node next = trick[i].trick2;
+                        next.parent = currNode;
+                        openNode.Add(next);
+                        isTrickVisited[i] = true;
+                        break;
+                    }
+                    else if (trick[i].trick2.name == currNode.gameObject.name)
+                    {
+                        Node next = trick[i].trick1;
+                        next.parent = currNode;
+                        openNode.Add(next);
+                        isTrickVisited[i] = true;
+                        break;
+                    }
                 }
             }
         }
@@ -499,7 +520,7 @@ public class PlayerMove : MonoBehaviour
         openNode.Sort(SortByfCost);
     }
 
-    public float rayLength=1;
+    public float rayLength = 1;
     // currNode에서 ray이용해 해당 방향 근접노드 찾기
     void AddNearOpen(Vector3 dir)
     {
@@ -581,7 +602,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.gameObject.tag == "Item")
         {
-            for (int i=0; i < GameManager.Instance.ItemProp.Count; i++)
+            for (int i = 0; i < GameManager.Instance.ItemProp.Count; i++)
             {
                 if (GameManager.Instance.ItemProp[i].Item.name.Contains(other.gameObject.name))
                 {
