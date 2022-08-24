@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endingText: {fileID: 897375948}
-  nextStage: 4
+  nextStage: 6
 --- !u!1001 &373685861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1509,6 +1509,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  fairySpeed: 1.5
+  Fairy: {fileID: 368201312}
+  fairyCamera: 0
 --- !u!114 &550865720 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3666606328525268475, guid: 3c5901a175c884c409266fa92dcbbe1a, type: 3}
@@ -1877,7 +1880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 4, y: 71}
+  m_AnchoredPosition: {x: 4, y: 62}
   m_SizeDelta: {x: -65.26008, y: 128.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &750819640
@@ -2301,6 +2304,8 @@ MonoBehaviour:
   waitTime: 1.5
   tTime: 0.1
   AfterQuest: {fileID: 0}
+  camera: {fileID: 0}
+  fairyCamera: 0
   isEnd: 0
   playerControl: 0
 --- !u!4 &897375949
@@ -2848,7 +2853,7 @@ MonoBehaviour:
   fadeOutSpeed: 0.5
   buttonSpeed: 1
   buttonOutSpeed: 0.8
-  afterUI: {fileID: 550865720}
+  afterUI: 1
 --- !u!114 &1025510933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5062,6 +5067,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 534556597}
+    - target: {fileID: 3666606327391516880, guid: 3c5901a175c884c409266fa92dcbbe1a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666606327391516887, guid: 3c5901a175c884c409266fa92dcbbe1a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 61
+      objectReference: {fileID: 0}
     - target: {fileID: 3666606328525268468, guid: 3c5901a175c884c409266fa92dcbbe1a, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -5109,6 +5122,14 @@ PrefabInstance:
     - target: {fileID: 3666606328525268469, guid: 3c5901a175c884c409266fa92dcbbe1a, type: 3}
       propertyPath: m_Name
       value: TextUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666606328525268475, guid: 3c5901a175c884c409266fa92dcbbe1a, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 534556599}
+    - target: {fileID: 3666606328525268475, guid: 3c5901a175c884c409266fa92dcbbe1a, type: 3}
+      propertyPath: fairyCamera
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3666606328525268475, guid: 3c5901a175c884c409266fa92dcbbe1a, type: 3}
       propertyPath: playerControl

@@ -293,7 +293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 4, y: 71}
+  m_AnchoredPosition: {x: 4, y: 60}
   m_SizeDelta: {x: -65.26008, y: 128.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &117866353
@@ -1328,7 +1328,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1874738415587082, guid: d82d48d9fb0b8a048b6de033ebadd909, type: 3}
       propertyPath: m_Name
-      value: Polygonal Flower Fairy Blue
+      value: Fairy1
       objectReference: {fileID: 0}
     - target: {fileID: 4457909034661992, guid: d82d48d9fb0b8a048b6de033ebadd909, type: 3}
       propertyPath: m_RootOrder
@@ -1880,6 +1880,8 @@ MonoBehaviour:
   waitTime: 1.5
   tTime: 0.1
   AfterQuest: {fileID: 156381656}
+  camera: {fileID: 0}
+  fairyCamera: 0
   isEnd: 0
   playerControl: 1
 --- !u!4 &723875424
@@ -3063,7 +3065,7 @@ MonoBehaviour:
   fadeOutSpeed: 0.5
   buttonSpeed: 1
   buttonOutSpeed: 0.8
-  afterUI: {fileID: 2541978857236527041}
+  afterUI: 1
 --- !u!114 &1221699120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3264,7 +3266,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 4, y: 71}
+  m_AnchoredPosition: {x: 4, y: 63}
   m_SizeDelta: {x: -65.26008, y: 128.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257808792
@@ -3975,8 +3977,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552131130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.8, y: 3.6, z: -5.86}
-  m_LocalScale: {x: 3.62, y: 3.11, z: 1}
+  m_LocalPosition: {x: 14.8, y: 8.86, z: -5.86}
+  m_LocalScale: {x: 3.62, y: 14.91, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4288,6 +4290,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701117813}
   m_CullTransparentMesh: 1
+--- !u!1 &1738500979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1874738415587082, guid: d82d48d9fb0b8a048b6de033ebadd909, type: 3}
+  m_PrefabInstance: {fileID: 542579343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1738500982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738500979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4701b393a631ea4e89f66e7ea861d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endingText: {fileID: 723875423}
+  nextStage: 4
 --- !u!1 &1773625882
 GameObject:
   m_ObjectHideFlags: 0
@@ -4958,6 +4979,8 @@ MonoBehaviour:
   waitTime: 1.5
   tTime: 0.1
   AfterQuest: {fileID: 156381656}
+  camera: {fileID: 0}
+  fairyCamera: 0
   isEnd: 0
   playerControl: 1
 --- !u!4 &1987879756
@@ -6700,7 +6723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 4, y: 71}
+  m_AnchoredPosition: {x: 4, y: 62}
   m_SizeDelta: {x: -65.26008, y: 128.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2541978856119511791
@@ -7046,6 +7069,8 @@ MonoBehaviour:
   waitTime: 1.5
   tTime: 0.1
   AfterQuest: {fileID: 0}
+  camera: {fileID: 0}
+  fairyCamera: 0
   isEnd: 0
   playerControl: 0
 --- !u!4 &2541978857236527054
