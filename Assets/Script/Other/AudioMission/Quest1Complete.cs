@@ -8,7 +8,7 @@ public class Quest1Complete : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("미션 성공");
+            UIManager.Instance.TextUIStarting2();
         }
     }
 }
