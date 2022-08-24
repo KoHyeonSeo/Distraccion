@@ -13,7 +13,7 @@ public class Mic : MonoBehaviour
     public float modulate = 2000;
     public int resultValue;
     public int cutValue = 15;
-
+    public int maxValue = 100;
     public int Volume { get; private set; }
     private void Start()
     {
@@ -33,7 +33,7 @@ public class Mic : MonoBehaviour
         }
         rmsValue = Mathf.Sqrt(sum / samples.Length);
         rmsValue *= modulate;
-        rmsValue = Mathf.Clamp(rmsValue, 0, 100);
+        rmsValue = Mathf.Clamp(rmsValue, 0, maxValue);
         resultValue = Mathf.RoundToInt(rmsValue);
         if (resultValue < cutValue)
         {
