@@ -21,7 +21,7 @@ public class Quest1EndingQuest : MonoBehaviour
     {
         if (isPlaying)
         {
-            if (audioSlider.activeSelf)
+            if (!audioSlider.activeSelf)
                 audioSlider.SetActive(true);
             if (mic.rmsValue >= mic.maxValue)
             {

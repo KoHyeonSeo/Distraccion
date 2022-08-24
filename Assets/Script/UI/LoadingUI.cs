@@ -15,6 +15,7 @@ public class LoadingUI : MonoBehaviour
     public float fadeOutSpeed;
     public float buttonSpeed;
     public float buttonOutSpeed;
+    public bool afterUI= true;
 
     private bool isClicked = false;
     private bool isOnce = true;
@@ -116,6 +117,11 @@ public class LoadingUI : MonoBehaviour
         }
         buttonImage.color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(1);
+        if (afterUI)
+        {
+            UIManager.Instance.TextUIStarting();
+        }
+
     }
 
     private IEnumerator GameReady()

@@ -12,7 +12,7 @@ public class SoundQuest2 : MonoBehaviour
     
     private void Start()
     {
-        mic.maxValue = 200;
+        mic.maxValue = 140;
         for (int i = 0; i < transform.childCount; i++)
         {
             firstPosition.Add(transform.GetChild(i).position);
@@ -24,7 +24,7 @@ public class SoundQuest2 : MonoBehaviour
 
         if (curGround < transform.childCount)
         {
-            transform.GetChild(curGround).transform.position = firstPosition[curGround] + new Vector3(0, mic.rmsValue / 20, 0);
+            transform.GetChild(curGround).transform.position = firstPosition[curGround] + new Vector3(0, mic.rmsValue / 14, 0);
         }
 
     }

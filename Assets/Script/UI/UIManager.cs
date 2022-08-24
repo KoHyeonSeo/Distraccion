@@ -5,10 +5,13 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    public bool control = true;
     [SerializeField] private TextUI textUI;
     [SerializeField] private TextUI textUI2;
     [SerializeField] private TextUI textUI3;
+
+    private bool control1;
+    private bool control2;
+    private bool control3;  
     private void Awake()
     {
         if (!Instance)
@@ -17,16 +20,24 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         if (textUI)
-            textUI.playerControl = control;
+        {
+            control1 = textUI.playerControl;
+            textUI.playerControl = true;
+        }
         else if (textUI2)
+        {
+            control2 = textUI2.playerControl;
             textUI2.playerControl = true;
+        }
         else if (textUI3)
+        {
+            control3 = textUI3.playerControl;
             textUI3.playerControl = true;
-        textUI.Starting();
+        }
     }
     public void TextUIStarting()
     {
-        textUI.playerControl = control;
+        textUI.playerControl = control1;
         if (textUI2)
             textUI2.playerControl = true;
         else if (textUI3)
@@ -36,7 +47,7 @@ public class UIManager : MonoBehaviour
     }
     public void TextUIStarting2()
     {
-        textUI2.playerControl = control;
+        textUI2.playerControl = control2;
         if (textUI)
             textUI.playerControl = true;
         else if (textUI3)
@@ -46,7 +57,7 @@ public class UIManager : MonoBehaviour
     }
     public void TextUIStarting3()
     {
-        textUI3.playerControl = control;
+        textUI3.playerControl = control3;
         if (textUI2)
             textUI2.playerControl = true;
         else if (textUI)

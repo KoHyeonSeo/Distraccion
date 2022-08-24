@@ -37,7 +37,7 @@ public class SoundQuest1 : MonoBehaviour
 
         if (curGround < transform.childCount)
         {
-            transform.GetChild(curGround).transform.position = firstPosition[curGround] + new Vector3(0, mic.rmsValue / 10, 0);
+            transform.GetChild(curGround).transform.position = firstPosition[curGround] + new Vector3(0, mic.rmsValue / 20, 0);
             playerMove.isPlaying = false;
         }
         else
