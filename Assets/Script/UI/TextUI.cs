@@ -11,9 +11,10 @@ public class TextUI : MonoBehaviour
     [SerializeField] private float waitTime = 2;
     [SerializeField] private float tTime = 0.5f;
 
+    private MiddleStagePlayerMove playerMove;
     private List<Text> texts = new List<Text>();
     private float curTime = 0;
-    
+    public bool isEnd = false;
     private void Awake()
     {
         for(int i = 0; i < talkingPeople.Count; i++)
@@ -21,9 +22,21 @@ public class TextUI : MonoBehaviour
             texts.Add(talkingPeople[i].transform.GetChild(0).GetComponent<Text>());
         }
     }
+    private void Start()
+    {
+        if (GameManager.Instance.playerGameobject)
+        {
+            playerMove = GameManager.Instance.playerGameobject.GetComponent<MiddleStagePlayerMove>();
+        }
+    }
     public void Starting()
     {
         transform.GetChild(0).gameObject.SetActive(true);
+        if (!playerMove)
+        {
+            playerMove = GameManager.Instance.playerGameobject.GetComponent<MiddleStagePlayerMove>();
+        }
+        playerMove.isPlaying = false;
         StartCoroutine("Texting");
     }
     IEnumerator Texting()
@@ -68,5 +81,7 @@ public class TextUI : MonoBehaviour
             yield return null;
         }
         transform.GetChild(0).gameObject.SetActive(false);
+        isEnd = true;
+        playerMove.isPlaying = true;
     }
 }
