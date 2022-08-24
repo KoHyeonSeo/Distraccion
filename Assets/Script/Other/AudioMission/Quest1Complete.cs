@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Quest1Complete : MonoBehaviour
 {
+    bool isOnce = false;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            UIManager.Instance.TextUIStarting2();
+            if (!isOnce)
+            {
+                isOnce = true;
+                UIManager.Instance.TextUIStarting2();
+            }
         }
     }
 }

@@ -8,13 +8,17 @@ public class TextUI : MonoBehaviour
     [Header("대화 리스트 (형식: [GameObject 이름]/대화내용 )")]
     [SerializeField] private List<string> talkingList = new List<string>();
     [SerializeField] private List<GameObject> talkingPeople = new List<GameObject>();
+
+    [Space]
     [SerializeField] private float waitTime = 2;
     [SerializeField] private float tTime = 0.5f;
     [SerializeField] private GameObject AfterQuest;
+    [SerializeField] private Quest2Camera camera;
 
     private MiddleStagePlayerMove playerMove;
     private List<Text> texts = new List<Text>();
     private float curTime = 0;
+    public bool fairyCamera = false;
     public bool isEnd = false;
     public bool playerControl = true;
     private void Awake()
@@ -46,6 +50,13 @@ public class TextUI : MonoBehaviour
     {
         for (int i = 0; i < talkingList.Count; i++)
         {
+            if (fairyCamera)
+            {
+                if (i == 1)
+                {
+                    camera.fairyCamera = true;
+                }
+            }
             string[] talking = talkingList[i].Split('/');
             //Debug.Log(talking[0]);
             //Debug.Log(talking[1]);
@@ -90,6 +101,10 @@ public class TextUI : MonoBehaviour
         if (AfterQuest)
         {
             AfterQuest.GetComponent<Quest1EndingQuest>().isPlaying = true;
+        }
+        if (fairyCamera)
+        {
+            camera.fairyCamera = false;
         }
     }
 }

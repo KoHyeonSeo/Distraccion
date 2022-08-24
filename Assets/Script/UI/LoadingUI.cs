@@ -64,6 +64,10 @@ public class LoadingUI : MonoBehaviour
                 Stage3Start stage3 = GameObject.Find("Map").GetComponent<Stage3Start>();
                 stage3.enabled = true;
             }
+            if (afterUI)
+            {
+                UIManager.Instance.TextUIStarting();
+            }
         }
     }
 
@@ -117,10 +121,6 @@ public class LoadingUI : MonoBehaviour
         }
         buttonImage.color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(1);
-        if (afterUI)
-        {
-            UIManager.Instance.TextUIStarting();
-        }
 
     }
 
