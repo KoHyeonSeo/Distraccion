@@ -14,6 +14,7 @@ public class SoundQuest1 : MonoBehaviour
     private MiddleStagePlayerMove playerMove;
     private void Start()
     {
+        mic.maxValue = 200;
         if (GameManager.Instance.playerGameobject)
         {
             playerMove = GameManager.Instance.playerGameobject.GetComponent<MiddleStagePlayerMove>();
