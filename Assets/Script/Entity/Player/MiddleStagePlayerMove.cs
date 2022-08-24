@@ -6,51 +6,65 @@ public class MiddleStagePlayerMove : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
+    public bool isPlaying = true;
+    
     private PlayerInput playerInput;
     private Animator animator;
     private Rigidbody rigid;
     private bool isJumping = false;
+    private Vector3 firstPos;
     private void Start()
     {
+        firstPos = transform.position;
         rigid = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();  
         animator = GetComponent<Animator>();
     }
     private void Update()
     {
-
-        float x = playerInput.XKeyBoardAxis;
-        Vector3 dir = x * Vector3.right;
-        if (x != 0 && !isJumping)
+        if (isPlaying)
         {
-            if (x < 0)
+            float x = playerInput.XKeyBoardAxis;
+            Vector3 dir = x * Vector3.right;
+            if (x != 0 && !isJumping)
             {
-                Vector3 local = transform.localScale;
-                if (local.z > 0)
-                    local.z *= -1;
-                transform.localScale = local;
+                if (x < 0)
+                {
+                    Vector3 local = transform.localScale;
+                    if (local.z > 0)
+                        local.z *= -1;
+                    transform.localScale = local;
+                }
+                else if (x > 0)
+                {
+                    Vector3 local = transform.localScale;
+                    if (local.z < 0)
+                        local.z *= -1;
+                    transform.localScale = local;
+                }
+                animator.SetTrigger("Run");
             }
-            else if (x > 0)
+            else if (x == 0 && !isJumping)
             {
-                Vector3 local = transform.localScale;
-                if (local.z < 0)
-                    local.z *= -1;
-                transform.localScale = local;
+                animator.SetTrigger("Idle");
             }
-            animator.SetTrigger("Run");
+            if (playerInput.UseItemButton && !isJumping)
+            {
+                isJumping = true;
+                animator.SetTrigger("Jump");
+                rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            transform.position += dir * speed * Time.deltaTime;
         }
-        else if (x == 0 && !isJumping)
+        else
         {
-            animator.SetTrigger("Idle");
-        }
-        if (playerInput.UseItemButton && !isJumping)
-        {
-            isJumping = true;
-            animator.SetTrigger("Jump");
-            rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-        transform.position += dir * speed * Time.deltaTime;
+            transform.position = firstPos;
+            Vector3 local = transform.localScale;
+            if (local.z < 0)
+                local.z *= -1;
+            transform.localScale = local;
 
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {

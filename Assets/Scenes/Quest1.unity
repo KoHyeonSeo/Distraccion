@@ -463,6 +463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 10
+  isPlaying: 0
 --- !u!114 &334294987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3610,7 +3611,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147752696646212}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -17.43, y: -6.11, z: -5.6689353}
+  m_LocalPosition: {x: -17.43, y: -7.07, z: -5.6689353}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:

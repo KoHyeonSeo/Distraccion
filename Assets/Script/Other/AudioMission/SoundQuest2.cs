@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class SoundQuest2 : MonoBehaviour
 {
-    [SerializeField] private Mic mic;
+    public Mic mic;
 
     public int curGround;
     public List<GameObject> MovingBlocks = new List<GameObject>();
     private List<Vector3> firstPosition = new List<Vector3>();
-
     
     private void Start()
     {
@@ -21,7 +20,11 @@ public class SoundQuest2 : MonoBehaviour
     }
     private void Update()
     {
+
         if (curGround < transform.childCount)
-            transform.GetChild(curGround).transform.position = firstPosition[curGround] + new Vector3(0, mic.rmsValue / 5, 0);
+        {
+            transform.GetChild(curGround).transform.position = firstPosition[curGround] + new Vector3(0, mic.rmsValue / 10, 0);
+        }
+
     }
 }

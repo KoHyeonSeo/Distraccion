@@ -11,10 +11,14 @@ public class SoundQuest1 : MonoBehaviour
     private int curGround = 0;
     private PlayerInput input;
     private List<Vector3> firstPosition = new List<Vector3>();
+    private MiddleStagePlayerMove playerMove;
     private void Start()
     {
-        if(GameManager.Instance.playerGameobject)
-            input = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();  
+        if (GameManager.Instance.playerGameobject)
+        {
+            playerMove = GameManager.Instance.playerGameobject.GetComponent<MiddleStagePlayerMove>();
+            input = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
+        }
         for(int i = 0; i < transform.childCount; i++)
         {
             firstPosition.Add(transform.GetChild(i).position);
@@ -25,8 +29,19 @@ public class SoundQuest1 : MonoBehaviour
         if(!input)
             input = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
 
+        if (!playerMove)
+        {
+            playerMove = GameManager.Instance.playerGameobject.GetComponent<MiddleStagePlayerMove>();
+        }
+
         if (curGround < transform.childCount)
+        {
             transform.GetChild(curGround).transform.position = firstPosition[curGround] + new Vector3(0, mic.rmsValue / 10, 0);
+            playerMove.isPlaying = false;
+        }
+        else
+            playerMove.isPlaying = true;
+
         if (input.EnterKey)
         {
             curGround = curGround + 1 > transform.childCount ? curGround : curGround + 1;

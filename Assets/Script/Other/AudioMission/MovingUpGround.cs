@@ -13,6 +13,7 @@ public class MovingUpGround : MonoBehaviour
             {
                 if (soundQuest2.MovingBlocks[i] == gameObject)
                 {
+                    soundQuest2.mic.rmsValue = 0;
                     soundQuest2.curGround = i;
                 }
             }
