@@ -10,11 +10,13 @@ public class TextUI : MonoBehaviour
     [SerializeField] private List<GameObject> talkingPeople = new List<GameObject>();
     [SerializeField] private float waitTime = 2;
     [SerializeField] private float tTime = 0.5f;
+    [SerializeField] private GameObject AfterQuest;
 
     private MiddleStagePlayerMove playerMove;
     private List<Text> texts = new List<Text>();
     private float curTime = 0;
     public bool isEnd = false;
+    public bool playerControl = true;
     private void Awake()
     {
         for(int i = 0; i < talkingPeople.Count; i++)
@@ -36,7 +38,8 @@ public class TextUI : MonoBehaviour
         {
             playerMove = GameManager.Instance.playerGameobject.GetComponent<MiddleStagePlayerMove>();
         }
-        playerMove.isPlaying = false;
+        if(playerControl)
+            playerMove.isPlaying = false;
         StartCoroutine("Texting");
     }
     IEnumerator Texting()
@@ -82,6 +85,11 @@ public class TextUI : MonoBehaviour
         }
         transform.GetChild(0).gameObject.SetActive(false);
         isEnd = true;
-        playerMove.isPlaying = true;
+        if(playerControl)
+            playerMove.isPlaying = true;
+        if (AfterQuest)
+        {
+            AfterQuest.GetComponent<Quest1EndingQuest>().isPlaying = true;
+        }
     }
 }

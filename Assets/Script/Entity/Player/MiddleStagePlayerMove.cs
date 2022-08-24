@@ -65,6 +65,7 @@ public class MiddleStagePlayerMove : MonoBehaviour
             transform.localScale = local;
 
         }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
