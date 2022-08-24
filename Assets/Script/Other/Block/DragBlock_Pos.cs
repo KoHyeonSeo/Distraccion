@@ -25,34 +25,8 @@ public class DragBlock_Pos : MonoBehaviour
 
     private void Start()
     {
-        //// 오브젝트 처음 위치
+        // 오브젝트 처음 위치
         firstPos = transform.position;
-        //if (moveX)
-        //{
-        //    // from 블럭과의 거리
-        //    d1 = Mathf.Abs(transform.position.x - from.transform.position.x) - (from.lossyScale.x / 2) - (transform.lossyScale.x /2);
-        //    // to 블럭과의 거리
-        //    d2 = Mathf.Abs(transform.position.x - to.transform.position.x) - (to.lossyScale.x / 2) - (transform.lossyScale.x / 2);
-        //}
-
-        //else if (moveY)
-        //{
-        //    // from 블럭과의 거리
-        //    d1 = Mathf.Abs(transform.position.y - from.transform.position.y) - (from.lossyScale.y / 2) - (transform.lossyScale.y / 2);
-        //    // to 블럭과의 거리
-        //    d2 = Mathf.Abs(transform.position.y - to.transform.position.y) - (to.lossyScale.y / 2) - (transform.lossyScale.y / 2);
-        //}
-
-        //else if (moveZ)
-        //{
-        //    // from 블럭과의 거리
-        //    d1 = Mathf.Abs(transform.position.z - from.transform.position.z) - (from.lossyScale.z / 2) - (transform.lossyScale.z / 2);
-        //    // to 블럭과의 거리
-        //    d2 = Mathf.Abs(transform.position.z - to.transform.position.z) - (to.lossyScale.z / 2) - (transform.lossyScale.z / 2);
-
-        //    print(d1);
-        //    print(d2);
-        //}
     }
 
     /// <summary>
