@@ -29,11 +29,11 @@ public class PlayerMove : MonoBehaviour
     public List<Vector3> findPathPos = new List<Vector3>();
 
     private PlayerInput playerInput;
-    public bool isCheck = false;
+    public bool isCheck = false;  // 노드 한 번 선택
     private bool noWay = false;
 
     Scene scene;
-    Animator anim;
+    public Animator anim;
     public TwistBlock twist;
     public Cursor cursor;
     public List<bool> isTrickVisited;
@@ -82,7 +82,6 @@ public class PlayerMove : MonoBehaviour
                 cursor.CursorClick();
                 isComplete = false;
                 completeFindPath = false;
-                print(playerInput.PointBlock);
             }
             if (isCheck)
             {
@@ -132,7 +131,6 @@ public class PlayerMove : MonoBehaviour
 
                 // 길찾기
                 FindPath();
-                //isVisited = false;
             }
         }
         else if (!isCheck && isComplete)
@@ -143,7 +141,12 @@ public class PlayerMove : MonoBehaviour
         {
             anim.SetTrigger("Move");
             SimpleMove();
+            if (currentNode.name == "FallingBlock")
+            {
+                anim.SetTrigger("Idle");
+            }
         }
+        
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
         noWay = false;
@@ -167,9 +170,6 @@ public class PlayerMove : MonoBehaviour
         }
         if (findPath.Count - 1 > idx)
         {
-            ratio += 3 * Time.deltaTime;
-            // 모든 거리를 일정한 시간으로 이동하도록 설정
-            transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
             Vector3 playerDir = findPathPos[idx + 1] - findPathPos[idx];
             // 평지인 경우만 회전
             if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
@@ -180,13 +180,24 @@ public class PlayerMove : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
                 {
-                    //hitCount++;
                     Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-                    transform.position = hit.transform.position + hit.transform.forward;// + hit.normal * 0.1f;
-                    //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal;
+                    transform.position = hit.transform.position + hit.transform.forward;
                     transform.up = hit.transform.forward;
                 }
             }
+
+            // fallingblock에서는 회전만 하고 이동은 하지 않는다.
+            if (findPath[idx].name == "FallingBlock")
+            {
+                currentNode.GetComponent<FallingBlock>().onFallingBlock = true;
+            }
+            else
+            {
+                ratio += 3 * Time.deltaTime;
+                // 모든 거리를 일정한 시간으로 이동하도록 설정
+                transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
+            }
+
 
 
             if (ratio >= 1)
