@@ -13,20 +13,22 @@ public class DragBlock_Pos : MonoBehaviour
     // 유니티 좌표계 방향대로 from블록, to블록 선택
     public bool moveX = false;
     public bool moveY = false;  
-    public bool moveZ = false;  
+    public bool moveZ = false;
+    [Space]
+    public bool isDrag;
 
     Vector3 mousePosition;
     Vector3 firstPos;
     float mx;
-    float my;
     float mz;
-    float d1;
-    float d2;
 
-    private void Start()
+    private void Update()
     {
-        // 오브젝트 처음 위치
-        firstPos = transform.position;
+        isDrag = false;
+        if(Input.GetMouseButtonDown(0))
+        {
+            firstPos = Input.mousePosition;
+        }
     }
 
     /// <summary>
@@ -36,28 +38,24 @@ public class DragBlock_Pos : MonoBehaviour
     /// </summary>
     private void OnMouseDrag()
     {
+        isDrag = true;
         float distanceToScreen = Camera.main.WorldToScreenPoint(transform.position).z;
         // 마우스 좌표 받아오기
         mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen);
         if (moveX)
         {
-            print("x11111111");
             float worldX = Camera.main.ScreenToWorldPoint(mousePosition).x;
-            print("x22222222");
             mx = Mathf.Clamp(worldX , from.x, to.x);
-            print("x33333333");
             transform.position = new Vector3(mx, firstPos.y, firstPos.z);
-            print("x44444444");
         }
         else if (moveY)
         {
             print("11111111");
             float worldY = Camera.main.ScreenToWorldPoint(mousePosition).y;
             print("22222222");
-            my = Mathf.Clamp(worldY, from.y, to.y);
-            print(my);
+            //my = Mathf.Clamp(worldY, from.y, to.y);
             print("33333333");
-            transform.position = new Vector3(firstPos.x, my, firstPos.z);
+            transform.position = new Vector3(firstPos.x, worldY, firstPos.z);
             print("44444444");
         }
         else if (moveZ)
