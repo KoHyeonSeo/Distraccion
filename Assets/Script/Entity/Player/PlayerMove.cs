@@ -52,6 +52,7 @@ public class PlayerMove : MonoBehaviour
     void LateUpdate()
     {
         RayCastDown();
+        //print(playerInput.PointBlock);
         // 사용자 노드 클릭시(Fire2) 초기화
         if (playerInput.MoveKey)
         {
@@ -81,6 +82,7 @@ public class PlayerMove : MonoBehaviour
                 cursor.CursorClick();
                 isComplete = false;
                 completeFindPath = false;
+                print(playerInput.PointBlock);
             }
             if (isCheck)
             {
@@ -137,19 +139,11 @@ public class PlayerMove : MonoBehaviour
         {
             anim.SetTrigger("Idle");
         }
-        // PlayerMove
-        //if (scene.name == "Stage3")
-        //{
-        //    SimpleMove_Stage3();
-        //}
-        //else
-        //{
         if (completeFindPath)
         {
             anim.SetTrigger("Move");
             SimpleMove();
         }
-        //}
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
         noWay = false;
@@ -418,12 +412,11 @@ public class PlayerMove : MonoBehaviour
         if (currentNode.tag == "Move")
         {
             // 플레이어를 그 자식으로 넣는다.
-            transform.parent = currentNode.parent;
+            transform.parent = currentNode;
         }
         else
         {
             transform.parent = null;
-
         }
     }
 
