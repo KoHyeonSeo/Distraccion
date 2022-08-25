@@ -18,13 +18,11 @@ public class Story1Player : MonoBehaviour
         curTime += Time.deltaTime;
         if (curTime >= kneeTime && curTime < idleBackTime)
         {
-            Debug.Log("Knee");
             animator.ResetTrigger("Idle");
             animator.SetTrigger("Knee");
         }
         else
         {
-            Debug.Log("Idle");
             animator.SetTrigger("Idle");
         }
     }
