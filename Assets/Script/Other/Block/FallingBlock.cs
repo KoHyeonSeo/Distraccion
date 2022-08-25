@@ -5,21 +5,31 @@ using UnityEngine;
 public class FallingBlock : MonoBehaviour
 {
     int fallNum;  // 떨어져야하는 블록 수
+    bool isOnce = false;  // 코루틴 한번만 재생하도록 제어하는 변수
+    public bool onFallingBlock = false;  // 플레이어가 FallingBlock에서 회전만 했을 경우 true가 되는 변수
     PlayerMove player;
-    public bool onBlock = false;
-    
 
     void Start()
     {
         player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
         fallNum = transform.childCount;
-        StartCoroutine("FallingStart");
     }
-    void Update()
+    void LateUpdate()
     {
-        if (player.currentNode == gameObject)
+        if (player.currentNode.name == transform.name && !isOnce)
         {
-            onBlock = true;
+            print("CurrentNode!!!!!!!");
+            // 플레이어가 찾은 Path 리스트에서 FallingBlock 이후 요소를 모두 지운다.
+            int idx = player.findPath.IndexOf(transform.GetComponent<Node>());
+            player.findPath.RemoveRange(idx+1, player.findPath.Count-(idx+2));
+            if (onFallingBlock)
+            {
+                player.anim.SetTrigger("Idle");
+                print("idle");
+            }
+            StartCoroutine("FallingStart");
+            isOnce = true;
+            print("22222222");
         }
     }
 
@@ -30,15 +40,17 @@ public class FallingBlock : MonoBehaviour
     /// </summary>
     IEnumerator FallingStart()
     {
-        yield return new WaitForSeconds(1);
-
-        if (onBlock)
+        yield return new WaitForSeconds(0.1f);
+        for (int i = 0; i < fallNum; i++)
         {
-            for (int i = 0; i < fallNum; i++)
-            {
-                transform.GetChild(i).GetComponent<Rigidbody>().useGravity = true;
-                yield return new WaitForSeconds(1);
-            }
+            transform.GetChild(i).GetComponent<Rigidbody>().useGravity = true;
+            yield return new WaitForSeconds(0.1f);
         }
+    }    
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1);
     }
 }
+
