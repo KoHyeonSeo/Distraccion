@@ -158,7 +158,7 @@
     - 나중에 시간 남으면 외부에서 twist block을 만들어서 시도 해볼까
 - (피리 부는 부분 그 노랫소리 어떻게 해야할 지 생각) - 시간남으면 논의
 - <b>고현서</b>
-    - Middle Secret Stage 완성(Stage 2개)
+    - Middle Secret Stage 완성(Stage 2개) V
     - 씨네머신 (Twist Block을 사용하여 꿈을 펼치기)
         - Stage 0 이전의 Starting Story 씨네머신
     - 각자 Stage에 문양 넣는거 구현
