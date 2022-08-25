@@ -23,9 +23,10 @@ public class Cursor : MonoBehaviour
     {
         if (!player)
         {
+            print("player not found");
             player = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
         }
-    }
+    }   
     public void CursorClick()
     {
         rect.transform.position = player.MousePosition;

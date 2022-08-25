@@ -33,7 +33,6 @@ public class PlayerMove : MonoBehaviour
     private bool noWay = false;
 
     Scene scene;
-    MovingGround archB;
     Animator anim;
     public TwistBlock twist;
     public Cursor cursor;
@@ -47,11 +46,6 @@ public class PlayerMove : MonoBehaviour
         if (scene.name == "Stage2")
         {
             gameObject.layer = LayerMask.NameToLayer("Default");
-        }
-        if (scene.name == "Stage3")
-        {
-            archB = GetComponent<MovingGround>();
-            archB.enabled = false;
         }
     }
 
@@ -214,9 +208,6 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-
-
-
         // 이동한 노드 색 초기화
         if (matChange)
         {
@@ -233,160 +224,6 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
-    void SimpleMove_Stage3()
-    {
-        if (playerInput.MoveKey)
-        {
-            anim.SetTrigger("Move");
-        }
-        if (findPath.Count - 1 > idx)
-        {
-            if (archB.enabled == true)
-            {
-
-            }
-            else if (findPath[idx].CompareTag("Twist") && findPath[idx + 1].CompareTag("Twist"))
-            {
-                //if (archB.enabled) print("11111");
-                transform.position = findPathPos[idx + 1] + new Vector3(0, 0.5f, 0);
-                idx++;
-                if (currentNode == targetNode)
-                {
-                    print("*******");
-                    anim.SetTrigger("Idle");
-                }
-            }
-            else
-            {
-                //if (archB.enabled) print("22222222");
-                // Lerp 이동
-                if (findPath[idx + 1].CompareTag("Arch"))
-                {
-                    archB.enabled = true;
-                    findPath.RemoveAt(idx + 1);
-                    if (currentNode == targetNode)
-                    {
-                        print("*******");
-                        anim.SetTrigger("Idle");
-                    }
-                }
-                else
-                {
-                    ratio += playerMoveSpeed * Time.deltaTime;
-                    transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
-                    if (currentNode == targetNode)
-                    {
-                        print("*******");
-                        anim.SetTrigger("Idle");
-                    }
-                    if (ratio >= 1)
-                    {
-                        idx++;
-                        ratio = 0;
-                    }
-                }
-            }
-
-            // 회전
-            if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick") && !archB.enabled)
-            {
-                if (archB.enabled) print("3333333333");
-                playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
-                playerDir.y = 0;
-                transform.forward = playerDir;
-                archB.enabled = false;
-
-                // Arch Bezier 이동
-                //RaycastHit hit;
-                //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Arch"))
-            }
-
-            // Twist 안 된 경우
-            //if(!twist.isTwist)
-            //{
-            //    transform.position += transform.right;
-
-            //}
-            //else
-            //{
-
-            //}
-
-        }
-        //// 찾은 길 인덱스를 통해 순회
-        //if (findPath.Count - 2 > idx)
-        //{
-        //   // Twist 이동 방식
-        //    if (findPath[idx].CompareTag("Twist") && findPath[idx +1].CompareTag("Twist"))
-        //    {
-        //        //if (idx >= findPath.Count - 2)
-        //        //    goto CONTINUE;
-        //        transform.position = findPathPos[idx + 1];
-        //        idx++;
-        //    }
-        //    // Node 이동 방식
-        //    else
-        //    {
-        //        ratio += 3 * Time.deltaTime;
-        //        transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
-        //        if (ratio >= 1)
-        //        {
-        //            idx++;
-        //            ratio = 0;
-        //        }
-        //    }
-        //    // 회전(trick노드 제외)
-        //    if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
-        //    {
-        //        playerDir = (idx == 0) ? findPathPos[idx + 1] - findPathPos[idx] : findPathPos[idx] - findPathPos[idx - 1];
-        //        playerDir.y = 0;
-        //        transform.forward = playerDir;  // 플레이어의 앞방향 : 현재 찾은 노드 위치 -> 다음 찾은 노드 위치
-
-        //        // 플레이어 아래방향으로 ray쏘았을 때 Twist / Arch 노드일 경우
-        //        RaycastHit hit;
-        //        if (Physics.Raycast(transform.position, -transform.up, out hit, 5) && hit.collider.CompareTag("Arch"))
-        //        {
-
-        //            //Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-        //            //transform.position = hit.transform.position + transform.up;
-        //            //transform.up = hit.normal;
-        //            //StartCoroutine(Arch());
-        //        }
-        //        //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
-        //        //{
-        //        //    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-        //        //    transform.position = hit.transform.position + hit.transform.forward;
-        //        //    transform.up = hit.transform.forward;
-        //        //}
-        //    }
-        //}
-        /* else
-         {
-
-             transform.position = findPathPos[idx] + findPath[idx].transform.forward;
-             transform.up = findPath[idx].transform.forward;
-         }*/
-
-        //CONTINUE:
-
-        // 이동한 노드 색 초기화
-        if (matChange)
-        {
-            for (int i = 0; i < findPath.Count; i++)
-            {
-                if (findPath[idx].name.Contains("Button"))
-                {
-                    findPath[idx].GetComponent<MeshRenderer>().material = mat_button;
-                }
-                else
-                {
-                    findPath[idx].GetComponent<MeshRenderer>().material = mat;
-                }
-            }
-        }
-    }
-
 
     private bool completeFindPath = false;
     // 길찾기
@@ -526,7 +363,7 @@ public class PlayerMove : MonoBehaviour
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        //Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
+        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {
