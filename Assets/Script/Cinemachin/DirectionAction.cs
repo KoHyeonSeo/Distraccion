@@ -18,7 +18,7 @@ public class DirectionAction : MonoBehaviour
     private void Update()
     {
         //재생시간이 다된다면
-        if (pd.time >= pd.duration)
+        if (pd.duration - pd.time <= 0.05f)
         {
             SceneManager.LoadScene(nextStage);
         }
