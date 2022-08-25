@@ -4744,7 +4744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endingText: {fileID: 723875423}
-  nextStage: 4
+  nextStage: 6
 --- !u!1 &1773625882
 GameObject:
   m_ObjectHideFlags: 0
