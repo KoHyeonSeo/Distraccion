@@ -4395,6 +4395,7 @@ MonoBehaviour:
   isCheck: 0
   twist: {fileID: 0}
   cursor: {fileID: 957503010}
+  isTrickVisited: 
   matChange: 0
   mat: {fileID: 2100000, guid: 90191cf24fd66574ca5453d02f621769, type: 2}
   mat_button: {fileID: 2100000, guid: 5b75b0f19967d43469b5dd8857fb3f05, type: 2}
@@ -4694,6 +4695,7 @@ MonoBehaviour:
   fadeOutSpeed: 0.5
   buttonSpeed: 1
   buttonOutSpeed: 0.8
+  afterUI: 1
 --- !u!114 &881668007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5545,6 +5547,7 @@ MonoBehaviour:
   isCheck: 0
   twist: {fileID: 0}
   cursor: {fileID: 0}
+  isTrickVisited: 
   matChange: 0
   mat: {fileID: 2100000, guid: 90191cf24fd66574ca5453d02f621769, type: 2}
   mat_button: {fileID: 2100000, guid: 5b75b0f19967d43469b5dd8857fb3f05, type: 2}
@@ -7280,7 +7283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5577829840489107323, guid: 274b0c808d986684da7c3062fc819cc7, type: 3}
       propertyPath: nextStage
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 274b0c808d986684da7c3062fc819cc7, type: 3}

@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endingText: {fileID: 897375948}
-  nextStage: 6
+  nextStage: 8
 --- !u!1001 &373685861
 PrefabInstance:
   m_ObjectHideFlags: 0
