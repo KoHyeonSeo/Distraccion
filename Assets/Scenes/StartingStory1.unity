@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 697dcc1a69e1a2c4ea5db483875ede85, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.19094342, g: 0.1429922, b: 0.15306157, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -650,7 +650,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276060626}
-  m_LocalRotation: {x: 0, y: 0.7926622, z: 0, w: 0.6096611}
+  m_LocalRotation: {x: 0, y: 0.6025117, z: 0, w: 0.79811007}
   m_LocalPosition: {x: 91.32, y: 0.98, z: 63.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3031,8 +3031,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC7AD, \uB098\uAC00\uACE0 \uC2F6\uB2C8? \uD615\uC774 \uB9D0\uD588\uC796\uC544.\n
-    \uBC16\uC740 \uB108\uBB34 \uC704\uD5D8\uD558\uB2E4\uACE0."
+  m_Text: "\uC7AD, \uB098\uAC00\uACE0 \uC2F6\uB2C8? \uD615\uC774 \uB9D0\uD588\uC796\uC544.\n\uBC16\uC740
+    \uB108\uBB34 \uC704\uD5D8\uD558\uB2E4\uACE0."
 --- !u!222 &1709979085
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3404,7 +3404,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.3087773, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
