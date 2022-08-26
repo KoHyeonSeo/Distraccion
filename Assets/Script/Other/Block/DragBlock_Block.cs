@@ -6,15 +6,15 @@ using UnityEngine.EventSystems;
 public class DragBlock_Block : MonoBehaviour
 {
     [Header("움직임 제한 블록")]
-    public Transform from;
-    public Transform to;
-    
+    public Transform min;
+    public Transform max;
+
     [Header("움직일 방향 축 선택(*하나만 선택*)")]
-    // 유니티 좌표계 방향대로 from블록, to블록 선택
+    // 유니티 좌표계 방향대로 min블록, max블록 선택
 
     public bool moveX = false;
-    public bool moveY = false;  
-    public bool moveZ = false;  
+    public bool moveY = false;
+    public bool moveZ = false;
 
     Vector3 mousePosition;
     Vector3 firstPos;
@@ -30,29 +30,27 @@ public class DragBlock_Block : MonoBehaviour
         firstPos = transform.position;
         if (moveX)
         {
-            // from 블럭과의 거리
-            d1 = Mathf.Abs(transform.position.x - from.transform.position.x) - (from.lossyScale.x / 2) - (transform.lossyScale.x /2);
-            // to 블럭과의 거리
-            d2 = Mathf.Abs(transform.position.x - to.transform.position.x) - (to.lossyScale.x / 2) - (transform.lossyScale.x / 2);
+            // min 블럭과의 거리
+            d1 = Mathf.Abs(transform.position.x - min.transform.position.x) - (min.lossyScale.x / 2) - (transform.lossyScale.x / 2);
+            // max 블럭과의 거리
+            d2 = Mathf.Abs(transform.position.x - max.transform.position.x) - (max.lossyScale.x / 2) - (transform.lossyScale.x / 2);
         }
 
         else if (moveY)
         {
-            // from 블럭과의 거리
-            d1 = Mathf.Abs(transform.position.y - from.transform.position.y) - (from.lossyScale.y / 2) - (transform.lossyScale.y / 2);
-            // to 블럭과의 거리
-            d2 = Mathf.Abs(transform.position.y - to.transform.position.y) - (to.lossyScale.y / 2) - (transform.lossyScale.y / 2);
+            // min 블럭과의 거리
+            d1 = Mathf.Abs(transform.position.y - min.transform.position.y) - (min.lossyScale.y / 2) - (transform.lossyScale.y / 2);
+            // max 블럭과의 거리
+            d2 = Mathf.Abs(transform.position.y - max.transform.position.y) - (max.lossyScale.y / 2) - (transform.lossyScale.y / 2);
         }
 
         else if (moveZ)
         {
-            // from 블럭과의 거리
-            d1 = Mathf.Abs(transform.position.z - from.transform.position.z) - (from.lossyScale.z / 2) - (transform.lossyScale.z / 2);
-            // to 블럭과의 거리
-            d2 = Mathf.Abs(transform.position.z - to.transform.position.z) - (to.lossyScale.z / 2) - (transform.lossyScale.z / 2);
+            // min 블럭과의 거리
+            d1 = Mathf.Abs(transform.position.z - min.transform.position.z) - (min.lossyScale.z / 2) - (transform.lossyScale.z / 2);
+            // max 블럭과의 거리
+            d2 = Mathf.Abs(transform.position.z - max.transform.position.z) - (max.lossyScale.z / 2) - (transform.lossyScale.z / 2);
 
-            print(d1);
-            print(d2);
         }
     }
 
@@ -63,14 +61,14 @@ public class DragBlock_Block : MonoBehaviour
     /// </summary>
     private void OnMouseDrag()
     {
-        float distanceToScreen = Camera.main.WorldToScreenPoint(transform.position).z;
+        float distancemaxScreen = Camera.main.WorldToScreenPoint(transform.position).z;
         // 마우스 좌표 받아오기
-        mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen);
+        mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distancemaxScreen);
         print(mousePosition);
         if (moveX)
         {
             float worldX = Camera.main.ScreenToWorldPoint(mousePosition).x;
-            mx = Mathf.Clamp(worldX , firstPos.x - d1, firstPos.x + d2);
+            mx = Mathf.Clamp(worldX, firstPos.x - d1, firstPos.x + d2);
             transform.position = new Vector3(mx, firstPos.y, firstPos.z);
         }
         else if (moveY)
