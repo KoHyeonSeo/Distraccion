@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28860
+  m_Name: pb_Mesh29154
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1243,11 +1243,10 @@ GameObject:
   - component: {fileID: 146986088}
   - component: {fileID: 146986087}
   - component: {fileID: 146986086}
-  - component: {fileID: 146986085}
   - component: {fileID: 146986089}
-  - component: {fileID: 146986090}
+  - component: {fileID: 146986085}
   m_Layer: 0
-  m_Name: TwinDrag
+  m_Name: nDragrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1324,7 +1323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146986084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.799995, y: 7.93, z: 5.5532074}
+  m_LocalPosition: {x: -14.819986, y: 12.993075, z: 5.5531993}
   m_LocalScale: {x: 1, y: 13.652693, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1340,35 +1339,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146986084}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag:
+  - dragBlock: {fileID: 183922061}
+    differ: 1
   moveX: 0
   moveY: 1
   moveZ: 0
   isDrag: 0
-  testMinY: 0
-  testMaxY: 0
+  testMinY: 7.88719
+  testMaxY: 15.2
   value: 0
---- !u!114 &146986090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146986084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71238740af8fa004aa28a473122bb7e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 381354747}
-  max: {fileID: 433424589}
-  moveX: 0
-  moveY: 1
-  moveZ: 0
 --- !u!1 &148140085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,7 +1618,7 @@ GameObject:
   - component: {fileID: 183922062}
   m_Layer: 0
   m_Name: TwinMove
-  m_TagString: Untagged
+  m_TagString: Move
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3937,7 +3922,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1494
+  m_Name: pb_Mesh-1536
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4124,19 +4109,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6383376
+      value: -9.636
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.0451107
+      value: 11.387907
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.29078
+      value: 1.461
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000000029802319
+      value: -0.70710576
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4144,7 +4129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: -0.70710784
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4156,7 +4141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: -270
       objectReference: {fileID: 0}
     - target: {fileID: 8299532818056550680, guid: 55698bada113b604882119e61630135e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -4170,7 +4155,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1536
+  m_Name: pb_Mesh-1578
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4448,7 +4433,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1690
+  m_Name: pb_Mesh-1732
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4743,7 +4728,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28380
+  m_Name: pb_Mesh28676
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4907,7 +4892,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1290
+  m_Name: pb_Mesh-1332
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5199,7 +5184,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1662
+  m_Name: pb_Mesh-1704
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6517,9 +6502,10 @@ GameObject:
   - component: {fileID: 551973387}
   - component: {fileID: 551973386}
   - component: {fileID: 551973390}
+  - component: {fileID: 551973391}
   m_Layer: 7
   m_Name: Cube (40)
-  m_TagString: Untagged
+  m_TagString: Move
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6618,6 +6604,18 @@ MonoBehaviour:
   hCost: 0
   fCost: 0
   parent: {fileID: 0}
+--- !u!114 &551973391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551973385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6f474e1589d9442b32d146c9a43f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &554974896
 GameObject:
   m_ObjectHideFlags: 0
@@ -6842,7 +6840,6 @@ GameObject:
   - component: {fileID: 583303055}
   - component: {fileID: 583303054}
   - component: {fileID: 583303058}
-  - component: {fileID: 583303059}
   m_Layer: 0
   m_Name: Drag4
   m_TagString: Move
@@ -6921,7 +6918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583303053}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -10.824398, y: 5.0502515, z: 0.42041397}
+  m_LocalPosition: {x: -10.824398, y: 3.168213, z: 0.42041397}
   m_LocalScale: {x: 1.0088, y: 9.984077, z: 1.0088}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6937,35 +6934,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583303053}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag: []
   moveX: 0
   moveY: 1
   moveZ: 0
   isDrag: 0
-  testMinY: 0
-  testMaxY: 0
+  testMinY: 3.168213
+  testMaxY: 5.050251
   value: 0
---- !u!114 &583303059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583303053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71238740af8fa004aa28a473122bb7e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 992329818}
-  max: {fileID: 462087792}
-  moveX: 0
-  moveY: 1
-  moveZ: 0
 --- !u!1 &602510918
 GameObject:
   m_ObjectHideFlags: 0
@@ -7592,7 +7573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668136922}
   m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -13.8199835, y: 5.1577086, z: 7.6200266}
+  m_LocalPosition: {x: -13.819983, y: 5.1577086, z: 7.6200247}
   m_LocalScale: {x: 3, y: 11.724582, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7616,7 +7597,6 @@ GameObject:
   - component: {fileID: 675707315}
   - component: {fileID: 675707319}
   - component: {fileID: 675707320}
-  - component: {fileID: 675707321}
   m_Layer: 7
   m_Name: Drag5
   m_TagString: Move
@@ -7695,7 +7675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675707314}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -8.84, y: 11.5, z: 8.553197}
+  m_LocalPosition: {x: -8.840001, y: 11.5, z: 8.553197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7731,35 +7711,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675707314}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag: []
   moveX: 0
   moveY: 1
   moveZ: 0
   isDrag: 0
-  testMinY: 0
-  testMaxY: 0
+  testMinY: 10.5
+  testMaxY: 11.5
   value: 0
---- !u!114 &675707321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675707314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71238740af8fa004aa28a473122bb7e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 1656029781}
-  max: {fileID: 1184682622}
-  moveX: 0
-  moveY: 1
-  moveZ: 0
 --- !u!1 &678912390
 GameObject:
   m_ObjectHideFlags: 0
@@ -9647,6 +9611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag: []
   moveX: 0
   moveY: 1
   moveZ: 0
@@ -10234,7 +10199,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1646
+  m_Name: pb_Mesh-1688
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11064,7 +11029,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1318
+  m_Name: pb_Mesh-1360
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11235,7 +11200,6 @@ GameObject:
   - component: {fileID: 1054015827}
   - component: {fileID: 1054015826}
   - component: {fileID: 1054015830}
-  - component: {fileID: 1054015831}
   m_Layer: 0
   m_Name: TwinDrag2
   m_TagString: Move
@@ -11314,7 +11278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054015825}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -12.614148, y: 8.217709, z: 9.553194}
+  m_LocalPosition: {x: -12.614152, y: 13.057113, z: 9.5532}
   m_LocalScale: {x: 1, y: 11.724582, z: 4.5883217}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11333,35 +11297,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054015825}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag:
+  - dragBlock: {fileID: 668136922}
+    differ: 1
   moveX: 0
   moveY: 1
   moveZ: 0
   isDrag: 0
-  testMinY: 0
-  testMaxY: 0
+  testMinY: 5.217709
+  testMaxY: 13.05711
   value: 0
---- !u!114 &1054015831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054015825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71238740af8fa004aa28a473122bb7e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 695100712}
-  max: {fileID: 1247176811}
-  moveX: 0
-  moveY: 1
-  moveZ: 0
 --- !u!1 &1073969710
 GameObject:
   m_ObjectHideFlags: 0
@@ -11392,6 +11342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag: []
   moveX: 0
   moveY: 1
   moveZ: 0
@@ -11837,7 +11788,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28474
+  m_Name: pb_Mesh28770
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12331,7 +12282,9 @@ MonoBehaviour:
   currentNode: {fileID: 0}
   checkNode: {fileID: 0}
   clickedPos: {x: 0, y: 0, z: 0}
-  trick: []
+  trick:
+  - trick1: {fileID: 551973390}
+    trick2: {fileID: 1906163249}
   openNode: []
   closeNode: []
   findPath: []
@@ -12644,7 +12597,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1676
+  m_Name: pb_Mesh-1718
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13003,7 +12956,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1588
+  m_Name: pb_Mesh-1630
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13167,7 +13120,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1276
+  m_Name: pb_Mesh-1318
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13331,7 +13284,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1304
+  m_Name: pb_Mesh-1346
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13598,7 +13551,8 @@ GameObject:
   - component: {fileID: 1333395296}
   - component: {fileID: 1333395295}
   - component: {fileID: 1333395294}
-  m_Layer: 0
+  - component: {fileID: 1333395298}
+  m_Layer: 7
   m_Name: Cube (65)
   m_TagString: Move
   m_Icon: {fileID: 0}
@@ -13683,6 +13637,22 @@ Transform:
   m_Father: {fileID: 675707318}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1333395298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333395293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf877545ed9002040bf7caca224ab77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gCost: 0
+  hCost: 0
+  fCost: 0
+  parent: {fileID: 0}
 --- !u!1 &1348307851
 GameObject:
   m_ObjectHideFlags: 0
@@ -14348,6 +14318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag: []
   moveX: 0
   moveY: 1
   moveZ: 0
@@ -14499,7 +14470,6 @@ GameObject:
   - component: {fileID: 1409916163}
   - component: {fileID: 1409916167}
   - component: {fileID: 1409916168}
-  - component: {fileID: 1409916169}
   m_Layer: 7
   m_Name: Drag3
   m_TagString: Move
@@ -14578,7 +14548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409916162}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.815598, y: 3.168213, z: -0.57958627}
+  m_LocalPosition: {x: -8.815598, y: -0.069495924, z: -0.5795858}
   m_LocalScale: {x: 1.0088, y: 9.984077, z: 1.0088}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14610,35 +14580,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409916162}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag: []
   moveX: 0
   moveY: 1
   moveZ: 0
   isDrag: 0
-  testMinY: 0
-  testMaxY: 0
+  testMinY: -0.06949592
+  testMaxY: 3.168213
   value: 0
---- !u!114 &1409916169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409916162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71238740af8fa004aa28a473122bb7e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 1080155290}
-  max: {fileID: 202699621}
-  moveX: 0
-  moveY: 1
-  moveZ: 0
 --- !u!1 &1431675231
 GameObject:
   m_ObjectHideFlags: 0
@@ -14873,7 +14827,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1632
+  m_Name: pb_Mesh-1674
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15151,7 +15105,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1618
+  m_Name: pb_Mesh-1660
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15843,7 +15797,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1574
+  m_Name: pb_Mesh-1616
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16809,9 +16763,8 @@ GameObject:
   - component: {fileID: 1616203789}
   - component: {fileID: 1616203788}
   - component: {fileID: 1616203792}
-  - component: {fileID: 1616203793}
   m_Layer: 0
-  m_Name: Drag
+  m_Name: Cube(324)
   m_TagString: Move
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16902,11 +16855,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616203787}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843eeecc42166c04c99ce98a99118d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseDrag: []
   moveX: 0
   moveY: 1
   moveZ: 0
@@ -16914,23 +16868,6 @@ MonoBehaviour:
   testMinY: 0
   testMaxY: 0
   value: 0
---- !u!114 &1616203793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616203787}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71238740af8fa004aa28a473122bb7e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 898180640}
-  max: {fileID: 1895927369}
-  moveX: 0
-  moveY: 1
-  moveZ: 0
 --- !u!1 &1618434822
 GameObject:
   m_ObjectHideFlags: 0
@@ -17276,7 +17213,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1508
+  m_Name: pb_Mesh-1550
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18154,7 +18091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765968991}
   m_LocalRotation: {x: 0.28573585, y: -0.35644984, z: 0.11547373, w: 0.882023}
-  m_LocalPosition: {x: 12.9, y: 24.03, z: -18}
+  m_LocalPosition: {x: 12.9, y: 34.4, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18168,7 +18105,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29878
+  m_Name: pb_Mesh30176
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19485,7 +19422,7 @@ GameObject:
   - component: {fileID: 1906163249}
   m_Layer: 7
   m_Name: Cube (60)
-  m_TagString: Untagged
+  m_TagString: Trick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19818,7 +19755,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1522
+  m_Name: pb_Mesh-1564
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19982,7 +19919,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1602
+  m_Name: pb_Mesh-1644
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20260,7 +20197,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29158
+  m_Name: pb_Mesh29454
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20847,7 +20784,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1482
+  m_Name: pb_Mesh-1524
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
