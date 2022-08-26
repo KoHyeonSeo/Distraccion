@@ -18,10 +18,13 @@ public class FallingBlock : MonoBehaviour
     {
         if (player.currentNode.name == transform.name && !isOnce)
         {
-            print("CurrentNode!!!!!!!");
             // 플레이어가 찾은 Path 리스트에서 FallingBlock 이후 요소를 모두 지운다.
             int idx = player.findPath.IndexOf(transform.GetComponent<Node>());
-            player.findPath.RemoveRange(idx+1, player.findPath.Count-(idx+2));
+            if(player.findPath.Count - 1 > idx)
+            {
+                player.findPath.RemoveRange(idx+1, player.findPath.Count - idx - 1);
+
+            }
             if (onFallingBlock)
             {
                 player.anim.SetTrigger("Idle");
@@ -29,7 +32,6 @@ public class FallingBlock : MonoBehaviour
             }
             StartCoroutine("FallingStart");
             isOnce = true;
-            print("22222222");
         }
     }
 

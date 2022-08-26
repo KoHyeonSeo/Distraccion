@@ -49,6 +49,8 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+
+    bool onFallingBlock = false;
     void LateUpdate()
     {
         RayCastDown();
@@ -135,16 +137,15 @@ public class PlayerMove : MonoBehaviour
         }
         else if (!isCheck && isComplete)
         {
-            anim.SetTrigger("Idle");
+            //anim.SetTrigger("Idle");
         }
         if (completeFindPath)
         {
-            anim.SetTrigger("Move");
+            //if (!onFallingBlock)
+            //{
+            //    anim.SetTrigger("Move");
+            //}
             SimpleMove();
-            if (currentNode.name == "FallingBlock")
-            {
-                anim.SetTrigger("Idle");
-            }
         }
         
         // 움직이는 블록 위 Player Hierarchy 위치 이동
@@ -164,6 +165,19 @@ public class PlayerMove : MonoBehaviour
 
     void SimpleMove()
     {
+
+        if (!onFallingBlock)
+        {
+            if (currentNode.name == "FallingBlock")
+            {
+                anim.SetTrigger("Idle");
+                onFallingBlock = true;
+            }
+        }
+
+        //if (currentNode.name == )
+
+
         if (playerInput.MoveKey)
         {
             //anim.SetTrigger("Move");
@@ -187,11 +201,11 @@ public class PlayerMove : MonoBehaviour
             }
 
             // fallingblock에서는 회전만 하고 이동은 하지 않는다.
-            if (findPath[idx].name == "FallingBlock")
-            {
-                currentNode.GetComponent<FallingBlock>().onFallingBlock = true;
-            }
-            else
+            //if (findPath[idx].name == "FallingBlock")
+            //{
+            //    currentNode.GetComponent<FallingBlock>().onFallingBlock = true;
+            //}
+            //else
             {
                 ratio += 3 * Time.deltaTime;
                 // 모든 거리를 일정한 시간으로 이동하도록 설정
@@ -362,7 +376,7 @@ public class PlayerMove : MonoBehaviour
         openNode.Sort(SortByfCost);
     }
 
-    public float rayLength = 1;
+    public float rayLength = 0.7f;
     // currNode에서 ray이용해 해당 방향 근접노드 찾기
     void AddNearOpen(Vector3 dir)
     {
