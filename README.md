@@ -153,14 +153,14 @@
     - Build Testing V
 ## <b> 베타까지 해야할 것</b>
 - <b>알파 feedback</b>
-    - 플레이어 버그
-    - 배경이 하얀색이라서 플레이어가 안보임
+    - 플레이어 버그 V
+    - 배경이 하얀색이라서 플레이어가 안보임 V
     - 나중에 시간 남으면 외부에서 twist block을 만들어서 시도 해볼까
 - (피리 부는 부분 그 노랫소리 어떻게 해야할 지 생각) - 시간남으면 논의
 - <b>고현서</b>
     - Middle Secret Stage 완성(Stage 2개) V
     - 씨네머신 (Twist Block을 사용하여 꿈을 펼치기)
-        - Stage 0 이전의 Starting Story 씨네머신
+        - Stage 0 이전의 Starting Story 씨네머신 V
     - 각자 Stage에 문양 넣는거 구현
         - Stage 0에서 노래 들리면서 위로 올라가며 문양이 그려짐 (우리 로고같은거 넣으면 좋을듯) 
             - 그려지면서 나오는 이쁜거 그거 구현 
