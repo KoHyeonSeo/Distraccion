@@ -4393,6 +4393,7 @@ MonoBehaviour:
   findPath: []
   findPathPos: []
   isCheck: 0
+  anim: {fileID: 0}
   twist: {fileID: 0}
   cursor: {fileID: 957503010}
   isTrickVisited: 
@@ -4695,7 +4696,7 @@ MonoBehaviour:
   fadeOutSpeed: 0.5
   buttonSpeed: 1
   buttonOutSpeed: 0.8
-  afterUI: 1
+  afterUI: 0
 --- !u!114 &881668007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5545,6 +5546,7 @@ MonoBehaviour:
   findPath: []
   findPathPos: []
   isCheck: 0
+  anim: {fileID: 0}
   twist: {fileID: 0}
   cursor: {fileID: 0}
   isTrickVisited: 
