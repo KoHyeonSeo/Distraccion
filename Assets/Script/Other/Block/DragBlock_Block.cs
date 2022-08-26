@@ -64,7 +64,7 @@ public class DragBlock_Block : MonoBehaviour
         float distancemaxScreen = Camera.main.WorldToScreenPoint(transform.position).z;
         // 마우스 좌표 받아오기
         mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distancemaxScreen);
-        print(mousePosition);
+        //print(mousePosition);
         if (moveX)
         {
             float worldX = Camera.main.ScreenToWorldPoint(mousePosition).x;
