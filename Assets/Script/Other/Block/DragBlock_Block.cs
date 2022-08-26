@@ -8,13 +8,13 @@ public class DragBlock_Block : MonoBehaviour
     [Header("움직임 제한 블록")]
     public Transform min;
     public Transform max;
-    
+
     [Header("움직일 방향 축 선택(*하나만 선택*)")]
     // 유니티 좌표계 방향대로 min블록, max블록 선택
 
     public bool moveX = false;
-    public bool moveY = false;  
-    public bool moveZ = false;  
+    public bool moveY = false;
+    public bool moveZ = false;
 
     Vector3 mousePosition;
     Vector3 firstPos;
@@ -31,7 +31,7 @@ public class DragBlock_Block : MonoBehaviour
         if (moveX)
         {
             // min 블럭과의 거리
-            d1 = Mathf.Abs(transform.position.x - min.transform.position.x) - (min.lossyScale.x / 2) - (transform.lossyScale.x /2);
+            d1 = Mathf.Abs(transform.position.x - min.transform.position.x) - (min.lossyScale.x / 2) - (transform.lossyScale.x / 2);
             // max 블럭과의 거리
             d2 = Mathf.Abs(transform.position.x - max.transform.position.x) - (max.lossyScale.x / 2) - (transform.lossyScale.x / 2);
         }
@@ -51,8 +51,6 @@ public class DragBlock_Block : MonoBehaviour
             // max 블럭과의 거리
             d2 = Mathf.Abs(transform.position.z - max.transform.position.z) - (max.lossyScale.z / 2) - (transform.lossyScale.z / 2);
 
-            print(d1);
-            print(d2);
         }
     }
 
@@ -70,7 +68,7 @@ public class DragBlock_Block : MonoBehaviour
         if (moveX)
         {
             float worldX = Camera.main.ScreenToWorldPoint(mousePosition).x;
-            mx = Mathf.Clamp(worldX , firstPos.x - d1, firstPos.x + d2);
+            mx = Mathf.Clamp(worldX, firstPos.x - d1, firstPos.x + d2);
             transform.position = new Vector3(mx, firstPos.y, firstPos.z);
         }
         else if (moveY)
