@@ -30,7 +30,8 @@ public class CameraControl : MonoBehaviour
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
-        player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        if (GameManager.Instance.playerGameobject)
+            player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
         cam = GetComponent<Camera>();
         if (scene.name == "Stage3")
         {

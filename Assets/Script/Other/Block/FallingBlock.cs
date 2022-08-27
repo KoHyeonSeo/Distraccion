@@ -12,7 +12,8 @@ public class FallingBlock : MonoBehaviour
 
     void Start()
     {
-        player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        if(GameManager.Instance.playerGameobject)
+            player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
         fallNum = transform.childCount;
         blockFallSound = GetComponent<AudioSource>();
     }
