@@ -33,6 +33,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage3.unity
     guid: 02e00a1c2c6185b40bfbed2a88e0f4b4
   - enabled: 1
+    path: Assets/Scenes/EndingStory1.unity
+    guid: 3fd2504cf0def19488310ff1072921f6
+  - enabled: 1
+    path: Assets/Scenes/EndingStory2.unity
+    guid: 6f5a190401b15ba4693cdc8941d5d355
+  - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: affb3cd1bf3984845b9e4d9c9fd05428
   m_configObjects: {}
