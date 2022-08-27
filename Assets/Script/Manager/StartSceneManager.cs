@@ -74,7 +74,7 @@ public class StartSceneManager : MonoBehaviour
     public void OnClickExplore()
     {
         Debug.Log("Explore");
-        SceneManager.LoadScene("Stage0");
+        SceneManager.LoadScene(1);
     }
 
     public void OnClickCredits()
