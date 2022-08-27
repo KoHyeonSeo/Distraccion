@@ -31,7 +31,7 @@ public class Cursor : MonoBehaviour
     {
         rect.transform.position = player.MousePosition;
         anim.SetTrigger("Click");
-        print("Click");
+        print("Cursor Click");
     }
 }
 

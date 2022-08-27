@@ -29,6 +29,11 @@ public class CameraControl : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+
+        if (scene.name == "Stage3")
+        {
+            //transform.position = new Vector3(12.9f, 24.7f, -18);
+        }
     }
 
     private void Update()
@@ -49,7 +54,6 @@ public class CameraControl : MonoBehaviour
         // Stage3에서 플레이어가 특정 지점에 도착하면 Camera y position 조절
         if (player.currentNode.name == "CameraUp" && scene.name == "Stage3" /*&& !upOnce*/)
         {
-            print("UP!!!!");
             StartCoroutine("CamUp");
         }
 

@@ -142,9 +142,11 @@ public class PlayerMove : MonoBehaviour
         }
         if (completeFindPath)
         {
+            print("completeFindPath");
             if (!onFallingBlock)
             {
                 anim.SetTrigger("Move");
+                print("Move");
             }
             SimpleMove();
         }
@@ -326,12 +328,11 @@ public class PlayerMove : MonoBehaviour
         AddNearOpen(Vector3.down - transform.right);
         // 아래우
         AddNearOpen(Vector3.down + transform.forward);
-        // Stage3의 경우 아치형노드가 있어 추가 노드 검사 실행
         if (scene.name == "Stage3")
         {
-            AddNearOpen(transform.right + new Vector3(0, 0.5f, 0));
-            AddNearOpen(-transform.right + new Vector3(0, 0.5f, 0));
+            AddNearOpen(Vector3.up);
         }
+        
 
         // trick 부분 연결
         if (currNode.gameObject.CompareTag("Trick"))
@@ -364,13 +365,13 @@ public class PlayerMove : MonoBehaviour
         openNode.Sort(SortByfCost);
     }
 
-    public float rayLength = 0.7f;
+    public float rayLength = 1f;
     // currNode에서 ray이용해 해당 방향 근접노드 찾기
     void AddNearOpen(Vector3 dir)
     {
         Ray ray = new Ray(currNode.transform.position, dir);
         RaycastHit hit;
-        Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
+        //Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {
