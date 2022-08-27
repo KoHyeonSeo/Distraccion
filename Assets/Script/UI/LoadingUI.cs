@@ -59,11 +59,11 @@ public class LoadingUI : MonoBehaviour
             isClicked = false;
             isOnce = false;
             // Stage3 Start Script È°¼ºÈ­
-            if (scene.name == "(Legacy)Stage3")
-            {
-                Stage3Start stage3 = GameObject.Find("Map").GetComponent<Stage3Start>();
-                stage3.enabled = true;
-            }
+            //if (scene.name == "(Legacy)Stage3")
+            //{
+            //    Stage3Start stage3 = GameObject.Find("Map").GetComponent<Stage3Start>();
+            //    stage3.enabled = true;
+            //}
             if (afterUI)
             {
                 UIManager.Instance.TextUIStarting();
