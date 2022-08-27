@@ -22,25 +22,32 @@ public class CameraControl : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
-        scene = SceneManager.GetActiveScene();
+        
     }
+
+    private void Start()
+    {
+        scene = SceneManager.GetActiveScene();
+        player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+    }
+
+    private void Update()
+    {
+        if (!player) 
+        {
+            player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        }
+    }
+
 
     void LateUpdate()
     {
-        //print($"1 : {player.currentNode.name == "CameraUp"}");
-        //print($"2 : {scene.name == "Stage3"}");
-        //print($"3 : {upOnce}");
-
         // Stage3에서 플레이어가 특정 지점에 도착하면 Camera y position 조절
         if (player.currentNode.name == "CameraUp" && scene.name == "Stage3" /*&& !upOnce*/)
         {
             print("UP!!!!");
             StartCoroutine("CamUp");
-            //upOnce = true;
-            
         }
-
 
 
         //Zoom();
@@ -91,11 +98,18 @@ public class CameraControl : MonoBehaviour
         transform.rotation = Quaternion.Euler(startRotation.x, startRotation.y, startRotation.z);
     }
 
+    public float upSpeed = 2;
     IEnumerator CamUp()
     {
-        Vector3 upPos = new Vector3(transform.position.x, 39.4f, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, upPos, Time.deltaTime*7);
+        float y = transform.position.y;
 
-        yield return new WaitForSeconds(1);
+        while (y < 39.4f)
+        {
+            y += Time.deltaTime * upSpeed;
+            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            yield return null;
+            //transform.position = Vector3.Lerp(transform.position, upPos, Time.deltaTime);
+        }
+        transform.position = new Vector3(transform.position.x, 39.4f, transform.position.z);
     }
 }
