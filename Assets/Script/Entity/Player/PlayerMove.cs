@@ -239,14 +239,14 @@ public class PlayerMove : MonoBehaviour
     // 길찾기
     void FindPath()
     {
-        //print($"1: {openNode.Count}, {openNode[0]}");  // 출발노드
+        print($"1: {openNode.Count}, {openNode[0]}");  // 출발노드
         // 중심노드 & 근접노드 찾기
         FindNear();
-        //print($"2 : {openNode.Count}, {openNode[0]}");//,{openNode[1]}");  // 출발노드 + 이웃노드
+        print($"2 : {openNode.Count}, {openNode[0]}");//,{openNode[1]}");  // 출발노드 + 이웃노드
         // 중심Node => ClosedList
         openNode.Remove(currNode);
         closeNode.Add(currNode);
-        //print($"3 : {openNode.Count}");//, {openNode[0]}");  // 이웃노드 중 fCost가 가장 작은 노드 (출발노드 => close)
+        print($"3 : {openNode.Count}, {openNode[0]}");  // 이웃노드 중 fCost가 가장 작은 노드 (출발노드 => close)
 
         // 갈 수 있는 길이 없는 경우
         if (openNode.Count <= 0)
@@ -285,6 +285,11 @@ public class PlayerMove : MonoBehaviour
                     else if (Node.gameObject.name.Contains("Button"))
                     {
                         findPathPos.Insert(0, Node.transform.position + new Vector3(0, 0.3f, 0));
+                    }
+                    else if (Node.gameObject.name.Contains("Final"))
+                    {
+                        print("Final Position");
+                        findPathPos.Insert(0, Node.transform.position + new Vector3(0, 0.463f, 0));
                     }
                     else
                     {
@@ -329,9 +334,12 @@ public class PlayerMove : MonoBehaviour
         AddNearOpen(Vector3.down - transform.right);
         // 아래우
         AddNearOpen(Vector3.down + transform.forward);
+        // Stage3만 추가 노드 검사
         if (scene.name == "Stage3")
         {
             AddNearOpen(Vector3.up);
+            AddNearOpen(transform.right + new Vector3(0, 0.5f, 0));
+            AddNearOpen(-transform.right + new Vector3(0, 0.5f, 0));
         }
         
 
@@ -376,6 +384,7 @@ public class PlayerMove : MonoBehaviour
         int layer = 1 << LayerMask.NameToLayer("Node");
         if (Physics.Raycast(ray, out hit, rayLength, layer))
         {
+            Debug.DrawRay(currNode.transform.position, dir, Color.blue, 30, false);
             Debug.DrawLine(currNode.transform.position, hit.point, Color.red, 200, false);  // 충돌한 지점까지의 Ray선 
             Node Node = hit.transform.GetComponent<Node>();
             Node.SetCost(startNode.transform.position, targetNode.transform.position);

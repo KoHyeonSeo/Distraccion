@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stage3Button : MonoBehaviour
 {
     [SerializeField] private float buttonTime = 0.5f;
+    [SerializeField] private float buttonDown = -0.1f;
     [SerializeField] private AudioClip audioClip;
     private bool isOnce = false;
     private float curTime = 0;
@@ -39,7 +40,7 @@ public class Stage3Button : MonoBehaviour
         while (curTime < buttonTime)
         {
             curTime += Time.deltaTime;
-            transform.position += new Vector3(0, -0.5f, 0) * Time.deltaTime;
+            transform.position += new Vector3(0, buttonDown, 0) * Time.deltaTime;
             yield return null;
         }
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
