@@ -16,7 +16,9 @@ public class CameraControl : MonoBehaviour
     public static CameraControl Instance;
     PlayerMove player;
     Scene scene;
-    bool upOnce = false;
+    public bool camUp2;
+    Camera cam;
+    //bool upOnce = false;
 
 
     private void Awake()
@@ -29,7 +31,7 @@ public class CameraControl : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
-
+        cam = GetComponent<Camera>();
         if (scene.name == "Stage3")
         {
             //transform.position = new Vector3(12.9f, 24.7f, -18);
@@ -56,7 +58,13 @@ public class CameraControl : MonoBehaviour
         {
             StartCoroutine("CamUp");
         }
-
+        // Stage3 버튼 눌리고 난 뒤 Camup2 실행
+        if (camUp2)
+        {
+            Vector3 pos = new Vector3(transform.position.x, 50, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime*2);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 3.5f, Time.deltaTime * 2);
+        }
 
         //Zoom();
     }
@@ -116,8 +124,25 @@ public class CameraControl : MonoBehaviour
             y += Time.deltaTime * upSpeed;
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
             yield return null;
-            //transform.position = Vector3.Lerp(transform.position, upPos, Time.deltaTime);
         }
         transform.position = new Vector3(transform.position.x, 39.4f, transform.position.z);
     }
+    //IEnumerator CamUp2()
+    //{
+    //    float y = transform.position.y;
+
+    //    while (y < 49.61f)
+    //    {
+    //        y += Time.deltaTime * upSpeed;
+    //        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+    //        yield return null;
+    //    }
+    //    transform.position = new Vector3(transform.position.x, 49.61f, transform.position.z);
+
+    //    float size = cam.orthographicSize;
+    //    while (size < 5.1f)
+    //    {
+            
+    //    }
+    //}
 }
