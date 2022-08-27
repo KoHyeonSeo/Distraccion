@@ -139,17 +139,22 @@ public class PlayerMove : MonoBehaviour
         else if (!isCheck && isComplete)
         {
             anim.SetTrigger("Idle");
+            print("Idle1");
         }
         if (completeFindPath)
         {
             print("completeFindPath");
-            if (!onFallingBlock)
-            {
-                anim.SetTrigger("Move");
-                print("Move");
-            }
+            anim.SetTrigger("Move");
+            //if (!onFallingBlock)
+            //{
+            //    anim.SetTrigger("Move");
+            //    print("Move");
+            //}
+            //anim.SetTrigger("Move");
             SimpleMove();
         }
+        
+        
         
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
@@ -173,15 +178,16 @@ public class PlayerMove : MonoBehaviour
             if (currentNode.name == "FallingBlock")
             {
                 anim.SetTrigger("Idle");
+                print("Idle2");
                 onFallingBlock = true;
             }
         }
 
 
-        if (playerInput.MoveKey)
-        {
+        //if (playerInput.MoveKey)
+        //{
             //anim.SetTrigger("Move");
-        }
+        //}
         if (findPath.Count - 1 > idx)
         {
             playerDir = findPathPos[idx + 1] - findPathPos[idx];
@@ -240,14 +246,14 @@ public class PlayerMove : MonoBehaviour
     // 길찾기
     void FindPath()
     {
-        print($"1: {openNode.Count}, {openNode[0]}");  // 출발노드
+        //print($"1: {openNode.Count}, {openNode[0]}");  // 출발노드
         // 중심노드 & 근접노드 찾기
         FindNear();
-        print($"2 : {openNode.Count}, {openNode[0]}");//,{openNode[1]}");  // 출발노드 + 이웃노드
+        //print($"2 : {openNode.Count}, {openNode[0]}");//,{openNode[1]}");  // 출발노드 + 이웃노드
         // 중심Node => ClosedList
         openNode.Remove(currNode);
         closeNode.Add(currNode);
-        print($"3 : {openNode.Count}, {openNode[0]}");  // 이웃노드 중 fCost가 가장 작은 노드 (출발노드 => close)
+        //print($"3 : {openNode.Count}, {openNode[0]}");  // 이웃노드 중 fCost가 가장 작은 노드 (출발노드 => close)
 
         // 갈 수 있는 길이 없는 경우
         if (openNode.Count <= 0)
