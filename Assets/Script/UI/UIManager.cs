@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -64,5 +65,9 @@ public class UIManager : MonoBehaviour
             textUI.playerControl = true;
 
         textUI3.Starting();
+    }
+    public void OnButtonSkip()
+    {
+        SceneManager.LoadScene(3);
     }
 }
