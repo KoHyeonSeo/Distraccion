@@ -14,18 +14,19 @@ public class StairMoving : MonoBehaviour
     }
     [SerializeField] private ChooseAxis choiceAxis;
     [SerializeField] private Transform point;
-    [SerializeField] private float blockAngle = 90;
+    [SerializeField] private float blockAngle = 180;
     private float axis = 0;
     public bool isRotating = false;
+
     private void Update()
     {
         if (isRotating)
         {
             if (axis < blockAngle)
             {
-                transform.RotateAround(point.position, new Vector3(-1 * Convert.ToInt32(choiceAxis.X),
-                    -1 * Convert.ToInt32(choiceAxis.Y),
-                    -1 * Convert.ToInt32(choiceAxis.Z)), Time.deltaTime * blockAngle * 0.5f);
+                transform.RotateAround(point.position, new Vector3(Convert.ToInt32(choiceAxis.X),
+                    Convert.ToInt32(choiceAxis.Y),
+                    Convert.ToInt32(choiceAxis.Z)), Time.deltaTime * blockAngle * 0.5f);
                 axis += Time.deltaTime * blockAngle * 0.5f;
             }
         }
