@@ -5618,7 +5618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &415493738
 Transform:
   m_ObjectHideFlags: 0
@@ -35411,7 +35411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &910694782
 Transform:
   m_ObjectHideFlags: 0
@@ -54636,6 +54636,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3284630414534462048, guid: 10146644e1cdc7b4d90dfd1b26c1775a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3284630414534462051, guid: 10146644e1cdc7b4d90dfd1b26c1775a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -54646,6 +54650,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: db7eac849c2f78842a32ccd17cee1e4a, type: 2}
     - target: {fileID: 3284630414867361550, guid: 10146644e1cdc7b4d90dfd1b26c1775a, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284630414867361550, guid: 10146644e1cdc7b4d90dfd1b26c1775a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3284630415003365620, guid: 10146644e1cdc7b4d90dfd1b26c1775a, type: 3}
@@ -54791,11 +54799,15 @@ PrefabInstance:
       objectReference: {fileID: 1073371423}
     - target: {fileID: 1059618307191767322, guid: 3176ae887338f4940889501f5d97554c, type: 3}
       propertyPath: m_Mass
-      value: 10
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059618307191767322, guid: 3176ae887338f4940889501f5d97554c, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1059618307191767322, guid: 3176ae887338f4940889501f5d97554c, type: 3}
       propertyPath: m_Constraints
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1059618307191767322, guid: 3176ae887338f4940889501f5d97554c, type: 3}
       propertyPath: m_IsKinematic
@@ -61537,7 +61549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5577829840489107323, guid: 274b0c808d986684da7c3062fc819cc7, type: 3}
       propertyPath: speed
-      value: 0.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5577829840489107323, guid: 274b0c808d986684da7c3062fc819cc7, type: 3}
       propertyPath: effect
@@ -61545,7 +61557,7 @@ PrefabInstance:
       objectReference: {fileID: 1982674693}
     - target: {fileID: 5577829840489107323, guid: 274b0c808d986684da7c3062fc819cc7, type: 3}
       propertyPath: distance
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5577829840489107323, guid: 274b0c808d986684da7c3062fc819cc7, type: 3}
       propertyPath: nextStage
@@ -69180,7 +69192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 494014, guid: 847bc0ce7577e6a4992fb57041d6294b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.1
+      value: 31.84
       objectReference: {fileID: 0}
     - target: {fileID: 494014, guid: 847bc0ce7577e6a4992fb57041d6294b, type: 3}
       propertyPath: m_LocalPosition.z
