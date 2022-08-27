@@ -366,7 +366,7 @@ public class PlayerMove : MonoBehaviour
         openNode.Sort(SortByfCost);
     }
 
-    public float rayLength = 1f;
+    public float rayLength = 0.7f;
     // currNode에서 ray이용해 해당 방향 근접노드 찾기
     void AddNearOpen(Vector3 dir)
     {
