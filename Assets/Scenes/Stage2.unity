@@ -2420,6 +2420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2245ef7b42f3c45a34c49c15f1ed75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camUp2: 0
   upSpeed: 2
 --- !u!82 &349536214
 AudioSource:
@@ -2433,7 +2434,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6f9b67df8c1828545843617aeb087278, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7031,6 +7032,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1095996464171616114, guid: ce91a3939365e7f458e1fea2498e65b7, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: -1095996464171616114, guid: ce91a3939365e7f458e1fea2498e65b7, type: 3}
       propertyPath: MinDistance
       value: 0.42607307

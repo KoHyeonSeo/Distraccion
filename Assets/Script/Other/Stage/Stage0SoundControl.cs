@@ -50,6 +50,7 @@ public class Stage0SoundControl : MonoBehaviour
             {
                 audioSource.Stop();
                 audioSource.loop = false;
+                audioSource.volume = 1;
                 audioSource.clip = sound3;
                 audioSource.Play();
                 isOnce2 = true;
