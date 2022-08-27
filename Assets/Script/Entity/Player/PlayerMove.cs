@@ -85,6 +85,7 @@ public class PlayerMove : MonoBehaviour
                 cursor.CursorClick();
                 isComplete = false;
                 completeFindPath = false;
+                noWay = false;
             }
             if (isCheck)
             {
@@ -141,7 +142,7 @@ public class PlayerMove : MonoBehaviour
             anim.SetTrigger("Idle");
             print("Idle1");
         }
-        if (completeFindPath)
+        if (completeFindPath && !noWay)
         {
             print("completeFindPath");
             anim.SetTrigger("Move");
@@ -153,12 +154,8 @@ public class PlayerMove : MonoBehaviour
             //anim.SetTrigger("Move");
             SimpleMove();
         }
-        
-        
-        
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
-        noWay = false;
     }
 
 
@@ -259,6 +256,7 @@ public class PlayerMove : MonoBehaviour
         if (openNode.Count <= 0)
         {
             noWay = true;
+            print("noWay");
         }
         else
         {

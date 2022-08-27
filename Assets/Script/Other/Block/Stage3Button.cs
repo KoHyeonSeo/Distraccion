@@ -11,6 +11,7 @@ public class Stage3Button : MonoBehaviour
     private float curTime = 0;
     private AudioSource audioSource;
     public StairMoving stair;
+    public bool downFinish = false;  // 버튼 눌리고 난 뒤 카메라 줌
 
     void Start()
     {
@@ -43,8 +44,7 @@ public class Stage3Button : MonoBehaviour
             transform.position += new Vector3(0, buttonDown, 0) * Time.deltaTime;
             yield return null;
         }
+        downFinish = true;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
-
-    
 }
