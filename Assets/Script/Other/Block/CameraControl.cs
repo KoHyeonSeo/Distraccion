@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraControl : MonoBehaviour
 {
@@ -13,13 +14,35 @@ public class CameraControl : MonoBehaviour
     //float zoom;
 
     public static CameraControl Instance;
+    PlayerMove player;
+    Scene scene;
+    bool upOnce = false;
+
+
     private void Awake()
     {
         Instance = this;
+        player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        scene = SceneManager.GetActiveScene();
     }
 
-    void Update()
+    void LateUpdate()
     {
+        //print($"1 : {player.currentNode.name == "CameraUp"}");
+        //print($"2 : {scene.name == "Stage3"}");
+        //print($"3 : {upOnce}");
+
+        // Stage3에서 플레이어가 특정 지점에 도착하면 Camera y position 조절
+        if (player.currentNode.name == "CameraUp" && scene.name == "Stage3" /*&& !upOnce*/)
+        {
+            print("UP!!!!");
+            StartCoroutine("CamUp");
+            //upOnce = true;
+            
+        }
+
+
+
         //Zoom();
     }
 
@@ -66,5 +89,13 @@ public class CameraControl : MonoBehaviour
         }
         //transform.position = new Vector3(startPosition.x, startPosition.y, startPosition.z);
         transform.rotation = Quaternion.Euler(startRotation.x, startRotation.y, startRotation.z);
+    }
+
+    IEnumerator CamUp()
+    {
+        Vector3 upPos = new Vector3(transform.position.x, 39.4f, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, upPos, Time.deltaTime*7);
+
+        yield return new WaitForSeconds(1);
     }
 }
