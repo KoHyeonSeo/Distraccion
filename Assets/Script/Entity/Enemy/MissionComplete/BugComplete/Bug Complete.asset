@@ -15,7 +15,7 @@ MonoBehaviour:
   waitTime: 1.5
   backDistance: 2
   runAwayPos: {fileID: 4350123847029932847, guid: c6488c35823040341b94798c51e2485c, type: 3}
-  flyRange: 0.99380666
+  flyRange: 0.9767172
   runAwaySpeed: 3
-  runAwayTime: 8.5
+  runAwayTime: 10
   audioClip: {fileID: 8300000, guid: 0fb76352009b71c4fa56d37ddbeaf714, type: 3}

@@ -25,8 +25,8 @@ public class Portal : MonoBehaviour
         if (isStart)
         {
             value += speed * Time.deltaTime;
-            effect.transform.position = Vector3.Lerp(effect.transform.position, endPos, value);
-            if(value >= distance)
+            effect.transform.position = Vector3.Lerp(effect.transform.position, endPos, speed * Time.deltaTime);
+            if (value >= distance)
             {
                 if (!isPause)
                 {
