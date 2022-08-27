@@ -8,14 +8,20 @@ public class FallingBlock : MonoBehaviour
     bool isOnce = false;  // 코루틴 한번만 재생하도록 제어하는 변수
     public bool onFallingBlock = false;  // 플레이어가 FallingBlock에서 회전만 했을 경우 true가 되는 변수
     PlayerMove player;
+    AudioSource blockFallSound;
 
     void Start()
     {
         player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
         fallNum = transform.childCount;
+        blockFallSound = GetComponent<AudioSource>();
     }
     void LateUpdate()
     {
+        if (!player)
+        {
+            player = GameManager.Instance.playerGameobject.GetComponent<PlayerMove>();
+        }
         if (player.currentNode.name == transform.name && !isOnce)
         {
             // 플레이어가 찾은 Path 리스트에서 FallingBlock 이후 요소를 모두 지운다.
@@ -43,6 +49,7 @@ public class FallingBlock : MonoBehaviour
     IEnumerator FallingStart()
     {
         yield return new WaitForSeconds(0.1f);
+        blockFallSound.Play();
         for (int i = 0; i < fallNum; i++)
         {
             transform.GetChild(i).GetComponent<Rigidbody>().useGravity = true;
