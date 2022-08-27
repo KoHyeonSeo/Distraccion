@@ -33,6 +33,7 @@ public class PlayerMove : MonoBehaviour
     private bool noWay = false;
 
     Scene scene;
+    CameraControl cam;
     public Animator anim;
     public TwistBlock twist;
     public Cursor cursor;
@@ -137,14 +138,14 @@ public class PlayerMove : MonoBehaviour
         }
         else if (!isCheck && isComplete)
         {
-            //anim.SetTrigger("Idle");
+            anim.SetTrigger("Idle");
         }
         if (completeFindPath)
         {
-            //if (!onFallingBlock)
-            //{
-            //    anim.SetTrigger("Move");
-            //}
+            if (!onFallingBlock)
+            {
+                anim.SetTrigger("Move");
+            }
             SimpleMove();
         }
         
@@ -175,8 +176,6 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        //if (currentNode.name == )
-
 
         if (playerInput.MoveKey)
         {
@@ -198,21 +197,10 @@ public class PlayerMove : MonoBehaviour
                     transform.position = hit.transform.position + hit.transform.forward;
                     transform.up = hit.transform.forward;
                 }
-            }
-
-            // fallingblock에서는 회전만 하고 이동은 하지 않는다.
-            //if (findPath[idx].name == "FallingBlock")
-            //{
-            //    currentNode.GetComponent<FallingBlock>().onFallingBlock = true;
-            //}
-            //else
-            {
                 ratio += 3 * Time.deltaTime;
                 // 모든 거리를 일정한 시간으로 이동하도록 설정
                 transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
             }
-
-
 
             if (ratio >= 1)
             {
@@ -397,6 +385,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    
     // 현재 플레이어가 밟고 있는 노드 찾는 함수
     void RayCastDown()
     {
@@ -417,6 +406,8 @@ public class PlayerMove : MonoBehaviour
                 {
                     ChangeLayersRecursively(transform, "Top");
                 }
+
+                
             }
         }
     }

@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Quest2.unity
     guid: 464beb32c858c2a478484e5c527640c3
   - enabled: 1
+    path: Assets/Scenes/Stage3.unity
+    guid: 02e00a1c2c6185b40bfbed2a88e0f4b4
+  - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: b8696be051de3694cb6564d6cab79963
   - enabled: 1
