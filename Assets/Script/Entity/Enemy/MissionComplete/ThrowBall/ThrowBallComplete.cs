@@ -58,11 +58,11 @@ public class ThrowBallComplete : MissionComplete
         Vector3 targetPos = Player.transform.position - Player.transform.forward  * backDistance;
         //Player.transform.LookAt(new Vector3(targetPos.x, Player.transform.position.y, targetPos.z));
         Player.transform.LookAt(targetPos);
-        while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
-        {
-            Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.01f);
-            yield return null;
-        }
+        //while (Vector3.Distance(Player.transform.position, targetPos) > 0.1f)
+        //{
+        //    Player.transform.position = Vector3.Lerp(Player.transform.position, targetPos, 0.01f);
+        //    yield return null;
+        //}
 
         Player.transform.LookAt(new Vector3(-targetPosition.transform.position.x, Player.transform.position.y, -targetPosition.transform.position.z));
         curTime = 0;

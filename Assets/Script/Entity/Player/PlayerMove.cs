@@ -184,7 +184,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (findPath.Count - 1 > idx)
         {
-            Vector3 playerDir = findPathPos[idx + 1] - findPathPos[idx];
+            playerDir = findPathPos[idx + 1] - findPathPos[idx];
             // 평지인 경우만 회전
             if (findPath[idx].gameObject.layer == LayerMask.NameToLayer("Node") && !findPath[idx].gameObject.name.Contains("trick"))
             {
@@ -207,6 +207,7 @@ public class PlayerMove : MonoBehaviour
 
             if (ratio >= 1)
             {
+                transform.position = findPathPos[idx + 1];
                 idx++;
                 ratio = 0;
                 if (currentNode.gameObject == targetNode.gameObject)
