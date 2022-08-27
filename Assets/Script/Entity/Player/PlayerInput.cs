@@ -15,7 +15,9 @@ public class PlayerInput : MonoBehaviour
     public const string InteractName = "Fire1";
     public const string UseItemName = "UseItem";
     private RaycastHit hit;
-    
+
+    public bool playerControl = false;
+
     /// <summary>
     /// 마우스 커서의 x좌표의 변화값 반환
     /// </summary>
@@ -78,16 +80,19 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         #region 입력값 업데이트
-        XKeyBoardAxis = Input.GetAxis(XKeyBoard);
-        XMouseOut = Input.GetAxis(XMouseName);
-        YMouseOut = Input.GetAxis(YMouseName);
-        MousePosition = Input.mousePosition;
-        ExplainButton = Input.GetButton(ExplainName);
-        EscButton = Input.GetButtonDown(CancelName);
-        MoveKey = Input.GetButtonDown(MoveName);
-        InteractKey = Input.GetButton(InteractName);
-        UseItemButton = Input.GetButtonDown(UseItemName);
-        EnterKey = Input.GetKeyDown(KeyCode.Return);
+        if (!playerControl)
+        {
+            XKeyBoardAxis = Input.GetAxis(XKeyBoard);
+            XMouseOut = Input.GetAxis(XMouseName);
+            YMouseOut = Input.GetAxis(YMouseName);
+            MousePosition = Input.mousePosition;
+            ExplainButton = Input.GetButton(ExplainName);
+            EscButton = Input.GetButtonDown(CancelName);
+            MoveKey = Input.GetButtonDown(MoveName);
+            InteractKey = Input.GetButton(InteractName);
+            UseItemButton = Input.GetButtonDown(UseItemName);
+            EnterKey = Input.GetKeyDown(KeyCode.Return);
+        }
         #endregion
 
         #region Debug Test
