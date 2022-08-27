@@ -17,8 +17,8 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
-        effect.SetActive(false);
         endPos = effect.transform.position + Vector3.down * distance;
+        effect.SetActive(false);
     }
     private void Update()
     {
