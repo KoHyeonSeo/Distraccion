@@ -1190,6 +1190,8 @@ MonoBehaviour:
   testMinY: 7.88719
   testMaxY: 15.22
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 551973385}
   isTrick: 0
 --- !u!1 &148140085
@@ -1448,11 +1450,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176915163}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c818abb1393134843a6f21be2eeedea7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5301,7 +5303,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1580
+  m_Name: pb_Mesh-712312
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8277,6 +8279,8 @@ MonoBehaviour:
   testMinY: 3.168213
   testMaxY: 5.050251
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!1 &602510918
@@ -9216,6 +9220,8 @@ MonoBehaviour:
   testMinY: 10.5
   testMaxY: 12.5
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!1 &678912390
@@ -10234,7 +10240,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1552
+  m_Name: pb_Mesh-712284
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11883,6 +11889,8 @@ MonoBehaviour:
   testMinY: 0
   testMaxY: 0
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!65 &923794936
@@ -13393,6 +13401,8 @@ MonoBehaviour:
   testMinY: 5.217709
   testMaxY: 13.05711
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!1 &1073969710
@@ -13433,6 +13443,8 @@ MonoBehaviour:
   testMinY: -6.547949
   testMaxY: -2.959749
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!4 &1073969712
@@ -14942,7 +14954,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28778
+  m_Name: pb_Mesh145528
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16905,6 +16917,8 @@ MonoBehaviour:
   testMinY: 2.050251
   testMaxY: 5.422543
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!114 &1389037508
@@ -17174,6 +17188,8 @@ MonoBehaviour:
   testMinY: -0.06949592
   testMaxY: 3.168213
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!1 &1430830954
@@ -18592,7 +18608,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1566
+  m_Name: pb_Mesh-712298
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19452,6 +19468,8 @@ MonoBehaviour:
   testMinY: 0
   testMaxY: 0
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!1 &1618434822
@@ -19932,6 +19950,8 @@ MonoBehaviour:
   testMinY: 0
   testMaxY: 0
   value: 0
+  clips: []
+  height: 2
   trickNode: {fileID: 0}
   isTrick: 0
 --- !u!65 &1679961912

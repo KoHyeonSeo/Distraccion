@@ -9,12 +9,12 @@ public class Stage3Button : MonoBehaviour
     [SerializeField] private AudioClip audioClip;
     private bool isOnce = false;
     private float curTime = 0;
-    private AudioSource audioSource;
+    private AudioSource turnSound;
     public StairMoving stair;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        turnSound = GetComponent<AudioSource>();
     }
 
     
@@ -30,7 +30,7 @@ public class Stage3Button : MonoBehaviour
             isOnce = true;
             stair.isRotating = true;
             CameraControl.Instance.OnShakeCamera(1, 0.05f);
-            audioSource.PlayOneShot(audioClip);
+            turnSound.Play();
             StartCoroutine("ButtonDown");
         }
     }
