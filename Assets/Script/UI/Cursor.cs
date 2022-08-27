@@ -9,6 +9,7 @@ public class Cursor : MonoBehaviour
     private Animator anim;
     private PlayerInput player;
     private RectTransform rect;
+    AudioSource clickSound;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class Cursor : MonoBehaviour
         }
         anim = GetComponent<Animator>();
         rect = GetComponent<RectTransform>();
+        clickSound = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -31,6 +33,7 @@ public class Cursor : MonoBehaviour
     {
         rect.transform.position = player.MousePosition;
         anim.SetTrigger("Click");
+        clickSound.Play();
         print("Cursor Click");
     }
 }

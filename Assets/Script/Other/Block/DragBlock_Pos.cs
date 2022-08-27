@@ -27,6 +27,10 @@ public class DragBlock_Pos : MonoBehaviour
     public float testMaxY;
     public float value = 0;
 
+    [Header("드래그 높이에 따른 소리")]
+    [SerializeField] private List<AudioClip> clips = new List<AudioClip>();
+    [SerializeField] private int height = 2;
+
     Vector3 firstPos;
 
     PlayerInput player;
@@ -35,6 +39,11 @@ public class DragBlock_Pos : MonoBehaviour
 
     Vector3 dir;
     public bool isTrick = false;
+
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
         
