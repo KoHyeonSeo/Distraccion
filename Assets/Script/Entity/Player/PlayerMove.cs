@@ -38,12 +38,14 @@ public class PlayerMove : MonoBehaviour
     public TwistBlock twist;
     public Cursor cursor;
     public List<bool> isTrickVisited;
+    AudioSource footStep;
 
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
         anim = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
+        footStep = GetComponent<AudioSource>();
         if (scene.name == "Stage2")
         {
             gameObject.layer = LayerMask.NameToLayer("Default");
@@ -146,6 +148,7 @@ public class PlayerMove : MonoBehaviour
         {
             print("completeFindPath");
             anim.SetTrigger("Move");
+            print("Move");
             //if (!onFallingBlock)
             //{
             //    anim.SetTrigger("Move");
@@ -156,6 +159,7 @@ public class PlayerMove : MonoBehaviour
         }
         // 움직이는 블록 위 Player Hierarchy 위치 이동
         OnMovingBlock();
+        
     }
 
 
@@ -476,4 +480,20 @@ public class PlayerMove : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+    // player 발자국 소리
+    //void FootStep()
+    //{
+    //    if (anim.GetCurrentAnimatorStateInfo(0).IsName("NewRun"))
+    //    {
+    //        if (!footStep.isPlaying)
+    //        { 
+    //            footStep.Play();
+    //        }
+    //    }
+    //    else
+    //    {
+    //        footStep.Stop();
+    //    }
+    //}
 }
