@@ -5,18 +5,24 @@ using UnityEngine.UI;
 
 public class TextUI : MonoBehaviour
 {
+    [System.Serializable]
+    public struct Scripts
+    {
+        public GameObject talkingObject;
+        public Text talkingText;
+    }
     [Header("대화 리스트 (형식: [GameObject 이름]/대화내용 )")]
     [SerializeField] private List<string> talkingList = new List<string>();
-    [SerializeField] private List<GameObject> talkingPeople = new List<GameObject>();
+    [SerializeField] private List<Scripts> talkingPeople = new List<Scripts>();
 
     [Space]
     [SerializeField] private float waitTime = 2;
     [SerializeField] private float tTime = 0.5f;
     [SerializeField] private GameObject AfterQuest;
     [SerializeField] private Quest2Camera camera;
+    private List<Text> texts = new List<Text>();
 
     private MiddleStagePlayerMove playerMove;
-    private List<Text> texts = new List<Text>();
     private float curTime = 0;
     public bool fairyCamera = false;
     public bool isEnd = false;
@@ -25,7 +31,7 @@ public class TextUI : MonoBehaviour
     {
         for(int i = 0; i < talkingPeople.Count; i++)
         {
-            texts.Add(talkingPeople[i].transform.GetChild(0).GetComponent<Text>());
+            texts.Add(talkingPeople[i].talkingText.GetComponent<Text>());
         }
     }
     private void Start()
@@ -63,14 +69,14 @@ public class TextUI : MonoBehaviour
             int talkinIndex = 0;
             for (int j = 0; j < talkingPeople.Count; j++)
             {
-                if (talkingPeople[j].name.Contains(talking[0]))
+                if (talkingPeople[j].talkingObject.name.Contains(talking[0]))
                 {
                     talkinIndex = j;
-                    talkingPeople[j].SetActive(true);
+                    talkingPeople[j].talkingObject.SetActive(true);
                 }
                 else
                 {
-                    talkingPeople[j].SetActive(false);
+                    talkingPeople[j].talkingObject.SetActive(false);
                 }
             }
             texts[talkinIndex].text = "";
@@ -92,6 +98,7 @@ public class TextUI : MonoBehaviour
                 curTime += Time.deltaTime;
                 yield return null;
             }
+            texts[talkinIndex].text = "";
             yield return null;
         }
         transform.GetChild(0).gameObject.SetActive(false);

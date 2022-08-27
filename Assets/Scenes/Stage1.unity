@@ -6317,6 +6317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2245ef7b42f3c45a34c49c15f1ed75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camUp2: 0
   upSpeed: 2
 --- !u!114 &481573963
 MonoBehaviour:
@@ -60814,7 +60815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1444234873
 Transform:
   m_ObjectHideFlags: 0
@@ -62119,7 +62120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26428f27aa2bf0349a8912da77d7929e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  debugMode: 1
   itemBoxes:
   - Item: {fileID: 7426727271953884272, guid: dacd49f750ef8424dbca25155e17cc8e, type: 3}
     isHaveItem: 1
