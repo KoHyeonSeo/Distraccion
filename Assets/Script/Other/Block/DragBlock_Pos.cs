@@ -30,11 +30,14 @@ public class DragBlock_Pos : MonoBehaviour
     Vector3 firstPos;
 
     PlayerInput player;
+    public GameObject trickNode;
 
 
     Vector3 dir;
+    public bool isTrick = false;
     private void Update()
     {
+        
         if (!player)
         {
             player = GameManager.Instance.playerGameobject.GetComponent<PlayerInput>();
@@ -68,12 +71,14 @@ public class DragBlock_Pos : MonoBehaviour
                     Vector3 setting = block.position;
                     setting.y = testMaxY;
                     block.position = setting;
+                    isTrick = true;
                 }
                 else if ((block.position + dir * player.YMouseOut).y >= testMinY)
                 {
                     Vector3 setting = block.position;
                     setting.y = testMinY;
                     block.position = setting;
+                    isTrick = true;
                 }
             }
             // 자기 자신 
