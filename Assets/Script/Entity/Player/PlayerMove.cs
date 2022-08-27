@@ -168,7 +168,6 @@ public class PlayerMove : MonoBehaviour
 
     void SimpleMove()
     {
-
         if (!onFallingBlock)
         {
             if (currentNode.name == "FallingBlock")
@@ -191,18 +190,20 @@ public class PlayerMove : MonoBehaviour
             {
                 playerDir.y = 0;
                 transform.forward = playerDir;
+
+
                 // Twist 블럭에서 player up 방향 설정
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
-                {
-                    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
-                    transform.position = hit.transform.position + hit.transform.forward;
-                    transform.up = hit.transform.forward;
-                }
-                ratio += 3 * Time.deltaTime;
-                // 모든 거리를 일정한 시간으로 이동하도록 설정
-                transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
+                //RaycastHit hit;
+                //if (Physics.Raycast(transform.position, -transform.up, out hit, 1) && hit.collider.CompareTag("Twist"))
+                //{
+                //    Debug.DrawRay(hit.point, hit.normal, Color.green, 200);
+                //    transform.position = hit.transform.position + hit.transform.forward;
+                //    transform.up = hit.transform.forward;
+                //}
             }
+            ratio += 3 * Time.deltaTime;
+            // 모든 거리를 일정한 시간으로 이동하도록 설정
+            transform.position = Vector3.Lerp(findPathPos[idx], findPathPos[idx + 1], ratio);
 
             if (ratio >= 1)
             {
