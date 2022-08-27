@@ -27,9 +27,9 @@ public class DragBlock_Pos : MonoBehaviour
     public float testMaxY;
     public float value = 0;
 
-    [Header("드래그 높이에 따른 소리")]
-    [SerializeField] private List<AudioClip> clips = new List<AudioClip>();
-    [SerializeField] private int height = 2;
+    //[Header("드래그 높이에 따른 소리")]
+    //[SerializeField] private AudioClip clips;
+    //[SerializeField] private int height = 2;
 
     Vector3 firstPos;
 
@@ -39,10 +39,12 @@ public class DragBlock_Pos : MonoBehaviour
 
     Vector3 dir;
     public bool isTrick = false;
+    private bool isOnce = false;
+    private AudioSource audioSource;
 
     private void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -56,6 +58,11 @@ public class DragBlock_Pos : MonoBehaviour
         // 처음 마우스 좌표값 저장
         if (Input.GetMouseButton(0) && player.PointBlock == gameObject)
         {
+            if (!isOnce)
+            {
+                isOnce = true;
+                audioSource.Play();
+            }
             firstPos = Input.mousePosition;
             // TwinMove Block 
             for (int i = 0; i < chooseDrag.Count; i++)
@@ -107,6 +114,10 @@ public class DragBlock_Pos : MonoBehaviour
                 setting.y = testMinY;
                 transform.position = setting;
             }
+        }
+        else if(!Input.GetMouseButton(0))
+        {
+            isOnce = false;
         }
     }
 }
