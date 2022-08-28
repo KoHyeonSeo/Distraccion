@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class DirectionAction_End : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class DirectionAction_End : MonoBehaviour
     [Header("돌리카트")]
     public CinemachineDollyCart dollyCart;
     public CinemachineVirtualCamera vCam3;
+
+    [Header("다음 scene")]
+    [SerializeField] private int nextStage;
 
     void Start()
     {
@@ -25,7 +29,12 @@ public class DirectionAction_End : MonoBehaviour
         if (pd.time >= 10.5f)
         {
             dollyCart.enabled = true;
-            print("in");
+        }
+
+        //재생시간이 다된다면
+        if (pd.duration - pd.time <= 0.05f)
+        {
+            SceneManager.LoadScene(nextStage);
         }
     }
 }
