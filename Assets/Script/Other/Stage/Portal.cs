@@ -9,6 +9,7 @@ public class Portal : MonoBehaviour
     [SerializeField] private float distance = 3f;
     [SerializeField] private float speed = 2f;
     [SerializeField] private GameObject effect;
+    [SerializeField] private GameObject UI;
     private bool isOnce = false;
     public bool isStart = false;
     public bool isPause = false;
@@ -39,6 +40,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isOnce)
         {
+            UI.SetActive(false);
             isOnce = true;
             isStart = true;
             effect.SetActive(true);
