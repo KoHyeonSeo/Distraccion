@@ -23,5 +23,9 @@ public class PlayerEndAnim2 : MonoBehaviour
         {
             anim.SetTrigger("Idle");
         }
+        else
+        {
+            anim.SetTrigger("Walk");
+        }
     }
 }
