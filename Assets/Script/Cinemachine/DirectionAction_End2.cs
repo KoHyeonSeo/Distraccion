@@ -17,22 +17,14 @@ public class DirectionAction_End2 : MonoBehaviour
     void Start()
     {
         pd = GetComponent<PlayableDirector>();
-
     }
 
-
+    float logoTime = 0;
     void Update()
     {
-        // 10.5초에서 돌리카트 자식으로 vcam3 넣어주기
-        if (pd.time >= 10.5f)
-        {
-            
-        }
-
-
         //재생시간이 다된다면
         if (pd.duration - pd.time <= 0.05f)
-        {
+        { 
             SceneManager.LoadScene(nextStage);
         }
     }
