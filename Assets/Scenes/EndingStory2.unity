@@ -2337,7 +2337,6 @@ GameObject:
   - component: {fileID: 612536849021848049}
   - component: {fileID: 710925135884670459}
   - component: {fileID: 680686793753246379}
-  - component: {fileID: 655826388090847823}
   - component: {fileID: 3791147831369727339}
   - component: {fileID: 6700088290298216988}
   - component: {fileID: 6700088290298216989}
@@ -2849,21 +2848,6 @@ MonoBehaviour:
   lookAt: {fileID: 621336323464070077}
   camTransform: {fileID: 621336323464070077}
   distance: 5
---- !u!114 &655826388090847823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615606249712458255}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33e19da6a22259d4299a67d51a3c65f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 7
-  turnSpeed: 150
-  gravity: 20
 --- !u!124 &663206337642303333
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2980,20 +2964,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1982411268199679632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8299532819556380091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71fe70e2ba01614782477ac07dc9185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseMaxDistance: 950
-  playerControl: 0
 --- !u!82 &3791147831369727339
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3151,7 +3121,6 @@ GameObject:
   - component: {fileID: 8299532819556380064}
   - component: {fileID: 8299532819556380095}
   - component: {fileID: 8299532819556380094}
-  - component: {fileID: 1982411268199679632}
   - component: {fileID: 8299532819556380096}
   m_Layer: 6
   m_Name: Player
