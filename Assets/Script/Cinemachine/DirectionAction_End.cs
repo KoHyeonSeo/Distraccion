@@ -7,9 +7,10 @@ using Cinemachine;
 public class DirectionAction_End : MonoBehaviour
 {
     PlayableDirector pd;
-    public ParticleSystem star1;
-    public ParticleSystem star2;
+
+    [Header("돌리카트")]
     public CinemachineDollyCart dollyCart;
+    public CinemachineVirtualCamera vCam3;
 
     void Start()
     {
@@ -20,11 +21,11 @@ public class DirectionAction_End : MonoBehaviour
     
     void Update()
     {
-        // star1, star2 돌리캠 자식으로 넣어주기
-        //    if (pd.time >= 9.8f)
-        //    {
-        //        star1.transform.parent = dollyCart.transform;
-        //        star2.transform.parent = dollyCart.transform;
-        //    }
+        // 10.5초에서 돌리카트 자식으로 vcam3 넣어주기
+        if (pd.time >= 10.5f)
+        {
+            dollyCart.enabled = true;
+            print("in");
+        }
     }
 }
