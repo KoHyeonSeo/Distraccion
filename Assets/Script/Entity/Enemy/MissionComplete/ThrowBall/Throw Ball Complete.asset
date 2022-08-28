@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Throw Ball Complete
   m_EditorClassIdentifier: 
   targetPosition: {fileID: 1503625854208159020, guid: 430c46079e4c11c40825a8f5e185ebab, type: 3}
-  throwSpeed: 5000
+  throwSpeed: 2500
   walkSpeed: 5
   walkingTime: 2
   EnemywalkingTime: 10
