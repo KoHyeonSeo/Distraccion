@@ -16,6 +16,7 @@ public class DirectionAction_End : MonoBehaviour
     [Header("다음 scene")]
     [SerializeField] private int nextStage;
 
+
     void Start()
     {
         pd = GetComponent<PlayableDirector>();
@@ -30,6 +31,7 @@ public class DirectionAction_End : MonoBehaviour
         {
             dollyCart.enabled = true;
         }
+
 
         //재생시간이 다된다면
         if (pd.duration - pd.time <= 0.05f)
