@@ -36,8 +36,8 @@ EditorBuildSettings:
     path: Assets/Scenes/EndingStory1.unity
     guid: 3fd2504cf0def19488310ff1072921f6
   - enabled: 1
-    path: Assets/Scenes/EndingStory2-1.unity
-    guid: e0b292f6c69d6ce4e8bd9aed37243cff
+    path: Assets/Scenes/EndingStory2.unity
+    guid: 275a29409308e634aa2aae331e6db8ba
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: affb3cd1bf3984845b9e4d9c9fd05428
