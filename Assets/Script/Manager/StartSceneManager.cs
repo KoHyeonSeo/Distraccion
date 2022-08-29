@@ -13,6 +13,7 @@ public class StartSceneManager : MonoBehaviour
     public GameObject audioOn;
     public GameObject audioOff;
     public GameObject contact;
+    public GameObject control;
 
     AudioListener audioListener;
 
@@ -68,6 +69,7 @@ public class StartSceneManager : MonoBehaviour
         credits.SetActive(false);
         settings.SetActive(false);
         contact.SetActive(false);
+        control.SetActive(false);
         Debug.Log("Back");
     }
 
@@ -83,6 +85,10 @@ public class StartSceneManager : MonoBehaviour
         options.SetActive(false);
         credits.SetActive(true);
         Debug.Log("Credits");
+    }
+    public void OnClickControl()
+    {
+        control.SetActive(true);
     }
 
     public void OnClickSettings()
