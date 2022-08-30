@@ -58,8 +58,8 @@
     - 
 - Enemy
     - 각 길에 까마귀가 있고, 아이템을 습득 뒤 적절히 상황에 맞는 아이템을 해당 까마귀에게 적용하면 
-        뭐, 까마귀가 도망가거나 쓰러진다. 그러면 그 길은 통과가 가능
-    - 까마귀에 길을 막아야함 (공을 굴리던)
+        까마귀가 도망가거나 쓰러진다. 그러면 그 길은 통과가 가능
+    - 까마귀가 길을 막아야함
 - item
 - Camera
 - Sound
@@ -69,7 +69,7 @@
     - 계산 공식을 넣어두자
 - GameManager.cs
 - Object 
-    - block -> 회전 블럭이 주겠지? 
+    - block -> 회전 블럭
 - UI
 - Effect
 - Start / Ending
@@ -79,90 +79,87 @@
 - 소리도 중요할 듯
 - 맵은 상황에 맞춰 제작 (몇개 제작할 것인지 아직 생각 X)
 ## <b>프로토타입까지 해야할 것</b>
-- 기간이 생각보다 길어... 더 많이 할 수 있을듯...? 아니였고,,;;;
 - 기능 중심
 - <b>강수현</b>
     - Player  
         - 해야할 것 / 내일
-            - 착시 부분이동 V
-            - nullException 처리 V
+            - 착시 부분이동
+            - nullException 처리 
             - 예외처리부분 (버그 테스팅 후 체크)
-            - 아이템 습득 V
-    - 맵 배치 V
+            - 아이템 습득 
+    - 맵 배치 
     - 이동 블럭 / 월요일
 - <b>고현서</b>
-    - 회전 블럭 V 
-    - TwistBlock 구현 V
-    - Enemy Structure and Test V  
-    - 버튼 밟으면 회전 V
-    - 블럭 돌아갈때 소리 / 내일 V
-    - Enemy V
-        - 각 Enemy마다 다른 Mission, MissionComplete V
+    - 회전 블럭 
+    - TwistBlock 구현
+    - Enemy Structure and Test 
+    - 버튼 밟으면 회전
+    - 블럭 돌아갈때 소리
+    - Enemy
+        - 각 Enemy마다 다른 Mission, MissionComplete 
     - 맵 배치 
-        - 내일 / Copy 맵 선정 V
-        - 일요일 / 맵 배치 시작 V
-        - 월요일 / 플레이어 놓고 테스트 V
+        - 내일 / Copy 맵 선정
+        - 일요일 / 맵 배치 시작 
+        - 월요일 / 플레이어 놓고 테스트 
 ## <b>알파까지 해야할 것</b>
 - <b>고현서</b>
-    - Enemy Quest 더 만들기 V
-    - 소리 퀘스트 Base 구축 V
+    - Enemy Quest 더 만들기 
+    - 소리 퀘스트 Base 구축 
     - 스토리 요소
-        - 이 스토리에 맞는 애니메이션 미리 체킹해놓기 V
+        - 이 스토리에 맞는 애니메이션 미리 체킹해놓기 
     - Entity
-        - Player Scared 제작 V
+        - Player Scared 제작 
     - UI
-        - GameOver V
-        - Item 상호작용 UI V
-        - Item 창 V
-    - 사운드 V
-        - 배경음악 V
-        - 블럭 돌아갈때 소리 -> 돌이 돌아가는 소리 V
-        - 이외 V
-    - 에셋 V
-        - 아이템 V 
-        - 플레이어 V
-        - Enemy V
-        - 폰트 V
+        - GameOver 
+        - Item 상호작용 UI 
+        - Item 창 
+    - 사운드 
+        - 배경음악 
+        - 블럭 돌아갈때 소리 -> 돌이 돌아가는 소리 
+        - 이외 
+    - 에셋 
+        - 아이템 
+        - 플레이어 
+        - Enemy 
+        - 폰트 
     - 추가 블록
-        - twist block V
-    - Map V
-    - Bug Testing V
+        - twist block 
+    - Map 
+    - Bug Testing 
     - Stage Testing (Complete List)
-        - Stage 0 V
-        - Stage 1 V
-    - Build Testing V
+        - Stage 0 
+        - Stage 1 
+    - Build Testing 
 - <b>강수현</b>
     - 스토리 요소
-        - 이 스토리에 맞는 애니메이션 미리 체킹해놓기 V
+        - 이 스토리에 맞는 애니메이션 미리 체킹해놓기 
     - UI
-        - Menu V
-        - Start / End V
-    - 사운드 V
-        - 배경음악 V
-        - 이외 V
-    - 에셋 V
-        - 아이템 V 
-        - 플레이어 V
-        - Enemy V
-        - 폰트 V
-    - Map V
-    - Bug Testing V
+        - Menu 
+        - Start / End 
+    - 사운드 
+        - 배경음악 
+        - 이외 
+    - 에셋
+        - 아이템 
+        - 플레이어 
+        - Enemy 
+        - 폰트 
+    - Map 
+    - Bug Testing 
     - Stage Testing (Complete List)
-        - Stage 2 V
+        - Stage 2 
         - Stage 3 
-    - Build Testing V
+    - Build Testing 
 ## <b> 베타까지 해야할 것</b>
 - <b>알파 feedback</b>
-    - 플레이어 버그 V
-    - 배경이 하얀색이라서 플레이어가 안보임 V
-    - 나중에 시간 남으면 외부에서 twist block을 만들어서 시도 해볼까
-- (피리 부는 부분 그 노랫소리 어떻게 해야할 지 생각) - 시간남으면 논의
+    - 플레이어 버그 
+    - 배경이 하얀색이라서 플레이어가 안보인다.
 - <b>고현서</b>
-    - Middle Secret Stage 완성(Stage 2개) V
-    - 씨네머신 (Twist Block을 사용하여 꿈을 펼치기)
-        - Stage 0 이전의 Starting Story 씨네머신 V
+    - Middle Secret Stage 완성(Stage 2개) 
+    - 씨네머신
+        - Stage 0 이전의 Starting Story 씨네머신 
     - 각자 Stage에 문양 넣는거 구현
-        - Stage 0에서 노래 들리면서 위로 올라가며 문양이 그려짐 (우리 로고같은거 넣으면 좋을듯) 
+        - Stage 0에서 노래 들리면서 위로 올라가며 문양이 그려짐 (우리 로고같은거 넣으면 좋을 것 같다.) 
             - 그려지면서 나오는 이쁜거 그거 구현 
                 - 카메라를 단순히 위로 올려서 문양 보여줌)
     - 이펙트 (각자 넣고 싶은 곳에 넣기)
@@ -171,7 +168,7 @@
     - Stage 3 대체 맵 제작
         - Drag 블록 사용할 맵으로 선정
         - Drag Block 구현
-    - 씨네머신 (Twist Block을 사용하여 꿈을 펼치기)
+    - 씨네머신 
         - Stage Complete 후 Ending Story 씨네머신
             - 초원
     - 각자 Stage에 문양 넣는거 구현
