@@ -240,3 +240,27 @@
         - Story2Crow.cs
         - Story2Fairy.cs
         - Story2Player.cs
+        
+        
+### SuHyeon Kang (강수현)
+- Entitiy
+    - Player
+        - PlayerMove.cs
+- Manager
+    - StartSceneManager.cs
+- Other
+    - Block
+        - DragBlock_Block.cs
+        - DragBlock_Pos.cs
+        - FallingBlock.cs
+    - Camera
+        - CameraControl.cs
+    - Stage
+        - Stage3Start.cs
+- UI
+    - Cursor.cs
+    - LoadingUI.cs
+- Cinemachine 
+    - Cinemachine
+        - DirectAcion_End.cs
+        - DirectAcion_End2.cs
