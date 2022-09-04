@@ -2,7 +2,7 @@
 
 ## 개요
 - 타겟팅 게임
--  Monument Vally
+-  Monument Vally 
 ![image](https://user-images.githubusercontent.com/76097749/188300561-7b05ee5e-dcdc-443e-bbb1-b9e86ca40b67.png)
 - one hand clapping
 ![image](https://user-images.githubusercontent.com/76097749/188300566-7c331dae-a1e2-4ad3-b389-6dc33d75d42a.png)
