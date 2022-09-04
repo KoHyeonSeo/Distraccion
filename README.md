@@ -1,9 +1,12 @@
 # Distraccion
 
 ## 개요
-- 타겟팅 게임: Monument Vally, one hand clapping, scooby-doo
+- 타겟팅 게임
+-  Monument Vally
 ![image](https://user-images.githubusercontent.com/76097749/188300561-7b05ee5e-dcdc-443e-bbb1-b9e86ca40b67.png)
+- one hand clapping
 ![image](https://user-images.githubusercontent.com/76097749/188300566-7c331dae-a1e2-4ad3-b389-6dc33d75d42a.png)
+ - Scooby-doo
 ![image](https://user-images.githubusercontent.com/76097749/188300598-6f71fee7-c05e-4907-9108-aa20833aa667.png)
 
 - 3인칭 맵 중심 카메라
