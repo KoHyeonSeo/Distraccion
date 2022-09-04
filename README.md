@@ -174,4 +174,62 @@
 - Entity
     - Player
         - PlayerInput.cs
-        - 
+        - MiddleStagePlayerMove.cs
+        - PlayerEndingMove.cs
+        - PlayerScared.cs
+    - Enemy
+        - [Mission]
+            - Mission.cs
+        - [MissionComplete]
+            - MissionComplete.cs (abstract)
+            - DeleteEnemyComplete.cs
+            - BugnComplete.cs
+            - ThrowBallComplete.cs
+        - [MissionFail]
+            - MissionFail.cs (abstract)
+            - DeleteEnemyFail.cs
+            - BugFail.cs
+            - ThrowBallFail.cs
+        - MissionItem.cs
+        - MissionTriggerZone.cs
+- Manager
+    - GameManager.cs
+    - UIManager.cs
+- Other
+    - [Audio]
+        - Mic.cs
+        - Quest1Complete.cs
+        - SoundQuest1.cs
+        - SoundQuest2.cs
+    - [Block]
+        - AutoRotation.cs
+        - RotationBlock.cs
+        - ButtonAndUpMap.cs
+        - DoorBlockRotate.cs
+        - HandleControlBlock.cs
+        - IsHaveStairMoving.cs
+        - StairMoving.cs
+        - TrickBlockMatch.cs
+    - [Camera]
+        - CameraUp.cs
+        - Quest2Camera.cs
+    - [Stage]
+        - Portal.cs
+        - Stage0SoundControl.cs
+- Utility
+    - PhysicsUtility.cs
+- UI
+    - [Quest]
+        - Quest1Complete.cs
+        - Quest1EndingQuest.cs
+        - Quest2Complete.cs
+        - GameOverUI.cs
+        - TextUI.cs
+- Cinemachine & Animation
+    - [Cinemachine]
+        - DirectAcion.cs
+    - [Animation]
+        - Story1Player.cs
+        - Story2Crow.cs
+        - Story2Fairy.cs
+        - Story2Player.cs
